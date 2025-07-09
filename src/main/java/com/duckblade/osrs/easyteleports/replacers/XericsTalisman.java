@@ -22,7 +22,8 @@ public class XericsTalisman implements Replacer
 
 	private static final Set<String> TALISMAN_ADVENTURE_LOG_HEADER_PREFIXES = ImmutableSet.of(
 		"The talisman has",
-		"Xeric's Talisman teleports"
+		"Xeric's Talisman teleports",
+		"Xeric's Talisman left click"
 	);
 
 	private final List<TeleportReplacement> replacements = new ArrayList<>(5);

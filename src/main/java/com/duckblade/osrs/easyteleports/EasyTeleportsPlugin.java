@@ -145,6 +145,9 @@ public class EasyTeleportsPlugin extends Plugin
 			{
 				Widget advLogHeader = getAdventureLogHeader();
 				replaceWidgetChildren(InterfaceID.Menu.LJ_LAYER2, 3, (r, w) -> r.isApplicableToAdventureLog(advLogHeader));
+				// Fix for Xeric's talisman in poh
+				Widget pohWidget = client.getWidget(InterfaceID.Menu.LJ_LAYER1);
+				replaceWidgetChildren(pohWidget, (r, w) -> r.isApplicableToAdventureLog(advLogHeader));
 			});
 			return;
 		}
