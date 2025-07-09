@@ -13,6 +13,7 @@ public class SlayerRing implements Replacer
 {
 
 	private static final String SLAYER_RING_DIALOG_HEADER = "Select an Option";
+	private static final String ETERNAL_SLAYER_RING_DIALOG_HEADER = "Select an option";
 
 	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
@@ -26,10 +27,16 @@ public class SlayerRing implements Replacer
 
 		replacements.clear();
 		replacements.add(new TeleportReplacement("Teleport to the Stronghold Slayer Cave", config.replacementSlayerStronghold()));
+		replacements.add(new TeleportReplacement("Stronghold", config.replacementSlayerStronghold()));
 		replacements.add(new TeleportReplacement("Teleport to the Morytania Slayer Tower", config.replacementSlayerTower()));
 		replacements.add(new TeleportReplacement("Teleport to the Rellekka Slayer Caves", config.replacementSlayerRellekka()));
+		replacements.add(new TeleportReplacement("Slayer Tower", config.replacementSlayerTower()));
+		replacements.add(new TeleportReplacement("Teleport to the Fremennik Slayer Dungeon", config.replacementSlayerRellekka()));
+		replacements.add(new TeleportReplacement("Fremennik Dungeon", config.replacementSlayerRellekka()));
 		replacements.add(new TeleportReplacement("Teleport to Tarn's Lair", config.replacementTarns()));
+		replacements.add(new TeleportReplacement("Tarn's Lair", config.replacementTarns()));
 		replacements.add(new TeleportReplacement("Teleport to Dark Beasts", config.replacementDarkBeasts()));
+		replacements.add(new TeleportReplacement("Dark Beasts", config.replacementDarkBeasts()));
 	}
 
 	@Override
@@ -44,7 +51,8 @@ public class SlayerRing implements Replacer
 		Widget[] children = root.getChildren();
 		return children != null &&
 			children.length >= 5 &&
-			SLAYER_RING_DIALOG_HEADER.equals(children[0].getText());
+			(SLAYER_RING_DIALOG_HEADER.equals(children[0].getText())
+		|| ETERNAL_SLAYER_RING_DIALOG_HEADER.equals(children[0].getText()));
 	}
 
 	@Override
