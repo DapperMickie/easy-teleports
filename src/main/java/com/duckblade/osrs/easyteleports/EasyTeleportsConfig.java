@@ -22,6 +22,7 @@ public interface EasyTeleportsConfig extends Config
 	int POSITION_NECKLACE_OF_PASSAGE = POSITION_RING_OF_SHADOWS + 100;
 	int POSITION_TEXT_SHADOWED = POSITION_NECKLACE_OF_PASSAGE + 100;
 	int POSITION_PENDANT_OF_ATES = POSITION_TEXT_SHADOWED + 100;
+	int POSITION_DIGSITE_PENDANT = POSITION_PENDANT_OF_ATES + 100;
 
 	@ConfigSection(
 		name = "Toggles",
@@ -897,4 +898,66 @@ public interface EasyTeleportsConfig extends Config
 	//
 	// END of Pendant of Ates //
 	//
+
+	//
+	// Digsite Pendant
+	//
+
+	@ConfigItem(
+		keyName = "enableDigsitePendant",
+		name = "Digsite Pendant",
+		description = "Replace teleport entries on the Digsite Pendant with new names.",
+		section = SECTION_ENABLE_FLAGS,
+		position = POSITION_FLAGS + (POSITION_DIGSITE_PENDANT / 100)
+	)
+	default boolean enableDigsitePendant()
+	{
+		return true;
+	}
+
+	@ConfigSection(
+		name = "Digsite Pendant",
+		description = "Replacement text for Digsite Pendant teleport locations.",
+		position = POSITION_DIGSITE_PENDANT,
+		closedByDefault = true
+	)
+	String SECTION_DIGSITE_PENDANT = "sectionDigsitePendant";
+
+	@ConfigItem(
+		keyName = "replacementDigsite",
+		name = "Digsite",
+		description = "Replace Digsite teleport location.",
+		section = SECTION_DIGSITE_PENDANT,
+		position = POSITION_DIGSITE_PENDANT + 1
+	)
+	default String replacementDigsite()
+	{
+		return "Digsite";
+	}
+
+	@ConfigItem(
+		keyName = "replacementFossilIsland",
+		name = "Fossil Island",
+		description = "Replace Fossil Island teleport location.",
+		section = SECTION_DIGSITE_PENDANT,
+		position = POSITION_DIGSITE_PENDANT + 2
+	)
+	default String replacementFossilIsland()
+	{
+		return "Fossil Island";
+	}
+
+	
+
+	@ConfigItem(
+		keyName = "replacementLithkren",
+		name = "Lithkren",
+		description = "Replace Lithkren teleport location.",
+		section = SECTION_DIGSITE_PENDANT,
+		position = POSITION_DIGSITE_PENDANT + 3
+	)
+	default String replacementLithkren()
+	{
+		return "Lithkren";
+	}
 }

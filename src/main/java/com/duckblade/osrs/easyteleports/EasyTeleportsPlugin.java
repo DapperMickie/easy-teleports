@@ -1,6 +1,7 @@
 package com.duckblade.osrs.easyteleports;
 
 import com.duckblade.osrs.easyteleports.replacers.DiaryCape;
+import com.duckblade.osrs.easyteleports.replacers.DigsitePendant;
 import com.duckblade.osrs.easyteleports.replacers.DrakansMedallion;
 import com.duckblade.osrs.easyteleports.replacers.KharedstMemoirs;
 import com.duckblade.osrs.easyteleports.replacers.NecklaceOfPassage;
@@ -98,6 +99,7 @@ public class EasyTeleportsPlugin extends Plugin
 		replacers.addBinding().to(XericsTalisman.class);
 		replacers.addBinding().to(NecklaceOfPassage.class);
 		replacers.addBinding().to(PendantOfAtes.class);
+		replacers.addBinding().to(DigsitePendant.class);
 	}
 
 	@Override
