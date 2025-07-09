@@ -21,6 +21,7 @@ public interface EasyTeleportsConfig extends Config
 	int POSITION_RING_OF_SHADOWS = POSITION_DRAKANS + 100;
 	int POSITION_NECKLACE_OF_PASSAGE = POSITION_RING_OF_SHADOWS + 100;
 	int POSITION_TEXT_SHADOWED = POSITION_NECKLACE_OF_PASSAGE + 100;
+	int POSITION_PENDANT_OF_ATES = POSITION_TEXT_SHADOWED + 100;
 
 	@ConfigSection(
 		name = "Toggles",
@@ -820,4 +821,80 @@ public interface EasyTeleportsConfig extends Config
 	{
 		return "NW of Uzer (Desert)";
 	}
+
+	//
+	// Pendant of Ates
+	//
+
+	@ConfigItem(
+			section = SECTION_ENABLE_FLAGS,
+			keyName = "enablePendantOfAtes",
+			name = "Pendant of Ates",
+			description = "Replace teleport entries on the Pendant of Ates with new names.",
+			position = POSITION_FLAGS + (POSITION_PENDANT_OF_ATES / 100)
+	)
+	default boolean enablePendantOfAtes()
+	{
+		return true;
+	}
+
+	@ConfigSection(
+			name = "Pendant of Ates",
+			description = "Replacement text for Pendant of Ates teleport locations.",
+			position = POSITION_PENDANT_OF_ATES,
+			closedByDefault = true
+	)
+	String SECTION_PENDANT_OF_ATES = "sectionPendantOfAtes";
+
+	@ConfigItem(
+			keyName = "replacementDarkfrost",
+			name = "The Darkfrost",
+			description = "Replace The Darkfrost (west of base camp)",
+			section = SECTION_PENDANT_OF_ATES,
+			position = POSITION_PENDANT_OF_ATES + 1
+	)
+	default String replacementDarkfrost()
+	{
+		return "<col=2a94ae>Hueycoatl</col>";
+	}
+
+	@ConfigItem(
+			keyName = "replacementTwilightTemple",
+			name = "Twilight Temple",
+			description = "Replace Twilight Temple (east of Tower of Ascension)",
+			section = SECTION_PENDANT_OF_ATES,
+			position = POSITION_PENDANT_OF_ATES + 2
+	)
+	default String replacementTwilightTemple()
+	{
+		return "<col=ae2a2a>Amoxliatl</col>";
+	}
+
+	@ConfigItem(
+			keyName = "replacementRalosRise",
+			name = "Ralos' Rise",
+			description = "Replace Ralos' Rise (east of exposed altar)",
+			section = SECTION_PENDANT_OF_ATES,
+			position = POSITION_PENDANT_OF_ATES + 3
+	)
+	default String replacementRalosRise()
+	{
+		return "<col=ae8b2a>Moons of Peril</col>";
+	}
+
+	@ConfigItem(
+			keyName = "replacementNorthAldarin",
+			name = "North Aldarin",
+			description = "Replace North Aldarin (north of market)",
+			section = SECTION_PENDANT_OF_ATES,
+			position = POSITION_PENDANT_OF_ATES + 4
+	)
+	default String replacementNorthAldarin()
+	{
+		return "<col=8800ff>Mastering Mixology</col>";
+	}
+
+	//
+	// END of Pendant of Ates //
+	//
 }
