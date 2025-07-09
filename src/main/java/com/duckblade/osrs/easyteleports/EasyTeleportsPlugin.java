@@ -31,6 +31,8 @@ import net.runelite.api.Client;
 import net.runelite.api.EquipmentInventorySlot;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.events.MenuEntryAdded;
+import net.runelite.api.events.ScriptPostFired;
+import net.runelite.api.events.ScriptPreFired;
 import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.gameval.InterfaceID;
 import net.runelite.api.widgets.Widget;
@@ -40,6 +42,7 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.api.widgets.JavaScriptCallback;
 
 @Slf4j
 @PluginDescriptor(
@@ -128,6 +131,11 @@ public class EasyTeleportsPlugin extends Plugin
 			clientThread.invokeLater(() -> replaceWidgetChildren(chatbox, Replacer::isApplicableToDialog, config.enableShadowedText()));
 		}
 
+		if (e.getGroupId() == InterfaceID.PENDANT_OF_ATES) {
+			Widget pendant = client.getWidget(InterfaceID.PendantOfAtes.TELEPORT_LAYER);
+			clientThread.invokeLater(() -> replacePendantWidgetChildren(pendant, Replacer::isApplicableToAdventureLog, false));
+		}
+
 		// the scroll thing that xeric's talisman uses
 		// annoyingly, the header text and teleport entries share a groupId (187.0 vs 187.3),
 		// but don't share a parent with that same groupId, their parent is 164.16
@@ -160,6 +168,40 @@ public class EasyTeleportsPlugin extends Plugin
 		}
 	}
 
+
+	public static final int PENDANT_OF_ATES_MAIN_TELEPORT_SCRIPT_ID = 6645;
+	public static final int PENDANT_OF_ATES_TEXT_TELEPORT_SCRIPT_ID = 6646;
+
+	@Subscribe
+	private void onScriptPreFired(ScriptPreFired scriptPreFired)
+	{
+		if (scriptPreFired.getScriptId() == PENDANT_OF_ATES_TEXT_TELEPORT_SCRIPT_ID)
+		{
+			final Object[] stringStack = client.getObjectStack();
+			final int stringStackSize = client.getObjectStackSize();
+			if (stringStackSize == 1) {
+				final String textToReplace = stringStack[0].toString();
+
+				for (TeleportReplacement replacement : getApplicableReplacements(r -> r.isApplicableToScriptId(scriptPreFired.getScriptId()))) {
+					if (textToReplace.contains(replacement.getOriginal())) {
+						final String newText = textToReplace.replace(replacement.getOriginal(), replacement.getReplacement());
+						stringStack[0] = newText;
+					}
+				}
+			}
+		}
+	}
+
+	@Subscribe
+	public void onScriptPostFired(ScriptPostFired scriptPostFired)
+	{
+		if (scriptPostFired.getScriptId() == PENDANT_OF_ATES_MAIN_TELEPORT_SCRIPT_ID)
+		{
+			Widget pendant = client.getWidget(InterfaceID.PendantOfAtes.TELEPORT_LAYER);
+			clientThread.invokeLater(() -> replacePendantWidgetChildren(pendant, Replacer::isApplicableToAdventureLog, false));
+		}
+	}
+
 	private void replaceWidgetChildren(int groupId, int entriesChildId, BiPredicate<Replacer, Widget> filterSelector)
 	{
 		Widget root = client.getWidget(groupId, entriesChildId);
@@ -169,6 +211,40 @@ public class EasyTeleportsPlugin extends Plugin
 		}
 
 		replaceWidgetChildren(root, filterSelector);
+	}
+
+	private void replacePendantWidgetChildren(Widget root, BiPredicate<Replacer, Widget> filterSelector, boolean shadowedText)
+	{
+		Widget[] children = root.getStaticChildren();
+
+		if (children == null) {
+			return;
+		}
+
+		List<TeleportReplacement> applicableReplacements = getApplicableReplacements(r -> filterSelector.test(r, root));
+		for (Widget child : children)
+		{
+			applyReplacement(applicableReplacements, child, Widget::getName, Widget::setName, shadowedText);
+			Widget[] actualChildren = child.getChildren();
+			if (actualChildren == null) {
+				return;
+			}
+
+			for (Widget actualChild : actualChildren) {
+				applyReplacement(applicableReplacements, actualChild, Widget::getName, Widget::setName, shadowedText);
+				applyReplacement(applicableReplacements, actualChild, Widget::getText, Widget::setText, shadowedText);
+
+				Widget[] actualActualChildren = actualChild.getChildren();
+				if (actualActualChildren == null) {
+					continue;
+				}
+
+				for (Widget actualActualChild : actualActualChildren) {
+					applyReplacement(applicableReplacements, actualActualChild, Widget::getName, Widget::setName, shadowedText);
+					applyReplacement(applicableReplacements, actualActualChild, Widget::getText, Widget::setText, shadowedText);
+				}
+			}
+		}
 	}
 
 	private void replaceWidgetChildren(Widget root, BiPredicate<Replacer, Widget> filterSelector)
@@ -181,6 +257,10 @@ public class EasyTeleportsPlugin extends Plugin
 		Widget[] children = root.getChildren();
 		if (children == null)
 		{
+			children = root.getStaticChildren();
+		}
+
+		if (children == null) {
 			return;
 		}
 
@@ -277,5 +357,7 @@ public class EasyTeleportsPlugin extends Plugin
 			log.error("Failed to replace option [{}] on entry [{}]", entryText, entry.toString());
 		}
 	}
+
+
 
 }

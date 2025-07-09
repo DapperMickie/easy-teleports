@@ -35,6 +35,11 @@ public interface Replacer
 		return false;
 	}
 
+	default boolean isApplicableToScriptId(int scriptId)
+	{
+		return false;
+	}
+
 	default EquipmentInventorySlot getEquipmentSlot()
 	{
 		return null;

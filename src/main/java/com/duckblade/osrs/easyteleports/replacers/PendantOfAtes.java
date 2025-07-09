@@ -1,6 +1,8 @@
 package com.duckblade.osrs.easyteleports.replacers;
 
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
+import static com.duckblade.osrs.easyteleports.EasyTeleportsPlugin.PENDANT_OF_ATES_MAIN_TELEPORT_SCRIPT_ID;
+import static com.duckblade.osrs.easyteleports.EasyTeleportsPlugin.PENDANT_OF_ATES_TEXT_TELEPORT_SCRIPT_ID;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
 import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import net.runelite.api.EquipmentInventorySlot;
 import net.runelite.api.gameval.ItemID;
 import net.runelite.api.widgets.Widget;
+import net.runelite.api.gameval.InterfaceID;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
@@ -30,9 +33,14 @@ public class PendantOfAtes implements Replacer
 		this.enabled = config.enablePendantOfAtes();
 		replacements.clear();
 
+		replacements.add(new TeleportReplacement("1: The Darkfrost", "1: " + config.replacementDarkfrost()));
+		replacements.add(new TeleportReplacement("<col=ffffff>1: The Darkfrost</col>", "1: " + config.replacementDarkfrost()));
 		replacements.add(new TeleportReplacement("The Darkfrost", config.replacementDarkfrost()));
+		replacements.add(new TeleportReplacement("2: Twilight Temple", "2: " + config.replacementTwilightTemple()));
 		replacements.add(new TeleportReplacement("Twilight Temple", config.replacementTwilightTemple()));
+		replacements.add(new TeleportReplacement("3: Ralos' Rise", "3: " + config.replacementRalosRise()));
 		replacements.add(new TeleportReplacement("Ralos' Rise", config.replacementRalosRise()));
+		replacements.add(new TeleportReplacement("4: North Aldarin", "4: " + config.replacementNorthAldarin()));
 		replacements.add(new TeleportReplacement("North Aldarin", config.replacementNorthAldarin()));
 	}
 
@@ -52,9 +60,20 @@ public class PendantOfAtes implements Replacer
 	}
 
 	@Override
+	public boolean isApplicableToAdventureLog(Widget root)
+	{
+		return root.getId() == InterfaceID.PendantOfAtes.TELEPORT_LAYER;
+	}
+
+	@Override
 	public EquipmentInventorySlot getEquipmentSlot()
 	{
 		return EquipmentInventorySlot.AMULET;
+	}
+
+	@Override
+	public boolean isApplicableToScriptId(int scriptId) {
+		return scriptId == PENDANT_OF_ATES_MAIN_TELEPORT_SCRIPT_ID || scriptId == PENDANT_OF_ATES_TEXT_TELEPORT_SCRIPT_ID;
 	}
 
 	@Override
