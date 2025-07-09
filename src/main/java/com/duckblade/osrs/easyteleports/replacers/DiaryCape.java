@@ -6,7 +6,7 @@ import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
-import net.runelite.api.ItemID;
+import net.runelite.api.gameval.ItemID;
 import net.runelite.api.widgets.Widget;
 
 public class DiaryCape implements Replacer
@@ -60,6 +60,6 @@ public class DiaryCape implements Replacer
 	@Override
 	public boolean isApplicableToInventory(int itemId)
 	{
-		return itemId == ItemID.ACHIEVEMENT_DIARY_CAPE || itemId == ItemID.ACHIEVEMENT_DIARY_CAPE_T;
+		return itemId == ItemID.SKILLCAPE_AD || itemId == ItemID.SKILLCAPE_AD_TRIMMED;
 	}
 }

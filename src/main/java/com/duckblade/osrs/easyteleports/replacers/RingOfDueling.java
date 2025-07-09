@@ -11,7 +11,7 @@ import javax.inject.Singleton;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.runelite.api.EquipmentInventorySlot;
-import net.runelite.api.ItemID;
+import net.runelite.api.gameval.ItemID;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.game.ItemMapping;
 
@@ -72,6 +72,6 @@ public class RingOfDueling implements Replacer
 	public boolean isApplicableToInventory(int itemId)
 	{
 		Collection<ItemMapping> itemMappings = ItemMapping.map(itemId);
-		return itemId == ItemID.RING_OF_DUELING8 || (itemMappings != null && itemMappings.contains(ItemMapping.ITEM_RING_OF_DUELING));
+		return itemId == ItemID.RING_OF_DUELING_8 || (itemMappings != null && itemMappings.contains(ItemMapping.ITEM_RING_OF_DUELING));
 	}
 }

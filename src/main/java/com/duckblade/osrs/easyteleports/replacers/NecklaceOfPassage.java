@@ -3,16 +3,14 @@ package com.duckblade.osrs.easyteleports.replacers;
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.runelite.api.EquipmentInventorySlot;
-import net.runelite.api.ItemID;
+import net.runelite.api.gameval.ItemID;
 import net.runelite.api.widgets.Widget;
 
 @Singleton
@@ -62,10 +60,10 @@ public class NecklaceOfPassage implements Replacer
 	@Override
 	public boolean isApplicableToInventory(int itemId)
 	{
-		return itemId == ItemID.NECKLACE_OF_PASSAGE1
-			|| itemId == ItemID.NECKLACE_OF_PASSAGE2
-			|| itemId == ItemID.NECKLACE_OF_PASSAGE3
-			|| itemId == ItemID.NECKLACE_OF_PASSAGE4
-			|| itemId == ItemID.NECKLACE_OF_PASSAGE5;
+		return itemId == ItemID.NECKLACE_OF_PASSAGE_1
+			|| itemId == ItemID.NECKLACE_OF_PASSAGE_2
+			|| itemId == ItemID.NECKLACE_OF_PASSAGE_3
+			|| itemId == ItemID.NECKLACE_OF_PASSAGE_4
+			|| itemId == ItemID.NECKLACE_OF_PASSAGE_5;
 	}
 }

@@ -31,8 +31,7 @@ import net.runelite.api.EquipmentInventorySlot;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.WidgetLoaded;
-import net.runelite.api.widgets.ComponentID;
-import net.runelite.api.widgets.InterfaceID;
+import net.runelite.api.gameval.InterfaceID;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
@@ -120,22 +119,22 @@ public class EasyTeleportsPlugin extends Plugin
 	public void onWidgetLoaded(WidgetLoaded e)
 	{
 		// chatbox dialog
-		if (e.getGroupId() == InterfaceID.DIALOG_OPTION)
+		if (e.getGroupId() == InterfaceID.CHATMENU)
 		{
 			//InterfaceID.DIALOG_OPTION
-			Widget chatbox = client.getWidget(ComponentID.DIALOG_OPTION_OPTIONS);
+			Widget chatbox = client.getWidget(InterfaceID.Chatmenu.OPTIONS);
 			clientThread.invokeLater(() -> replaceWidgetChildren(chatbox, Replacer::isApplicableToDialog, config.enableShadowedText()));
 		}
 
 		// the scroll thing that xeric's talisman uses
 		// annoyingly, the header text and teleport entries share a groupId (187.0 vs 187.3),
 		// but don't share a parent with that same groupId, their parent is 164.16
-		if (e.getGroupId() == InterfaceID.ADVENTURE_LOG)
+		if (e.getGroupId() == InterfaceID.MENU)
 		{
 			clientThread.invokeLater(() ->
 			{
 				Widget advLogHeader = getAdventureLogHeader();
-				replaceWidgetChildren(InterfaceID.ADVENTURE_LOG, 3, (r, w) -> r.isApplicableToAdventureLog(advLogHeader));
+				replaceWidgetChildren(InterfaceID.Menu.LJ_LAYER2, 3, (r, w) -> r.isApplicableToAdventureLog(advLogHeader));
 			});
 			return;
 		}
@@ -219,7 +218,7 @@ public class EasyTeleportsPlugin extends Plugin
 
 	private Widget getAdventureLogHeader()
 	{
-		Widget adventureLogRoot = client.getWidget(ComponentID.ADVENTURE_LOG_CONTAINER);
+		Widget adventureLogRoot = client.getWidget(InterfaceID.Menu.LJ_LAYER2);
 		if (adventureLogRoot == null)
 		{
 			return null;

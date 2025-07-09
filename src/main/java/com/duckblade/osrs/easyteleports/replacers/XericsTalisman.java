@@ -12,7 +12,7 @@ import javax.inject.Singleton;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.runelite.api.EquipmentInventorySlot;
-import net.runelite.api.ItemID;
+import net.runelite.api.gameval.ItemID;
 import net.runelite.api.widgets.Widget;
 
 @Singleton
@@ -61,7 +61,7 @@ public class XericsTalisman implements Replacer
 	@Override
 	public boolean isApplicableToInventory(int itemId)
 	{
-		return itemId == ItemID.XERICS_TALISMAN;
+		return itemId == ItemID.XERIC_TALISMAN;
 	}
 
 	@Override
