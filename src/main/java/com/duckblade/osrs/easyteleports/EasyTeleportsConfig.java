@@ -898,7 +898,7 @@ public interface EasyTeleportsConfig extends Config
 	@ConfigItem(
 			keyName = "replacementKastori",
 			name = "Kastori",
-			description = "Replace Kastori (north of Tlati Rainforest)",
+			description = "Replace Kastori (east of Tlati Rainforest)",
 			section = SECTION_PENDANT_OF_ATES,
 			position = POSITION_PENDANT_OF_ATES + 5
 	)
