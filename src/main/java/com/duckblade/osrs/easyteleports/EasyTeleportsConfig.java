@@ -895,6 +895,30 @@ public interface EasyTeleportsConfig extends Config
 		return "<col=8800ff>Mastering Mixology</col>";
 	}
 
+	@ConfigItem(
+			keyName = "replacementKastori",
+			name = "Kastori",
+			description = "Replace Kastori (north of Tlati Rainforest)",
+			section = SECTION_PENDANT_OF_ATES,
+			position = POSITION_PENDANT_OF_ATES + 5
+	)
+	default String replacementKastori()
+	{
+		return "<col=65684f>Gemstone Crab</col>";
+	}
+
+	@ConfigItem(
+			keyName = "replacementNemusRetreat",
+			name = "Nemus Retreat",
+			description = "Replace Nemus Retreat (south of Auburnvale)",
+			section = SECTION_PENDANT_OF_ATES,
+			position = POSITION_PENDANT_OF_ATES + 6
+	)
+	default String replacementNemusRetreat()
+	{
+		return "<col=80b37c>Vale Totems</col>";
+	}
+
 	//
 	// END of Pendant of Ates //
 	//
