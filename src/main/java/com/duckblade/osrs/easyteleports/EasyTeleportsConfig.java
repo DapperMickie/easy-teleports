@@ -11,8 +11,8 @@ import java.awt.Color;
 public interface EasyTeleportsConfig extends Config {
 
     String CONFIG_GROUP = "easyteleports";
-    int DISPLAY_OPTIONS = 100;
-    int POSITION_FLAGS = DISPLAY_OPTIONS + 100;
+    int POSITION_DISPLAY_OPTIONS = 100;
+    int POSITION_FLAGS = POSITION_DISPLAY_OPTIONS + 100;
     int POSITION_PHARAOHS_SCEPTRE = POSITION_FLAGS + 100;
     int POSITION_KHAREDSTS_MEMOIRS = POSITION_PHARAOHS_SCEPTRE + 100;
     int POSITION_XERICS_TALISMAN = POSITION_KHAREDSTS_MEMOIRS + 100;
@@ -42,7 +42,7 @@ public interface EasyTeleportsConfig extends Config {
     @ConfigSection(
             name = "Display options",
             description = "General text and display options.",
-            position = DISPLAY_OPTIONS
+            position = POSITION_DISPLAY_OPTIONS
     )
     String SECTION_DISPLAY_OPTIONS = "displayOptions";
 
@@ -51,7 +51,7 @@ public interface EasyTeleportsConfig extends Config {
             keyName = "enableShadowedText",
             name = "Text shadow",
             description = "Render a shadow under re-colored text to make them more readable.",
-            position = DISPLAY_OPTIONS + 1
+            position = POSITION_DISPLAY_OPTIONS + 1
     )
     default boolean enableShadowedText() {
         return true;
@@ -62,7 +62,7 @@ public interface EasyTeleportsConfig extends Config {
             keyName = "dummyColorPicker",
             name = "Dummy color picker",
             description = "Dummy color picker to help with quickly grabbing hex color codes.",
-            position = DISPLAY_OPTIONS + 2
+            position = POSITION_DISPLAY_OPTIONS + 2
     )
     default Color dummyColorPicker() {
         return Color.WHITE;
