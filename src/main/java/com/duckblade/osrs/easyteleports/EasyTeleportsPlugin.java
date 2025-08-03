@@ -1,17 +1,6 @@
 package com.duckblade.osrs.easyteleports;
 
-import com.duckblade.osrs.easyteleports.replacers.DiaryCape;
-import com.duckblade.osrs.easyteleports.replacers.DigsitePendant;
-import com.duckblade.osrs.easyteleports.replacers.DrakansMedallion;
-import com.duckblade.osrs.easyteleports.replacers.KharedstMemoirs;
-import com.duckblade.osrs.easyteleports.replacers.NecklaceOfPassage;
-import com.duckblade.osrs.easyteleports.replacers.PendantOfAtes;
-import com.duckblade.osrs.easyteleports.replacers.PharaohSceptre;
-import com.duckblade.osrs.easyteleports.replacers.Replacer;
-import com.duckblade.osrs.easyteleports.replacers.RingOfDueling;
-import com.duckblade.osrs.easyteleports.replacers.RingOfShadows;
-import com.duckblade.osrs.easyteleports.replacers.SlayerRing;
-import com.duckblade.osrs.easyteleports.replacers.XericsTalisman;
+import com.duckblade.osrs.easyteleports.replacers.*;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Binder;
@@ -48,7 +37,7 @@ import net.runelite.api.widgets.JavaScriptCallback;
 @Slf4j
 @PluginDescriptor(
 	name = "Easy Teleports",
-	tags = {"Pharaoh's", "Sceptre", "xeric's", "talisman", "kharedst's", "memoirs"}
+	tags = {"Pharaoh's", "sceptre", "Xeric's", "talisman", "Kharedst's", "memoirs", "dueling", "achievement", "diary", "cape", "slayer", "ring", "Drakan's", "medallion", "shadows", "necklace", "passage", "pendant", "ates", "digsite", "max", "teleport"}
 )
 @Singleton
 public class EasyTeleportsPlugin extends Plugin
@@ -100,6 +89,7 @@ public class EasyTeleportsPlugin extends Plugin
 		replacers.addBinding().to(NecklaceOfPassage.class);
 		replacers.addBinding().to(PendantOfAtes.class);
 		replacers.addBinding().to(DigsitePendant.class);
+		replacers.addBinding().to(MaxCape.class);
 	}
 
 	@Override

@@ -24,6 +24,7 @@ public interface EasyTeleportsConfig extends Config
 	int POSITION_NECKLACE_OF_PASSAGE = POSITION_RING_OF_SHADOWS + 100;
 	int POSITION_PENDANT_OF_ATES = POSITION_NECKLACE_OF_PASSAGE + 100;
 	int POSITION_DIGSITE_PENDANT = POSITION_PENDANT_OF_ATES + 100;
+	int POSITION_MAX_CAPE = POSITION_DIGSITE_PENDANT + 100;
 
     // General plugin options
 	@ConfigSection(
@@ -36,8 +37,8 @@ public interface EasyTeleportsConfig extends Config
 	@ConfigItem(
 		section = SECTION_DISPLAY_OPTIONS,
 		keyName = "enableShadowedText",
-		name = "Text Shadow",
-		description = "Render a shadow around re-colored text to make them more readable.",
+		name = "Text shadow",
+		description = "Render a shadow under re-colored text to make them more readable.",
 		position = DISPLAY_OPTIONS + (POSITION_TEXT_SHADOWED / 100)
 	)
 	default boolean enableShadowedText()
@@ -855,8 +856,8 @@ public interface EasyTeleportsConfig extends Config
 	}
 
 	@ConfigSection(
-			name = "Pendant of Ates",
-			description = "Replacement text for Pendant of Ates teleport locations.",
+			name = "Pendant of ates",
+			description = "Replacement text for Pendant of ates teleport locations.",
 			position = POSITION_PENDANT_OF_ATES,
 			closedByDefault = true
 	)
@@ -979,8 +980,6 @@ public interface EasyTeleportsConfig extends Config
 		return "Fossil Island";
 	}
 
-
-
 	@ConfigItem(
 		keyName = "replacementLithkren",
 		name = "Lithkren",
@@ -991,5 +990,242 @@ public interface EasyTeleportsConfig extends Config
 	default String replacementLithkren()
 	{
 		return "Lithkren";
+	}
+
+	// Max cape
+	@ConfigItem(
+			section = SECTION_ENABLE_FLAGS,
+			keyName = "enableMaxCape",
+			name = "Max cape",
+			description = "Replace teleport entries on the Max cape with new names.",
+			position = POSITION_FLAGS + (POSITION_MAX_CAPE / 100)
+	)
+	default boolean enableMaxCape()
+	{
+		return false;
+	}
+
+	@ConfigSection(
+			name = "Max cape",
+			description = "Replacement text for Max cape teleport locations.",
+			position = POSITION_MAX_CAPE,
+			closedByDefault = true
+	)
+	String SECTION_MAX_CAPE = "sectionMaxCape";
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeWarriorsGuild",
+			name = "Warrior's Guild name",
+			description = "Replace Warrior's Guild teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 1
+	)
+	default String replacementMaxCapeWarriorsGuild()
+	{
+		return "Warrior's Guild";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeFishingGuild",
+			name = "Fishing Guild",
+			description = "Replace Fishing Guild teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 2
+	)
+	default String replacementMaxCapeFishingGuild()
+	{
+		return "Fishing Guild";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeCraftingGuild",
+			name = "Crafting Guild",
+			description = "Replace Crafting Guild teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 3
+	)
+	default String replacementMaxCapeCraftingGuild()
+	{
+		return "<col=ffca00>Crafting Guild</col>";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeFarmingGuild",
+			name = "Farming Guild",
+			description = "Replace Farming Guild teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 4
+	)
+	default String replacementMaxCapeFarmingGuild()
+	{
+		return "Farming Guild";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeOttosGrotto",
+			name = "Otto's Grotto",
+			description = "Replace Otto's Grotto teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 5
+	)
+	default String replacementMaxCapeOttosGrotto()
+	{
+		return "Barbarian fishing";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeFeldipHills",
+			name = "Feldip Hills",
+			description = "Replace Feldip Hills teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 6
+	)
+	default String replacementMaxCapeFeldipHills()
+	{
+		return "Red chinchompas";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeBlackChincompas",
+			name = "Black chinchompas",
+			description = "Replace Black chinchompas teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 7
+	)
+	default String replacementMaxCapeBlackChincompas()
+	{
+		return "<col=ff0000>Black chinchompas</col>";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeHunterGuild",
+			name = "Hunter Guild",
+			description = "Replace Hunter Guild teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 8
+	)
+	default String replacementMaxCapeHunterGuild()
+	{
+		return "Hunter Guild";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeHome",
+			name = "Home",
+			description = "Replace Home teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 9
+	)
+	default String replacementMaxCapeHome()
+	{
+		return "<col=8800ff>Home</col>";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeRimmington",
+			name = "Rimmington",
+			description = "Replace Rimmington teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 10
+	)
+	default String replacementMaxCapeRimmington()
+	{
+		return "Rimmington";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeTaverley",
+			name = "Taverley",
+			description = "Replace Taverley teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 11
+	)
+	default String replacementMaxCapeTaverley()
+	{
+		return "Taverley";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapePollnivneach",
+			name = "Pollnivneach",
+			description = "Replace Pollnivneach teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 12
+	)
+	default String replacementMaxCapePollnivneach()
+	{
+		return "Pollnivneach";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeHosidius",
+			name = "Hosidius",
+			description = "Replace Hosidius teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 13
+	)
+	default String replacementMaxCapeHosidius()
+	{
+		return "Hosidius";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeAldarin",
+			name = "Aldarin",
+			description = "Replace Aldarin teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 14
+	)
+	default String replacementMaxCapeAldarin()
+	{
+		return "Aldarin";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeRellekka",
+			name = "Rellekka",
+			description = "Replace Rellekka teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 15
+	)
+	default String replacementMaxCapeRellekka()
+	{
+		return "Rellekka";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeBrimhaven",
+			name = "Brimhaven",
+			description = "Replace Brimhaven teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 16
+	)
+	default String replacementMaxCapeBrimhaven()
+	{
+		return "Brimhaven";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapeYanille",
+			name = "Yanille",
+			description = "Replace Yanille teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 17
+	)
+	default String replacementMaxCapeYanille()
+	{
+		return "Yanille";
+	}
+
+	@ConfigItem(
+			keyName = "replacementMaxCapePrifddinas",
+			name = "Prifddinas",
+			description = "Replace Prifddinas teleport location.",
+			section = SECTION_MAX_CAPE,
+			position = POSITION_MAX_CAPE + 18
+	)
+	default String replacementMaxCapePrifddinas()
+	{
+		return "Prifddinas";
 	}
 }
