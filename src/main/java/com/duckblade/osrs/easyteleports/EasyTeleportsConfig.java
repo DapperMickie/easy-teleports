@@ -960,7 +960,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_BURNING_AMULET + 1
     )
     default String replacementBurningChaosTemple() {
-        return "Chaos Temple";
+        return "<col=ff0000>Chaos Temple</col>";
     }
 
     @ConfigItem(
@@ -971,7 +971,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_BURNING_AMULET + 2
     )
     default String replacementBurningBanditCamp() {
-        return "Bandit Camp";
+        return "<col=ff0000>Bandit Camp</col>";
     }
 
     @ConfigItem(
@@ -982,7 +982,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_BURNING_AMULET + 3
     )
     default String replacementBurningLavaMaze() {
-        return "Lava Maze";
+        return "<col=ff0000>Lava Maze</col>";
     }
 
     // Enchanted lyre
@@ -1088,7 +1088,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_GHOMMALS_HILT + 2
     )
     default String replacementGhommalMorUlRek() {
-        return "<col=ae2a2a>The Inferno</col>";
+        return "<col=ff0000>The Inferno</col>";
     }
 
     // Camulet
@@ -1161,7 +1161,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_ETERNAL_TELEPORT_CRYSTAL + 1
     )
     default String replacementEternalPrifddinas() {
-        return "Prifddinas";
+        return "<col=2a94ae>Prifddinas</col>";
     }
 
     @ConfigItem(
@@ -1172,7 +1172,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_ETERNAL_TELEPORT_CRYSTAL + 2
     )
     default String replacementEternalLletya() {
-        return "Lletya";
+        return "<col=2aae4f>Lletya</col>";
     }
 
     // Grand seed pod
@@ -1245,7 +1245,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_RADAS_BLESSING + 1
     )
     default String replacementRadasKourendWoodland() {
-        return "Kourend Woodland";
+        return "<col=2aae4f>Kourend Woodland</col>";
     }
 
     @ConfigItem(
@@ -1256,7 +1256,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_RADAS_BLESSING + 2
     )
     default String replacementRadasMountKaruulm() {
-        return "Konar";
+        return "<col=8800ff>Konar</col>";
     }
 
     // Karamja gloves
@@ -1287,7 +1287,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_KARAMJA_GLOVES + 1
     )
     default String replacementKaramjaGemMine() {
-        return "Gem Mine";
+        return "<col=8800ff>Gem Mine</col>";
     }
 
     @ConfigItem(
@@ -1298,7 +1298,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_KARAMJA_GLOVES + 2
     )
     default String replacementKaramjaSlayerMaster() {
-        return "Duradel";
+        return "<col=ff0000>Duradel</col>";
     }
 
     // Morytania legs
@@ -1446,7 +1446,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_RING_OF_THE_ELEMENTS + 4
     )
     default String replacementFireAltar() {
-        return "<col=ae2a2a>Fire Altar</col>";
+        return "<col=ff0000>Fire Altar</col>";
     }
 
     // Giantsoul amulet
@@ -1499,7 +1499,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_GIANTSOUL_AMULET + 3
     )
     default String replacementBrandaAndEldric() {
-        return "<col=ae2a2a>Royal</col> <col=2a94ae>Titans</col>";
+        return "<col=ff0000>Royal</col> <col=2a94ae>Titans</col>";
     }
 
     // Max cape
