@@ -9,8 +9,10 @@ import net.runelite.client.config.ConfigSection;
 public interface EasyTeleportsConfig extends Config
 {
 
-	String CONFIG_GROUP = "easypharaohsceptre";
-	int POSITION_FLAGS = 100;
+	String CONFIG_GROUP = "easyteleports";
+	int DISPLAY_OPTIONS = 100;
+	int POSITION_TEXT_SHADOWED = DISPLAY_OPTIONS + 100;
+	int POSITION_FLAGS = POSITION_TEXT_SHADOWED + 100;
 	int POSITION_PHARAOHS_SCEPTRE = POSITION_FLAGS + 100;
 	int POSITION_KHAREDSTS_MEMOIRS = POSITION_PHARAOHS_SCEPTRE + 100;
 	int POSITION_XERICS_TALISMAN = POSITION_KHAREDSTS_MEMOIRS + 100;
@@ -20,136 +22,48 @@ public interface EasyTeleportsConfig extends Config
 	int POSITION_DRAKANS = POSITION_SLAYER_RING + 100;
 	int POSITION_RING_OF_SHADOWS = POSITION_DRAKANS + 100;
 	int POSITION_NECKLACE_OF_PASSAGE = POSITION_RING_OF_SHADOWS + 100;
-	int POSITION_TEXT_SHADOWED = POSITION_NECKLACE_OF_PASSAGE + 100;
-	int POSITION_PENDANT_OF_ATES = POSITION_TEXT_SHADOWED + 100;
+	int POSITION_PENDANT_OF_ATES = POSITION_NECKLACE_OF_PASSAGE + 100;
 	int POSITION_DIGSITE_PENDANT = POSITION_PENDANT_OF_ATES + 100;
 
+    // General plugin options
 	@ConfigSection(
-		name = "Toggles",
-		description = "Turn teleport replacements on or off for specific items.",
-		position = POSITION_FLAGS
+		name = "Display options",
+		description = "General text and display options.",
+		position = DISPLAY_OPTIONS
 	)
-	String SECTION_ENABLE_FLAGS = "enableFlags";
+	String SECTION_DISPLAY_OPTIONS = "displayOptions";
 
 	@ConfigItem(
-		section = SECTION_ENABLE_FLAGS,
-		keyName = "enablePharaohSceptre",
-		name = "Pharaoh's sceptre",
-		description = "Replace teleport entries on the Pharaoh's sceptre with new names.",
-		position = POSITION_FLAGS + (POSITION_PHARAOHS_SCEPTRE / 100)
-	)
-	default boolean enablePharaohSceptre()
-	{
-		return true;
-	}
-
-	@ConfigItem(
-		section = SECTION_ENABLE_FLAGS,
-		keyName = "enableXericsTalisman",
-		name = "Xeric's talisman",
-		description = "Replace teleport entries on the Xeric's talisman with new names.",
-		position = POSITION_FLAGS + (POSITION_XERICS_TALISMAN / 100)
-	)
-	default boolean enableXericsTalisman()
-	{
-		return false;
-	}
-
-	@ConfigItem(
-		section = SECTION_ENABLE_FLAGS,
-		keyName = "enableKharedstsMemoirs",
-		name = "Kharedst's memoirs",
-		description = "Replace teleport entries on the Kharedst's memoirs / Book of the dead with new names.",
-		position = POSITION_FLAGS + (POSITION_KHAREDSTS_MEMOIRS / 100)
-	)
-	default boolean enableKharedstsMemoirs()
-	{
-		return false;
-	}
-
-	@ConfigItem(
-		section = SECTION_ENABLE_FLAGS,
-		keyName = "enableRingOfDueling",
-		name = "Ring of dueling",
-		description = "Replace teleport entries on the Ring of Dueling with new names.",
-		position = POSITION_FLAGS + (POSITION_RING_OF_DUELING / 100)
-	)
-	default boolean enableRingOfDueling()
-	{
-		return false;
-	}
-
-	@ConfigItem(
-		section = SECTION_ENABLE_FLAGS,
-		keyName = "enableDiaryCape",
-		name = "Achievement diary cape",
-		description = "Replace teleport entries on the Achievement diary cape with new names.",
-		position = POSITION_FLAGS + (POSITION_DIARY_CAPE / 100)
-	)
-	default boolean enableDiaryCape()
-	{
-		return false;
-	}
-
-	@ConfigItem(
-		section = SECTION_ENABLE_FLAGS,
-		keyName = "enableSlayerRing",
-		name = "Slayer ring",
-		description = "Replace teleport entries on the Slayer ring with new names.",
-		position = POSITION_FLAGS + (POSITION_SLAYER_RING / 100)
-	)
-	default boolean enableSlayerRing()
-	{
-		return false;
-	}
-
-	@ConfigItem(
-		section = SECTION_ENABLE_FLAGS,
-		keyName = "enableDrakans",
-		name = "Drakan's medallion",
-		description = "Replace teleport entries on Drakan's medallion with new names.",
-		position = POSITION_FLAGS + (POSITION_DRAKANS / 100)
-	)
-	default boolean enableDrakans()
-	{
-		return false;
-	}
-
-	@ConfigItem(
-		section = SECTION_ENABLE_FLAGS,
-		keyName = "enableRingOfShadows",
-		name = "Ring of Shadows (DT2)",
-		description = "Replace teleport entries on the Ring of shadows (DT2 ring) with new names.",
-		position = POSITION_FLAGS + (POSITION_RING_OF_SHADOWS / 100)
-	)
-	default boolean enableRingOfShadows()
-	{
-		return false;
-	}
-
-	@ConfigItem(
-		section = SECTION_ENABLE_FLAGS,
-		keyName = "enableNecklaceOfPassage",
-		name = "Necklace Of Passage",
-		description = "Replace teleport entries on the Necklace Of Passage with new names.",
-		position = POSITION_FLAGS + (POSITION_NECKLACE_OF_PASSAGE / 100)
-	)
-	default boolean enableNecklaceOfPassage()
-	{
-		return false;
-	}
-
-	@ConfigItem(
-		section = SECTION_ENABLE_FLAGS,
+		section = SECTION_DISPLAY_OPTIONS,
 		keyName = "enableShadowedText",
-		name = "Shadow Dialogue Text",
-		description = "Puts a shadow around the text in dialogues (only when using coloured text) to make them stand out more.",
-		position = POSITION_FLAGS + (POSITION_TEXT_SHADOWED / 100)
+		name = "Text Shadow",
+		description = "Render a shadow around re-colored text to make them more readable.",
+		position = DISPLAY_OPTIONS + (POSITION_TEXT_SHADOWED / 100)
 	)
 	default boolean enableShadowedText()
 	{
 		return true;
 	}
+
+	@ConfigSection(
+		name = "Toggles",
+		description = "Toggle teleport replacements for specific items.",
+		position = POSITION_FLAGS
+	)
+	String SECTION_ENABLE_FLAGS = "enableFlags";
+
+    // Pharaoh's sceptre
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enablePharaohSceptre",
+            name = "Pharaoh's sceptre",
+            description = "Replace teleport entries on the Pharaoh's sceptre with new names.",
+            position = POSITION_FLAGS + (POSITION_PHARAOHS_SCEPTRE / 100)
+    )
+    default boolean enablePharaohSceptre()
+    {
+        return true;
+    }
 
 	@ConfigSection(
 		name = "Pharaoh's sceptre",
@@ -207,9 +121,22 @@ public interface EasyTeleportsConfig extends Config
 		return "Necropolis";
 	}
 
+    // Kharedst's memoirs/Book of the dead
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableKharedstsMemoirs",
+            name = "Kharedst's memoirs/Book of the dead",
+            description = "Replace teleport entries on the Kharedst's memoirs/Book of the dead with new names.",
+            position = POSITION_FLAGS + (POSITION_KHAREDSTS_MEMOIRS / 100)
+    )
+    default boolean enableKharedstsMemoirs()
+    {
+        return false;
+    }
+
 	@ConfigSection(
-		name = "Kharedst's memoirs",
-		description = "Replacement text for the Kharedst's memoirs teleport locations.",
+		name = "Kharedst's memoirs/Book of the dead",
+		description = "Replacement text for the Kharedst's memoirs/Book of the dead teleport locations.",
 		position = POSITION_KHAREDSTS_MEMOIRS,
 		closedByDefault = true
 	)
@@ -274,6 +201,19 @@ public interface EasyTeleportsConfig extends Config
 	{
 		return "<col=8800ff>Arceuus</col>";
 	}
+
+    // Xeric's talisman
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableXericsTalisman",
+            name = "Xeric's talisman",
+            description = "Replace teleport entries on the Xeric's talisman with new names.",
+            position = POSITION_FLAGS + (POSITION_XERICS_TALISMAN / 100)
+    )
+    default boolean enableXericsTalisman()
+    {
+        return false;
+    }
 
 	@ConfigSection(
 		name = "Xeric's talisman",
@@ -343,6 +283,19 @@ public interface EasyTeleportsConfig extends Config
 		return "Chambers of Xeric";
 	}
 
+    // Ring of dueling
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableRingOfDueling",
+            name = "Ring of dueling",
+            description = "Replace teleport entries on the Ring of Dueling with new names.",
+            position = POSITION_FLAGS + (POSITION_RING_OF_DUELING / 100)
+    )
+    default boolean enableRingOfDueling()
+    {
+        return false;
+    }
+
 	@ConfigSection(
 		name = "Ring of dueling",
 		description = "Replacement text for the ring of dueling teleport locations.",
@@ -399,8 +352,21 @@ public interface EasyTeleportsConfig extends Config
 		return "Fortis Colosseum";
 	}
 
+    // Achievement diary cape
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableDiaryCape",
+            name = "Achievement diary cape",
+            description = "Replace teleport entries on the Achievement diary cape with new names.",
+            position = POSITION_FLAGS + (POSITION_DIARY_CAPE / 100)
+    )
+    default boolean enableDiaryCape()
+    {
+        return false;
+    }
+
 	@ConfigSection(
-		name = "Achievement Diary Cape",
+		name = "Achievement diary cape",
 		description = "Replacement text for the Achievement diary cape teleport locations.",
 		position = POSITION_DIARY_CAPE,
 		closedByDefault = true
@@ -599,6 +565,19 @@ public interface EasyTeleportsConfig extends Config
 		return "Diary Master: Draynor Village";
 	}
 
+    // Slayer ring
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableSlayerRing",
+            name = "Slayer ring",
+            description = "Replace teleport entries on the Slayer ring with new names.",
+            position = POSITION_FLAGS + (POSITION_SLAYER_RING / 100)
+    )
+    default boolean enableSlayerRing()
+    {
+        return false;
+    }
+
 	@ConfigSection(
 		name = "Slayer ring",
 		description = "Replacement text for the Slayer ring teleport locations.",
@@ -667,6 +646,19 @@ public interface EasyTeleportsConfig extends Config
 		return "ME2 Caves";
 	}
 
+    // Drakan's medallion
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableDrakans",
+            name = "Drakan's medallion",
+            description = "Replace teleport entries on Drakan's medallion with new names.",
+            position = POSITION_FLAGS + (POSITION_DRAKANS / 100)
+    )
+    default boolean enableDrakans()
+    {
+        return false;
+    }
+
 	@ConfigSection(
 		name = "Drakan's medallion",
 		description = "Replacement text for Drakan's medallion teleport locations.",
@@ -710,6 +702,19 @@ public interface EasyTeleportsConfig extends Config
 	{
 		return "Nightmare";
 	}
+
+    // Ring of shadows
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableRingOfShadows",
+            name = "Ring of shadows",
+            description = "Replace teleport entries on the ring of shadows with new names.",
+            position = POSITION_FLAGS + (POSITION_RING_OF_SHADOWS / 100)
+    )
+    default boolean enableRingOfShadows()
+    {
+        return false;
+    }
 
 	@ConfigSection(
 		name = "Ring of shadows (DT2)",
@@ -779,6 +784,19 @@ public interface EasyTeleportsConfig extends Config
 		return "<col=ae2a2a>Vardorvis</col>";
 	}
 
+    // Necklace of Passage
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableNecklaceOfPassage",
+            name = "Necklace of passage",
+            description = "Replace teleport entries on the Necklace of passage with new names.",
+            position = POSITION_FLAGS + (POSITION_NECKLACE_OF_PASSAGE / 100)
+    )
+    default boolean enableNecklaceOfPassage()
+    {
+        return false;
+    }
+
 	@ConfigSection(
 		name = "Necklace Of Passage",
 		description = "Replacement text for the Necklace of Passage teleport locations.",
@@ -823,15 +841,12 @@ public interface EasyTeleportsConfig extends Config
 		return "NW of Uzer (Desert)";
 	}
 
-	//
-	// Pendant of Ates
-	//
-
+	// Pendant of ates
 	@ConfigItem(
 			section = SECTION_ENABLE_FLAGS,
 			keyName = "enablePendantOfAtes",
-			name = "Pendant of Ates",
-			description = "Replace teleport entries on the Pendant of Ates with new names.",
+			name = "Pendant of ates",
+			description = "Replace teleport entries on the Pendant of ates with new names.",
 			position = POSITION_FLAGS + (POSITION_PENDANT_OF_ATES / 100)
 	)
 	default boolean enablePendantOfAtes()
@@ -919,14 +934,7 @@ public interface EasyTeleportsConfig extends Config
 		return "<col=80b37c>Vale Totems</col>";
 	}
 
-	//
-	// END of Pendant of Ates //
-	//
-
-	//
-	// Digsite Pendant
-	//
-
+    // Digsite Pendant
 	@ConfigItem(
 		keyName = "enableDigsitePendant",
 		name = "Digsite Pendant",
@@ -971,7 +979,7 @@ public interface EasyTeleportsConfig extends Config
 		return "Fossil Island";
 	}
 
-	
+
 
 	@ConfigItem(
 		keyName = "replacementLithkren",
