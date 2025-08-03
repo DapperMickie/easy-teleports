@@ -23,7 +23,17 @@ public interface EasyTeleportsConfig extends Config {
     int POSITION_NECKLACE_OF_PASSAGE = POSITION_RING_OF_SHADOWS + 100;
     int POSITION_PENDANT_OF_ATES = POSITION_NECKLACE_OF_PASSAGE + 100;
     int POSITION_DIGSITE_PENDANT = POSITION_PENDANT_OF_ATES + 100;
-    int POSITION_RING_OF_THE_ELEMENTS = POSITION_DIGSITE_PENDANT + 100;
+    int POSITION_BURNING_AMULET = POSITION_DIGSITE_PENDANT + 100;
+    int POSITION_ENCHANTED_LYRE = POSITION_BURNING_AMULET + 100;
+    int POSITION_GHOMMALS_HILT = POSITION_ENCHANTED_LYRE + 100;
+    int POSITION_CAMULET = POSITION_GHOMMALS_HILT + 100;
+    int POSITION_ETERNAL_TELEPORT_CRYSTAL = POSITION_CAMULET + 100;
+    int POSITION_GRAND_SEED_POD = POSITION_ETERNAL_TELEPORT_CRYSTAL + 100;
+    int POSITION_RADAS_BLESSING = POSITION_GRAND_SEED_POD + 100;
+    int POSITION_KARAMJA_GLOVES = POSITION_RADAS_BLESSING + 100;
+    int POSITION_MORYTANIA_LEGS = POSITION_KARAMJA_GLOVES + 100;
+    int POSITION_DESERT_AMULET = POSITION_MORYTANIA_LEGS + 100;
+    int POSITION_RING_OF_THE_ELEMENTS = POSITION_DESERT_AMULET + 100;
     int POSITION_GIANTSOUL_AMULET = POSITION_RING_OF_THE_ELEMENTS + 100;
     int POSITION_MAX_CAPE = POSITION_GIANTSOUL_AMULET + 100;
 
@@ -920,6 +930,459 @@ public interface EasyTeleportsConfig extends Config {
     )
     default String replacementLithkren() {
         return "Lithkren";
+    }
+
+    // Burning amulet
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableBurningAmulet",
+            name = "Burning amulet",
+            description = "Replace teleport entries on the Burning amulet with new names.",
+            position = POSITION_FLAGS + (POSITION_BURNING_AMULET / 100)
+    )
+    default boolean enableBurningAmulet() {
+        return false;
+    }
+
+    @ConfigSection(
+            name = "Burning amulet",
+            description = "Replacement text for Burning amulet teleport locations.",
+            position = POSITION_BURNING_AMULET,
+            closedByDefault = true
+    )
+    String SECTION_BURNING_AMULET = "sectionBurningAmulet";
+
+    @ConfigItem(
+            keyName = "replacementBurningChaosTemple",
+            name = "Chaos Temple",
+            description = "Replace Chaos Temple teleport location.",
+            section = SECTION_BURNING_AMULET,
+            position = POSITION_BURNING_AMULET + 1
+    )
+    default String replacementBurningChaosTemple() {
+        return "Chaos Temple";
+    }
+
+    @ConfigItem(
+            keyName = "replacementBurningBanditCamp",
+            name = "Bandit Camp",
+            description = "Replace Bandit Camp teleport location.",
+            section = SECTION_BURNING_AMULET,
+            position = POSITION_BURNING_AMULET + 2
+    )
+    default String replacementBurningBanditCamp() {
+        return "Bandit Camp";
+    }
+
+    @ConfigItem(
+            keyName = "replacementBurningLavaMaze",
+            name = "Lava Maze",
+            description = "Replace Lava Maze teleport location.",
+            section = SECTION_BURNING_AMULET,
+            position = POSITION_BURNING_AMULET + 3
+    )
+    default String replacementBurningLavaMaze() {
+        return "Lava Maze";
+    }
+
+    // Enchanted lyre
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableEnchantedLyre",
+            name = "Enchanted lyre",
+            description = "Replace teleport entries on the Enchanted lyre with new names.",
+            position = POSITION_FLAGS + (POSITION_ENCHANTED_LYRE / 100)
+    )
+    default boolean enableEnchantedLyre() {
+        return false;
+    }
+
+    @ConfigSection(
+            name = "Enchanted lyre",
+            description = "Replacement text for Enchanted lyre teleport locations.",
+            position = POSITION_ENCHANTED_LYRE,
+            closedByDefault = true
+    )
+    String SECTION_ENCHANTED_LYRE = "sectionEnchantedLyre";
+
+    @ConfigItem(
+            keyName = "replacementLyreRellekka",
+            name = "Rellekka",
+            description = "Replace Rellekka teleport location.",
+            section = SECTION_ENCHANTED_LYRE,
+            position = POSITION_ENCHANTED_LYRE + 1
+    )
+    default String replacementLyreRellekka() {
+        return "Rellekka";
+    }
+
+    @ConfigItem(
+            keyName = "replacementLyreWaterbirthIsland",
+            name = "Waterbirth Island",
+            description = "Replace Waterbirth Island teleport location.",
+            section = SECTION_ENCHANTED_LYRE,
+            position = POSITION_ENCHANTED_LYRE + 2
+    )
+    default String replacementLyreWaterbirthIsland() {
+        return "Waterbirth Island";
+    }
+
+    @ConfigItem(
+            keyName = "replacementLyreNeitiznot",
+            name = "Neitiznot",
+            description = "Replace Neitiznot teleport location.",
+            section = SECTION_ENCHANTED_LYRE,
+            position = POSITION_ENCHANTED_LYRE + 3
+    )
+    default String replacementLyreNeitiznot() {
+        return "Neitiznot";
+    }
+
+    @ConfigItem(
+            keyName = "replacementLyreJatizso",
+            name = "Jatizso",
+            description = "Replace Jatizso teleport location.",
+            section = SECTION_ENCHANTED_LYRE,
+            position = POSITION_ENCHANTED_LYRE + 4
+    )
+    default String replacementLyreJatizso() {
+        return "Jatizso";
+    }
+
+    // Ghommal's hilt
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableGhommalsHilt",
+            name = "Ghommal's hilt",
+            description = "Replace teleport entries on the Ghommal's hilt with new names.",
+            position = POSITION_FLAGS + (POSITION_GHOMMALS_HILT / 100)
+    )
+    default boolean enableGhommalsHilt() {
+        return false;
+    }
+
+    @ConfigSection(
+            name = "Ghommal's hilt",
+            description = "Replacement text for Ghommal's hilt teleport locations.",
+            position = POSITION_GHOMMALS_HILT,
+            closedByDefault = true
+    )
+    String SECTION_GHOMMALS_HILT = "sectionGhommalsHilt";
+
+    @ConfigItem(
+            keyName = "replacementGhommalTrollheim",
+            name = "Trollheim",
+            description = "Replace Trollheim teleport location.",
+            section = SECTION_GHOMMALS_HILT,
+            position = POSITION_GHOMMALS_HILT + 1
+    )
+    default String replacementGhommalTrollheim() {
+        return "<col=2a94ae>God Wars</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementGhommalMorUlRek",
+            name = "Mor Ul Rek",
+            description = "Replace Mor Ul Rek teleport location.",
+            section = SECTION_GHOMMALS_HILT,
+            position = POSITION_GHOMMALS_HILT + 2
+    )
+    default String replacementGhommalMorUlRek() {
+        return "<col=ae2a2a>The Inferno</col>";
+    }
+
+    // Camulet
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableCamulet",
+            name = "Camulet",
+            description = "Replace teleport entries on the Camulet with new names.",
+            position = POSITION_FLAGS + (POSITION_CAMULET / 100)
+    )
+    default boolean enableCamulet() {
+        return false;
+    }
+
+    @ConfigSection(
+            name = "Camulet",
+            description = "Replacement text for Camulet teleport locations.",
+            position = POSITION_CAMULET,
+            closedByDefault = true
+    )
+    String SECTION_CAMULET = "sectionCamulet";
+
+    @ConfigItem(
+            keyName = "replacementCamuletEnakhrasTemple",
+            name = "Enakhra's Temple",
+            description = "Replace Enakhra's Temple teleport location.",
+            section = SECTION_CAMULET,
+            position = POSITION_CAMULET + 1
+    )
+    default String replacementCamuletEnakhrasTemple() {
+        return "Inside Enakhra's Temple";
+    }
+
+    @ConfigItem(
+            keyName = "replacementCamuletEnakhrasTempleEntrance",
+            name = " Enakhra's Temple Entrance",
+            description = "Replace Enakhra's Temple Entrance teleport location.",
+            section = SECTION_CAMULET,
+            position = POSITION_CAMULET + 2
+    )
+    default String replacementCamuletEnakhrasTempleEntrance() {
+        return "Bandit Camp Quarry";
+    }
+
+    // Eternal teleport crystal
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableEternalTeleportCrystal",
+            name = "Eternal teleport crystal",
+            description = "Replace teleport entries on the Eternal teleport crystal with new names.",
+            position = POSITION_FLAGS + (POSITION_ETERNAL_TELEPORT_CRYSTAL / 100)
+    )
+    default boolean enableEternalTeleportCrystal() {
+        return false;
+    }
+
+    @ConfigSection(
+            name = "Eternal teleport crystal",
+            description = "Replacement text for Eternal teleport crystal teleport locations.",
+            position = POSITION_ETERNAL_TELEPORT_CRYSTAL,
+            closedByDefault = true
+    )
+    String SECTION_ETERNAL_TELEPORT_CRYSTAL = "sectionEternalTeleportCrystal";
+
+    @ConfigItem(
+            keyName = "replacementEternalPrifddinas",
+            name = "Prifddinas",
+            description = "Replace Prifddinas teleport location.",
+            section = SECTION_ETERNAL_TELEPORT_CRYSTAL,
+            position = POSITION_ETERNAL_TELEPORT_CRYSTAL + 1
+    )
+    default String replacementEternalPrifddinas() {
+        return "Prifddinas";
+    }
+
+    @ConfigItem(
+            keyName = "replacementEternalLletya",
+            name = " Lletya",
+            description = "Replace Lletya teleport location.",
+            section = SECTION_ETERNAL_TELEPORT_CRYSTAL,
+            position = POSITION_ETERNAL_TELEPORT_CRYSTAL + 2
+    )
+    default String replacementEternalLletya() {
+        return "Lletya";
+    }
+
+    // Grand seed pod
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableGrandSeedPod",
+            name = "Grand seed pod",
+            description = "Replace teleport entries on the Grand seed pod with new names.",
+            position = POSITION_FLAGS + (POSITION_GRAND_SEED_POD / 100)
+    )
+    default boolean enableGrandSeedPod() {
+        return false;
+    }
+
+    @ConfigSection(
+            name = "Grand seed pod",
+            description = "Replacement text for Grand seed pod teleport locations.",
+            position = POSITION_GRAND_SEED_POD,
+            closedByDefault = true
+    )
+    String SECTION_GRAND_SEED_POD = "sectionGrandSeedPod";
+
+    @ConfigItem(
+            keyName = "replacementPodLaunch",
+            name = "Launch",
+            description = "Replace Launch teleport location.",
+            section = SECTION_GRAND_SEED_POD,
+            position = POSITION_GRAND_SEED_POD + 1
+    )
+    default String replacementPodLaunch() {
+        return "Gnome Glider";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPodSquash",
+            name = "Squash",
+            description = "Replace Squash teleport location.",
+            section = SECTION_GRAND_SEED_POD,
+            position = POSITION_GRAND_SEED_POD + 2
+    )
+    default String replacementPodSquash() {
+        return "Grand Tree (King Narnode)";
+    }
+
+    // Rada's blessing
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableRadasBlessing",
+            name = "Rada's blessing",
+            description = "Replace teleport entries on the Rada's blessing with new names.",
+            position = POSITION_FLAGS + (POSITION_RADAS_BLESSING / 100)
+    )
+    default boolean enableRadasBlessing() {
+        return false;
+    }
+
+    @ConfigSection(
+            name = "Rada's blessing",
+            description = "Replacement text for Rada's blessing teleport locations.",
+            position = POSITION_RADAS_BLESSING,
+            closedByDefault = true
+    )
+    String SECTION_RADAS_BLESSING = "sectionRadasBlessing";
+
+    @ConfigItem(
+            keyName = "replacementRadasKourendWoodland",
+            name = "Kourend Woodland",
+            description = "Replace Kourend Woodland teleport location.",
+            section = SECTION_RADAS_BLESSING,
+            position = POSITION_RADAS_BLESSING + 1
+    )
+    default String replacementRadasKourendWoodland() {
+        return "Kourend Woodland";
+    }
+
+    @ConfigItem(
+            keyName = "replacementRadasMountKaruulm",
+            name = "Mount Karuulm",
+            description = "Replace Mount Karuulm teleport location.",
+            section = SECTION_RADAS_BLESSING,
+            position = POSITION_RADAS_BLESSING + 2
+    )
+    default String replacementRadasMountKaruulm() {
+        return "Konar";
+    }
+
+    // Karamja gloves
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableKaramjaGloves",
+            name = "Karamja gloves",
+            description = "Replace teleport entries on the Karamja gloves with new names.",
+            position = POSITION_FLAGS + (POSITION_KARAMJA_GLOVES / 100)
+    )
+    default boolean enableKaramjaGloves() {
+        return false;
+    }
+
+    @ConfigSection(
+            name = "Karamja gloves",
+            description = "Replacement text for Karamja gloves teleport locations.",
+            position = POSITION_KARAMJA_GLOVES,
+            closedByDefault = true
+    )
+    String SECTION_KARAMJA_GLOVES = "sectionKaramjaGloves";
+
+    @ConfigItem(
+            keyName = "replacementKaramjaGemMine",
+            name = "Gem Mine",
+            description = "Replace Gem Mine teleport location.",
+            section = SECTION_KARAMJA_GLOVES,
+            position = POSITION_KARAMJA_GLOVES + 1
+    )
+    default String replacementKaramjaGemMine() {
+        return "Gem Mine";
+    }
+
+    @ConfigItem(
+            keyName = "replacementKaramjaSlayerMaster",
+            name = "Slayer Master",
+            description = "Replace Slayer Master teleport location.",
+            section = SECTION_KARAMJA_GLOVES,
+            position = POSITION_KARAMJA_GLOVES + 2
+    )
+    default String replacementKaramjaSlayerMaster() {
+        return "Duradel";
+    }
+
+    // Morytania legs
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableMorytaniaLegs",
+            name = "Morytania legs",
+            description = "Replace teleport entries on the Morytania legs with new names.",
+            position = POSITION_FLAGS + (POSITION_MORYTANIA_LEGS / 100)
+    )
+    default boolean enableMorytaniaLegs() {
+        return false;
+    }
+
+    @ConfigSection(
+            name = "Morytania legs",
+            description = "Replacement text for Morytania legs teleport locations.",
+            position = POSITION_MORYTANIA_LEGS,
+            closedByDefault = true
+    )
+    String SECTION_MORYTANIA_LEGS = "sectionMorytaniaLegs";
+
+    @ConfigItem(
+            keyName = "replacementMorytaniaEctofuntus",
+            name = "Ecto Teleport",
+            description = "Replace Ecto Teleport teleport location.",
+            section = SECTION_MORYTANIA_LEGS,
+            position = POSITION_MORYTANIA_LEGS + 1
+    )
+    default String replacementMorytaniaEctofuntus() {
+        return "Ectofuntus";
+    }
+
+    @ConfigItem(
+            keyName = "replacementMorytaniaBurgh",
+            name = "Burgh Teleport",
+            description = "Replace Burgh Teleport teleport location.",
+            section = SECTION_MORYTANIA_LEGS,
+            position = POSITION_MORYTANIA_LEGS + 2
+    )
+    default String replacementMorytaniaBurgh() {
+        return "Burgh de Rott";
+    }
+
+    // Desert amulet
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableDesertAmulet",
+            name = "Desert amulet",
+            description = "Replace teleport entries on the Desert amulet with new names.",
+            position = POSITION_FLAGS + (POSITION_DESERT_AMULET / 100)
+    )
+    default boolean enableDesertAmulet() {
+        return false;
+    }
+
+    @ConfigSection(
+            name = "Desert amulet",
+            description = "Replacement text for Desert amulet teleport locations.",
+            position = POSITION_DESERT_AMULET,
+            closedByDefault = true
+    )
+    String SECTION_DESERT_AMULET = "sectionDesertAmulet";
+
+    @ConfigItem(
+            keyName = "replacementDesertNardah",
+            name = "Nardah",
+            description = "Replace Nardah teleport location.",
+            section = SECTION_DESERT_AMULET,
+            position = POSITION_DESERT_AMULET + 1
+    )
+    default String replacementDesertNardah() {
+        return "Nardah";
+    }
+
+    @ConfigItem(
+            keyName = "replacementDesertKalphiteCave",
+            name = "Kalphite cave",
+            description = "Replace Kalphite cave teleport location.",
+            section = SECTION_DESERT_AMULET,
+            position = POSITION_DESERT_AMULET + 2
+    )
+    default String replacementDesertKalphiteCave() {
+        return "Kalphite Cave";
     }
 
     // Ring of the elements

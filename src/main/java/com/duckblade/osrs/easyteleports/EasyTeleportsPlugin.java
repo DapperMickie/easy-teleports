@@ -88,6 +88,16 @@ public class EasyTeleportsPlugin extends Plugin {
         replacers.addBinding().to(NecklaceOfPassage.class);
         replacers.addBinding().to(PendantOfAtes.class);
         replacers.addBinding().to(DigsitePendant.class);
+        replacers.addBinding().to(BurningAmulet.class);
+        replacers.addBinding().to(EnchantedLyre.class);
+        replacers.addBinding().to(GhommalsHilt.class);
+        replacers.addBinding().to(Camulet.class);
+        replacers.addBinding().to(EternalTeleportCrystal.class);
+        replacers.addBinding().to(GrandSeedPod.class);
+        replacers.addBinding().to(RadasBlessing.class);
+        replacers.addBinding().to(KaramjaGloves.class);
+        replacers.addBinding().to(MorytaniaLegs.class);
+        replacers.addBinding().to(DesertAmulet.class);
         replacers.addBinding().to(RingOfTheElements.class);
         replacers.addBinding().to(GiantsoulAmulet.class);
         replacers.addBinding().to(MaxCape.class);
