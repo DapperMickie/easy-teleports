@@ -5,13 +5,14 @@ import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.ConfigSection;
 
+import java.awt.Color;
+
 @ConfigGroup(EasyTeleportsConfig.CONFIG_GROUP)
 public interface EasyTeleportsConfig extends Config {
 
     String CONFIG_GROUP = "easyteleports";
     int DISPLAY_OPTIONS = 100;
-    int POSITION_TEXT_SHADOWED = DISPLAY_OPTIONS + 100;
-    int POSITION_FLAGS = POSITION_TEXT_SHADOWED + 100;
+    int POSITION_FLAGS = DISPLAY_OPTIONS + 100;
     int POSITION_PHARAOHS_SCEPTRE = POSITION_FLAGS + 100;
     int POSITION_KHAREDSTS_MEMOIRS = POSITION_PHARAOHS_SCEPTRE + 100;
     int POSITION_XERICS_TALISMAN = POSITION_KHAREDSTS_MEMOIRS + 100;
@@ -50,10 +51,21 @@ public interface EasyTeleportsConfig extends Config {
             keyName = "enableShadowedText",
             name = "Text shadow",
             description = "Render a shadow under re-colored text to make them more readable.",
-            position = DISPLAY_OPTIONS + (POSITION_TEXT_SHADOWED / 100)
+            position = DISPLAY_OPTIONS + 1
     )
     default boolean enableShadowedText() {
         return true;
+    }
+
+    @ConfigItem(
+            section = SECTION_DISPLAY_OPTIONS,
+            keyName = "dummyColorPicker",
+            name = "Dummy color picker",
+            description = "Dummy color picker to help with quickly grabbing hex color codes.",
+            position = DISPLAY_OPTIONS + 2
+    )
+    default Color dummyColorPicker() {
+        return Color.WHITE;
     }
 
     @ConfigSection(
@@ -678,8 +690,8 @@ public interface EasyTeleportsConfig extends Config {
     }
 
     @ConfigSection(
-            name = "Ring of shadows (DT2)",
-            description = "Replacement text for the Ring of shadows (DT2) teleport locations.",
+            name = "Ring of shadows",
+            description = "Replacement text for the Ring of shadows teleport locations.",
             position = POSITION_RING_OF_SHADOWS,
             closedByDefault = true
     )
