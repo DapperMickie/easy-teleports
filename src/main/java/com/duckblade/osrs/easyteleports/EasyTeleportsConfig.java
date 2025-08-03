@@ -24,7 +24,9 @@ public interface EasyTeleportsConfig extends Config
 	int POSITION_NECKLACE_OF_PASSAGE = POSITION_RING_OF_SHADOWS + 100;
 	int POSITION_PENDANT_OF_ATES = POSITION_NECKLACE_OF_PASSAGE + 100;
 	int POSITION_DIGSITE_PENDANT = POSITION_PENDANT_OF_ATES + 100;
-	int POSITION_MAX_CAPE = POSITION_DIGSITE_PENDANT + 100;
+	int POSITION_RING_OF_THE_ELEMENTS = POSITION_DIGSITE_PENDANT + 100;
+	int POSITION_GIANTSOUL_AMULET = POSITION_RING_OF_THE_ELEMENTS + 100;
+	int POSITION_MAX_CAPE = POSITION_GIANTSOUL_AMULET + 100;
 
     // General plugin options
 	@ConfigSection(
@@ -990,6 +992,132 @@ public interface EasyTeleportsConfig extends Config
 	default String replacementLithkren()
 	{
 		return "Lithkren";
+	}
+
+	// Ring of the elements
+	@ConfigItem(
+			section = SECTION_ENABLE_FLAGS,
+			keyName = "enableRingOfTheElements",
+			name = "Ring of the elements",
+			description = "Replace teleport entries on the Ring of the elements with new names.",
+			position = POSITION_FLAGS + (POSITION_RING_OF_THE_ELEMENTS / 100)
+	)
+	default boolean enableRingOfTheElements()
+	{
+		return false;
+	}
+
+	@ConfigSection(
+			name = "Ring of the elements",
+			description = "Replacement text for Ring of the elements teleport locations.",
+			position = POSITION_RING_OF_THE_ELEMENTS,
+			closedByDefault = true
+	)
+	String SECTION_RING_OF_THE_ELEMENTS = "sectionRingOfTheElements";
+
+	@ConfigItem(
+			keyName = "replacementAirAltar",
+			name = "Air Altar",
+			description = "Replace Air Altar teleport location.",
+			section = SECTION_RING_OF_THE_ELEMENTS,
+			position = POSITION_RING_OF_THE_ELEMENTS + 1
+	)
+	default String replacementAirAltar()
+	{
+		return "<col=ffffff>Air Altar</col>";
+	}
+
+	@ConfigItem(
+			keyName = "replacementWaterAltar",
+			name = "Water Altar",
+			description = "Replace Water Altar teleport location.",
+			section = SECTION_RING_OF_THE_ELEMENTS,
+			position = POSITION_RING_OF_THE_ELEMENTS + 2
+	)
+	default String replacementWaterAltar()
+	{
+		return "<col=2a94ae>Water Altar</col>";
+	}
+
+	@ConfigItem(
+			keyName = "replacementEarthAltar",
+			name = "Earth Altar",
+			description = "Replace Earth Altar teleport location.",
+			section = SECTION_RING_OF_THE_ELEMENTS,
+			position = POSITION_RING_OF_THE_ELEMENTS + 3
+	)
+	default String replacementEarthAltar()
+	{
+		return "<col=2aae4f>Earth Altar</col>";
+	}
+
+	@ConfigItem(
+			keyName = "replacementFireAltar",
+			name = "Fire Altar",
+			description = "Replace Fire Altar teleport location.",
+			section = SECTION_RING_OF_THE_ELEMENTS,
+			position = POSITION_RING_OF_THE_ELEMENTS + 4
+	)
+	default String replacementFireAltar()
+	{
+		return "<col=ae2a2a>Fire Altar</col>";
+	}
+
+	// Giantsoul amulet
+	@ConfigItem(
+			section = SECTION_ENABLE_FLAGS,
+			keyName = "enableGiantsoulAmulet",
+			name = "Giantsoul amulet",
+			description = "Replace teleport entries on the Giantsoul amulet with new names.",
+			position = POSITION_FLAGS + (POSITION_GIANTSOUL_AMULET / 100)
+	)
+	default boolean enableGiantsoulAmulet()
+	{
+		return false;
+	}
+
+	@ConfigSection(
+			name = "Giantsoul amulet",
+			description = "Replacement text for Giantsoul amulet teleport locations.",
+			position = POSITION_GIANTSOUL_AMULET,
+			closedByDefault = true
+	)
+	String SECTION_GIANTSOUL_AMULET = "sectionGiantsoulAmulet";
+
+	@ConfigItem(
+			keyName = "replacementBryophyta",
+			name = "Bryophyta",
+			description = "Replace Bryophyta teleport location.",
+			section = SECTION_GIANTSOUL_AMULET,
+			position = POSITION_GIANTSOUL_AMULET + 1
+	)
+	default String replacementBryophyta()
+	{
+		return "<col=2aae4f>Bryo</col>";
+	}
+
+	@ConfigItem(
+			keyName = "replacementObor",
+			name = "Obor",
+			description = "Replace Obor teleport location.",
+			section = SECTION_GIANTSOUL_AMULET,
+			position = POSITION_GIANTSOUL_AMULET + 2
+	)
+	default String replacementObor()
+	{
+		return "<col=ffca00>Obor</col>";
+	}
+
+	@ConfigItem(
+			keyName = "replacementBrandaAndEldric",
+			name = "Branda and Eldric",
+			description = "Replace Branda and Eldric teleport location.",
+			section = SECTION_GIANTSOUL_AMULET,
+			position = POSITION_GIANTSOUL_AMULET + 3
+	)
+	default String replacementBrandaAndEldric()
+	{
+		return "<col=ae2a2a>Royal</col> <col=2a94ae>Titans</col>";
 	}
 
 	// Max cape

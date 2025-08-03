@@ -32,12 +32,11 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.api.widgets.JavaScriptCallback;
 
 @Slf4j
 @PluginDescriptor(
 	name = "Easy Teleports",
-	tags = {"Pharaoh's", "sceptre", "Xeric's", "talisman", "Kharedst's", "memoirs", "dueling", "achievement", "diary", "cape", "slayer", "ring", "Drakan's", "medallion", "shadows", "necklace", "passage", "pendant", "ates", "digsite", "max", "teleport"}
+	tags = {"Pharaoh's", "sceptre", "Xeric's", "talisman", "Kharedst's", "memoirs", "dueling", "achievement", "diary", "cape", "slayer", "ring", "Drakan's", "medallion", "shadows", "necklace", "passage", "pendant", "ates", "digsite", "max", "giantsoul", "elements", "teleport"}
 )
 @Singleton
 public class EasyTeleportsPlugin extends Plugin
@@ -89,6 +88,8 @@ public class EasyTeleportsPlugin extends Plugin
 		replacers.addBinding().to(NecklaceOfPassage.class);
 		replacers.addBinding().to(PendantOfAtes.class);
 		replacers.addBinding().to(DigsitePendant.class);
+		replacers.addBinding().to(RingOfTheElements.class);
+		replacers.addBinding().to(GiantsoulAmulet.class);
 		replacers.addBinding().to(MaxCape.class);
 	}
 
