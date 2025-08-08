@@ -10,7 +10,7 @@ import java.awt.Color;
 @ConfigGroup(EasyTeleportsConfig.CONFIG_GROUP)
 public interface EasyTeleportsConfig extends Config {
 
-    String CONFIG_GROUP = "easyteleports";
+    String CONFIG_GROUP = "easypharaohsceptre";
     int POSITION_DISPLAY_OPTIONS = 100;
     int POSITION_FLAGS = POSITION_DISPLAY_OPTIONS + 100;
     int POSITION_PHARAOHS_SCEPTRE = POSITION_FLAGS + 100;
