@@ -3,20 +3,18 @@ package com.duckblade.osrs.easyteleports.replacers;
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
 import com.google.common.collect.ImmutableList;
-
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.runelite.api.EquipmentInventorySlot;
 import net.runelite.api.gameval.ItemID;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class DrakansMedallion implements Replacer {
+public class GrandSeedPod implements Replacer {
 
     private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
@@ -25,12 +23,11 @@ public class DrakansMedallion implements Replacer {
 
     @Override
     public void onConfigChanged(EasyTeleportsConfig config) {
-        this.enabled = config.enableDrakans();
+        this.enabled = config.enableGrandSeedPod();
         replacements.clear();
 
-        replacements.add(new TeleportReplacement("Ver Sinhaza", config.replacementVerSinhaza()));
-        replacements.add(new TeleportReplacement("Darkmeyer", config.replacementDarkmeyer()));
-        replacements.add(new TeleportReplacement("Slepe", config.replacementSlepe()));
+        replacements.add(new TeleportReplacement("Launch", config.replacementPodLaunch()));
+        replacements.add(new TeleportReplacement("Squash", config.replacementPodSquash()));
     }
 
     @Override
@@ -40,11 +37,6 @@ public class DrakansMedallion implements Replacer {
 
     @Override
     public boolean isApplicableToInventory(int itemId) {
-        return itemId == ItemID.DRAKANS_MEDALLION;
-    }
-
-    @Override
-    public EquipmentInventorySlot getEquipmentSlot() {
-        return EquipmentInventorySlot.AMULET;
+        return itemId == ItemID.ALUFT_SEED_POD;
     }
 }
