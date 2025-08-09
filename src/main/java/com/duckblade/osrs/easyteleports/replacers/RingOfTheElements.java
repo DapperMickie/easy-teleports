@@ -8,12 +8,10 @@ import lombok.RequiredArgsConstructor;
 import net.runelite.api.EquipmentInventorySlot;
 import net.runelite.api.gameval.ItemID;
 import net.runelite.api.widgets.Widget;
-import net.runelite.client.game.ItemMapping;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Singleton
@@ -58,7 +56,6 @@ public class RingOfTheElements implements Replacer {
 
     @Override
     public boolean isApplicableToInventory(int itemId) {
-        Collection<ItemMapping> itemMappings = ItemMapping.map(itemId);
         return itemId == ItemID.RING_OF_ELEMENTS_CHARGED;
     }
 }
