@@ -3,16 +3,17 @@ package com.duckblade.osrs.easyteleports.replacers;
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
 import com.google.common.collect.ImmutableList;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import net.runelite.api.EquipmentInventorySlot;
-import net.runelite.api.gameval.ItemID;
-import net.runelite.api.widgets.Widget;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import net.runelite.api.EquipmentInventorySlot;
+import net.runelite.api.gameval.ItemID;
+import net.runelite.api.widgets.Widget;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
