@@ -16,37 +16,42 @@ import java.util.List;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class DesertAmulet implements Replacer {
+public class DesertAmulet implements Replacer
+{
 
-    private final List<TeleportReplacement> replacements = new ArrayList<>(5);
+	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
-    @Getter(onMethod = @__(@Override))
-    private boolean enabled = false;
+	@Getter(onMethod = @__(@Override))
+	private boolean enabled = false;
 
-    @Override
-    public void onConfigChanged(EasyTeleportsConfig config) {
-        this.enabled = config.enableDesertAmulet();
+	@Override
+	public void onConfigChanged(EasyTeleportsConfig config)
+	{
+		this.enabled = config.enableDesertAmulet();
 
-        replacements.clear();
-        replacements.add(new TeleportReplacement("Nardah", config.replacementDesertNardah()));
-        replacements.add(new TeleportReplacement("Kalphite cave", config.replacementDesertKalphiteCave()));
-    }
+		replacements.clear();
+		replacements.add(new TeleportReplacement("Nardah", config.replacementDesertNardah()));
+		replacements.add(new TeleportReplacement("Kalphite cave", config.replacementDesertKalphiteCave()));
+	}
 
-    @Override
-    public List<TeleportReplacement> getReplacements() {
-        return ImmutableList.copyOf(replacements);
-    }
+	@Override
+	public List<TeleportReplacement> getReplacements()
+	{
+		return ImmutableList.copyOf(replacements);
+	}
 
-    @Override
-    public EquipmentInventorySlot getEquipmentSlot() {
-        return EquipmentInventorySlot.AMULET;
-    }
+	@Override
+	public EquipmentInventorySlot getEquipmentSlot()
+	{
+		return EquipmentInventorySlot.AMULET;
+	}
 
-    @Override
-    public boolean isApplicableToInventory(int itemId) {
-        return itemId == ItemID.DESERT_AMULET_EASY ||
-                itemId == ItemID.DESERT_AMULET_MEDIUM ||
-                itemId == ItemID.DESERT_AMULET_HARD ||
-                itemId == ItemID.DESERT_AMULET_ELITE;
-    }
+	@Override
+	public boolean isApplicableToInventory(int itemId)
+	{
+		return itemId == ItemID.DESERT_AMULET_EASY ||
+			itemId == ItemID.DESERT_AMULET_MEDIUM ||
+			itemId == ItemID.DESERT_AMULET_HARD ||
+			itemId == ItemID.DESERT_AMULET_ELITE;
+	}
 }

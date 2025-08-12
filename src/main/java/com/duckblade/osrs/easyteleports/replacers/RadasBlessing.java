@@ -15,37 +15,42 @@ import java.util.List;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class RadasBlessing implements Replacer {
+public class RadasBlessing implements Replacer
+{
 
-    private final List<TeleportReplacement> replacements = new ArrayList<>(5);
+	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
-    @Getter(onMethod = @__(@Override))
-    private boolean enabled = false;
+	@Getter(onMethod = @__(@Override))
+	private boolean enabled = false;
 
-    @Override
-    public void onConfigChanged(EasyTeleportsConfig config) {
-        this.enabled = config.enableRadasBlessing();
-        replacements.clear();
+	@Override
+	public void onConfigChanged(EasyTeleportsConfig config)
+	{
+		this.enabled = config.enableRadasBlessing();
+		replacements.clear();
 
-        replacements.add(new TeleportReplacement("Kourend Woodland", config.replacementRadasKourendWoodland()));
-        replacements.add(new TeleportReplacement("Mount Karuulm", config.replacementRadasMountKaruulm()));
-    }
+		replacements.add(new TeleportReplacement("Kourend Woodland", config.replacementRadasKourendWoodland()));
+		replacements.add(new TeleportReplacement("Mount Karuulm", config.replacementRadasMountKaruulm()));
+	}
 
-    @Override
-    public List<TeleportReplacement> getReplacements() {
-        return ImmutableList.copyOf(replacements);
-    }
+	@Override
+	public List<TeleportReplacement> getReplacements()
+	{
+		return ImmutableList.copyOf(replacements);
+	}
 
-    @Override
-    public boolean isApplicableToInventory(int itemId) {
-        return itemId == ItemID.ZEAH_BLESSING_EASY ||
-                itemId == ItemID.ZEAH_BLESSING_MEDIUM ||
-                itemId == ItemID.ZEAH_BLESSING_HARD ||
-                itemId == ItemID.ZEAH_BLESSING_ELITE;
-    }
+	@Override
+	public boolean isApplicableToInventory(int itemId)
+	{
+		return itemId == ItemID.ZEAH_BLESSING_EASY ||
+			itemId == ItemID.ZEAH_BLESSING_MEDIUM ||
+			itemId == ItemID.ZEAH_BLESSING_HARD ||
+			itemId == ItemID.ZEAH_BLESSING_ELITE;
+	}
 
-    @Override
-    public EquipmentInventorySlot getEquipmentSlot() {
-        return EquipmentInventorySlot.AMMO;
-    }
+	@Override
+	public EquipmentInventorySlot getEquipmentSlot()
+	{
+		return EquipmentInventorySlot.AMMO;
+	}
 }

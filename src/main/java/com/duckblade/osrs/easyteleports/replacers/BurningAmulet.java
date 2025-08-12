@@ -16,49 +16,55 @@ import java.util.List;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class BurningAmulet implements Replacer {
+public class BurningAmulet implements Replacer
+{
 
-    private static final String BURNING_AMULET_DIALOGUE_HEADER = "Teleport to...";
+	private static final String BURNING_AMULET_DIALOGUE_HEADER = "Teleport to...";
 
-    private final List<TeleportReplacement> replacements = new ArrayList<>(5);
+	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
-    @Getter(onMethod = @__(@Override))
-    private boolean enabled = false;
+	@Getter(onMethod = @__(@Override))
+	private boolean enabled = false;
 
-    @Override
-    public void onConfigChanged(EasyTeleportsConfig config) {
-        this.enabled = config.enableBurningAmulet();
+	@Override
+	public void onConfigChanged(EasyTeleportsConfig config)
+	{
+		this.enabled = config.enableBurningAmulet();
 
-        replacements.clear();
-        replacements.add(new TeleportReplacement("Chaos Temple", config.replacementBurningChaosTemple()));
-        replacements.add(new TeleportReplacement("Bandit Camp", config.replacementBurningBanditCamp()));
-        replacements.add(new TeleportReplacement("Lava Maze", config.replacementBurningLavaMaze()));
-    }
+		replacements.clear();
+		replacements.add(new TeleportReplacement("Chaos Temple", config.replacementBurningChaosTemple()));
+		replacements.add(new TeleportReplacement("Bandit Camp", config.replacementBurningBanditCamp()));
+		replacements.add(new TeleportReplacement("Lava Maze", config.replacementBurningLavaMaze()));
+	}
 
-    @Override
-    public List<TeleportReplacement> getReplacements() {
-        return ImmutableList.copyOf(replacements);
-    }
+	@Override
+	public List<TeleportReplacement> getReplacements()
+	{
+		return ImmutableList.copyOf(replacements);
+	}
 
-    @Override
-    public boolean isApplicableToDialog(Widget root) {
-        Widget[] children = root.getChildren();
-        return children != null &&
-                children.length >= 5 &&
-                BURNING_AMULET_DIALOGUE_HEADER.equals(children[0].getText());
-    }
+	@Override
+	public boolean isApplicableToDialog(Widget root)
+	{
+		Widget[] children = root.getChildren();
+		return children != null &&
+			children.length >= 5 &&
+			BURNING_AMULET_DIALOGUE_HEADER.equals(children[0].getText());
+	}
 
-    @Override
-    public EquipmentInventorySlot getEquipmentSlot() {
-        return EquipmentInventorySlot.AMULET;
-    }
+	@Override
+	public EquipmentInventorySlot getEquipmentSlot()
+	{
+		return EquipmentInventorySlot.AMULET;
+	}
 
-    @Override
-    public boolean isApplicableToInventory(int itemId) {
-        return itemId == ItemID.BURNING_AMULET_5 ||
-                itemId == ItemID.BURNING_AMULET_4 ||
-                itemId == ItemID.BURNING_AMULET_3 ||
-                itemId == ItemID.BURNING_AMULET_2 ||
-                itemId == ItemID.BURNING_AMULET_1;
-    }
+	@Override
+	public boolean isApplicableToInventory(int itemId)
+	{
+		return itemId == ItemID.BURNING_AMULET_5 ||
+			itemId == ItemID.BURNING_AMULET_4 ||
+			itemId == ItemID.BURNING_AMULET_3 ||
+			itemId == ItemID.BURNING_AMULET_2 ||
+			itemId == ItemID.BURNING_AMULET_1;
+	}
 }

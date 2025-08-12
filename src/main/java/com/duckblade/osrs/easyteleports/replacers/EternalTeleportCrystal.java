@@ -14,29 +14,33 @@ import java.util.List;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class EternalTeleportCrystal implements Replacer {
+public class EternalTeleportCrystal implements Replacer
+{
 
-    private final List<TeleportReplacement> replacements = new ArrayList<>(5);
+	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
-    @Getter(onMethod = @__(@Override))
-    private boolean enabled = false;
+	@Getter(onMethod = @__(@Override))
+	private boolean enabled = false;
 
-    @Override
-    public void onConfigChanged(EasyTeleportsConfig config) {
-        this.enabled = config.enableEternalTeleportCrystal();
-        replacements.clear();
+	@Override
+	public void onConfigChanged(EasyTeleportsConfig config)
+	{
+		this.enabled = config.enableEternalTeleportCrystal();
+		replacements.clear();
 
-        replacements.add(new TeleportReplacement("Prifddinas", config.replacementEternalPrifddinas()));
-        replacements.add(new TeleportReplacement("Lletya", config.replacementEternalLletya()));
-    }
+		replacements.add(new TeleportReplacement("Prifddinas", config.replacementEternalPrifddinas()));
+		replacements.add(new TeleportReplacement("Lletya", config.replacementEternalLletya()));
+	}
 
-    @Override
-    public List<TeleportReplacement> getReplacements() {
-        return ImmutableList.copyOf(replacements);
-    }
+	@Override
+	public List<TeleportReplacement> getReplacements()
+	{
+		return ImmutableList.copyOf(replacements);
+	}
 
-    @Override
-    public boolean isApplicableToInventory(int itemId) {
-        return itemId == ItemID.PRIF_TELEPORT_CRYSTAL;
-    }
+	@Override
+	public boolean isApplicableToInventory(int itemId)
+	{
+		return itemId == ItemID.PRIF_TELEPORT_CRYSTAL;
+	}
 }

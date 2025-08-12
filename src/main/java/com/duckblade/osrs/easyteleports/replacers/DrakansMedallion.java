@@ -16,35 +16,40 @@ import net.runelite.api.gameval.ItemID;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class DrakansMedallion implements Replacer {
+public class DrakansMedallion implements Replacer
+{
 
-    private final List<TeleportReplacement> replacements = new ArrayList<>(5);
+	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
-    @Getter(onMethod = @__(@Override))
-    private boolean enabled = false;
+	@Getter(onMethod = @__(@Override))
+	private boolean enabled = false;
 
-    @Override
-    public void onConfigChanged(EasyTeleportsConfig config) {
-        this.enabled = config.enableDrakans();
-        replacements.clear();
+	@Override
+	public void onConfigChanged(EasyTeleportsConfig config)
+	{
+		this.enabled = config.enableDrakans();
+		replacements.clear();
 
-        replacements.add(new TeleportReplacement("Ver Sinhaza", config.replacementVerSinhaza()));
-        replacements.add(new TeleportReplacement("Darkmeyer", config.replacementDarkmeyer()));
-        replacements.add(new TeleportReplacement("Slepe", config.replacementSlepe()));
-    }
+		replacements.add(new TeleportReplacement("Ver Sinhaza", config.replacementVerSinhaza()));
+		replacements.add(new TeleportReplacement("Darkmeyer", config.replacementDarkmeyer()));
+		replacements.add(new TeleportReplacement("Slepe", config.replacementSlepe()));
+	}
 
-    @Override
-    public List<TeleportReplacement> getReplacements() {
-        return ImmutableList.copyOf(replacements);
-    }
+	@Override
+	public List<TeleportReplacement> getReplacements()
+	{
+		return ImmutableList.copyOf(replacements);
+	}
 
-    @Override
-    public boolean isApplicableToInventory(int itemId) {
-        return itemId == ItemID.DRAKANS_MEDALLION;
-    }
+	@Override
+	public boolean isApplicableToInventory(int itemId)
+	{
+		return itemId == ItemID.DRAKANS_MEDALLION;
+	}
 
-    @Override
-    public EquipmentInventorySlot getEquipmentSlot() {
-        return EquipmentInventorySlot.AMULET;
-    }
+	@Override
+	public EquipmentInventorySlot getEquipmentSlot()
+	{
+		return EquipmentInventorySlot.AMULET;
+	}
 }

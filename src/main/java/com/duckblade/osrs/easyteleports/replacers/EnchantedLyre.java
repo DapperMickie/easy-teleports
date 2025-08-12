@@ -16,51 +16,57 @@ import java.util.List;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class EnchantedLyre implements Replacer {
+public class EnchantedLyre implements Replacer
+{
 
-    private static final String ENCHANTED_LYRE_DIALOGUE_HEADER = "Where would you like to teleport to?";
+	private static final String ENCHANTED_LYRE_DIALOGUE_HEADER = "Where would you like to teleport to?";
 
-    private final List<TeleportReplacement> replacements = new ArrayList<>(5);
+	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
-    @Getter(onMethod = @__(@Override))
-    private boolean enabled = false;
+	@Getter(onMethod = @__(@Override))
+	private boolean enabled = false;
 
-    @Override
-    public void onConfigChanged(EasyTeleportsConfig config) {
-        this.enabled = config.enableEnchantedLyre();
+	@Override
+	public void onConfigChanged(EasyTeleportsConfig config)
+	{
+		this.enabled = config.enableEnchantedLyre();
 
-        replacements.clear();
-        replacements.add(new TeleportReplacement("Rellekka", config.replacementLyreRellekka()));
-        replacements.add(new TeleportReplacement("Waterbirth Island", config.replacementLyreWaterbirthIsland()));
-        replacements.add(new TeleportReplacement("Neitiznot", config.replacementLyreNeitiznot()));
-        replacements.add(new TeleportReplacement("Jatizso", config.replacementLyreJatizso()));
-    }
+		replacements.clear();
+		replacements.add(new TeleportReplacement("Rellekka", config.replacementLyreRellekka()));
+		replacements.add(new TeleportReplacement("Waterbirth Island", config.replacementLyreWaterbirthIsland()));
+		replacements.add(new TeleportReplacement("Neitiznot", config.replacementLyreNeitiznot()));
+		replacements.add(new TeleportReplacement("Jatizso", config.replacementLyreJatizso()));
+	}
 
-    @Override
-    public List<TeleportReplacement> getReplacements() {
-        return ImmutableList.copyOf(replacements);
-    }
+	@Override
+	public List<TeleportReplacement> getReplacements()
+	{
+		return ImmutableList.copyOf(replacements);
+	}
 
-    @Override
-    public boolean isApplicableToDialog(Widget root) {
-        Widget[] children = root.getChildren();
-        return children != null &&
-                children.length >= 5 &&
-                ENCHANTED_LYRE_DIALOGUE_HEADER.equals(children[0].getText());
-    }
+	@Override
+	public boolean isApplicableToDialog(Widget root)
+	{
+		Widget[] children = root.getChildren();
+		return children != null &&
+			children.length >= 5 &&
+			ENCHANTED_LYRE_DIALOGUE_HEADER.equals(children[0].getText());
+	}
 
-    @Override
-    public EquipmentInventorySlot getEquipmentSlot() {
-        return EquipmentInventorySlot.WEAPON;
-    }
+	@Override
+	public EquipmentInventorySlot getEquipmentSlot()
+	{
+		return EquipmentInventorySlot.WEAPON;
+	}
 
-    @Override
-    public boolean isApplicableToInventory(int itemId) {
-        return itemId == ItemID.MAGIC_STRUNG_LYRE ||
-                itemId == ItemID.MAGIC_STRUNG_LYRE_2 ||
-                itemId == ItemID.MAGIC_STRUNG_LYRE_3 ||
-                itemId == ItemID.MAGIC_STRUNG_LYRE_4 ||
-                itemId == ItemID.MAGIC_STRUNG_LYRE_5 ||
-                itemId == ItemID.MAGIC_STRUNG_LYRE_INFINITE;
-    }
+	@Override
+	public boolean isApplicableToInventory(int itemId)
+	{
+		return itemId == ItemID.MAGIC_STRUNG_LYRE ||
+			itemId == ItemID.MAGIC_STRUNG_LYRE_2 ||
+			itemId == ItemID.MAGIC_STRUNG_LYRE_3 ||
+			itemId == ItemID.MAGIC_STRUNG_LYRE_4 ||
+			itemId == ItemID.MAGIC_STRUNG_LYRE_5 ||
+			itemId == ItemID.MAGIC_STRUNG_LYRE_INFINITE;
+	}
 }

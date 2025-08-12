@@ -17,49 +17,55 @@ import net.runelite.api.widgets.Widget;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class NecklaceOfPassage implements Replacer {
+public class NecklaceOfPassage implements Replacer
+{
 
-    private final List<TeleportReplacement> replacements = new ArrayList<>(3);
-    private static final String NECKLACE_OF_PASSGE_DIALOG_HEADER = "Teleport to...";
+	private final List<TeleportReplacement> replacements = new ArrayList<>(3);
+	private static final String NECKLACE_OF_PASSGE_DIALOG_HEADER = "Teleport to...";
 
-    @Getter(onMethod = @__(@Override))
-    private boolean enabled = false;
+	@Getter(onMethod = @__(@Override))
+	private boolean enabled = false;
 
-    @Override
-    public void onConfigChanged(EasyTeleportsConfig config) {
-        this.enabled = config.enableNecklaceOfPassage();
+	@Override
+	public void onConfigChanged(EasyTeleportsConfig config)
+	{
+		this.enabled = config.enableNecklaceOfPassage();
 
-        replacements.clear();
-        replacements.add(new TeleportReplacement("Wizards' Tower", config.replacementWizardsTower()));
-        replacements.add(new TeleportReplacement("The Outpost", config.replacementOutpost()));
-        replacements.add(new TeleportReplacement("Eagles' Eyrie", config.replacementEagleEyrie()));
-        replacements.add(new TeleportReplacement("Eagle's Eyrie", config.replacementEagleEyrie()));
-    }
+		replacements.clear();
+		replacements.add(new TeleportReplacement("Wizards' Tower", config.replacementWizardsTower()));
+		replacements.add(new TeleportReplacement("The Outpost", config.replacementOutpost()));
+		replacements.add(new TeleportReplacement("Eagles' Eyrie", config.replacementEagleEyrie()));
+		replacements.add(new TeleportReplacement("Eagle's Eyrie", config.replacementEagleEyrie()));
+	}
 
-    @Override
-    public List<TeleportReplacement> getReplacements() {
-        return ImmutableList.copyOf(replacements);
-    }
+	@Override
+	public List<TeleportReplacement> getReplacements()
+	{
+		return ImmutableList.copyOf(replacements);
+	}
 
-    @Override
-    public boolean isApplicableToDialog(Widget root) {
-        Widget[] children = root.getChildren();
-        return children != null &&
-                children.length >= 4 &&
-                NECKLACE_OF_PASSGE_DIALOG_HEADER.equals(children[0].getText());
-    }
+	@Override
+	public boolean isApplicableToDialog(Widget root)
+	{
+		Widget[] children = root.getChildren();
+		return children != null &&
+			children.length >= 4 &&
+			NECKLACE_OF_PASSGE_DIALOG_HEADER.equals(children[0].getText());
+	}
 
-    @Override
-    public EquipmentInventorySlot getEquipmentSlot() {
-        return EquipmentInventorySlot.AMULET;
-    }
+	@Override
+	public EquipmentInventorySlot getEquipmentSlot()
+	{
+		return EquipmentInventorySlot.AMULET;
+	}
 
-    @Override
-    public boolean isApplicableToInventory(int itemId) {
-        return itemId == ItemID.NECKLACE_OF_PASSAGE_1
-                || itemId == ItemID.NECKLACE_OF_PASSAGE_2
-                || itemId == ItemID.NECKLACE_OF_PASSAGE_3
-                || itemId == ItemID.NECKLACE_OF_PASSAGE_4
-                || itemId == ItemID.NECKLACE_OF_PASSAGE_5;
-    }
+	@Override
+	public boolean isApplicableToInventory(int itemId)
+	{
+		return itemId == ItemID.NECKLACE_OF_PASSAGE_1
+			|| itemId == ItemID.NECKLACE_OF_PASSAGE_2
+			|| itemId == ItemID.NECKLACE_OF_PASSAGE_3
+			|| itemId == ItemID.NECKLACE_OF_PASSAGE_4
+			|| itemId == ItemID.NECKLACE_OF_PASSAGE_5;
+	}
 }

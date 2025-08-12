@@ -19,51 +19,57 @@ import net.runelite.api.widgets.Widget;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class XericsTalisman implements Replacer {
+public class XericsTalisman implements Replacer
+{
 
-    private static final Set<String> TALISMAN_ADVENTURE_LOG_HEADER_PREFIXES = ImmutableSet.of(
-            "The talisman has",
-            "Xeric's Talisman teleports",
-            "Xeric's Talisman left click"
-    );
+	private static final Set<String> TALISMAN_ADVENTURE_LOG_HEADER_PREFIXES = ImmutableSet.of(
+		"The talisman has",
+		"Xeric's Talisman teleports",
+		"Xeric's Talisman left click"
+	);
 
-    private final List<TeleportReplacement> replacements = new ArrayList<>(5);
+	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
-    @Getter(onMethod = @__(@Override))
-    private boolean enabled = false;
+	@Getter(onMethod = @__(@Override))
+	private boolean enabled = false;
 
-    @Override
-    public void onConfigChanged(EasyTeleportsConfig config) {
-        this.enabled = config.enableXericsTalisman();
+	@Override
+	public void onConfigChanged(EasyTeleportsConfig config)
+	{
+		this.enabled = config.enableXericsTalisman();
 
-        replacements.clear();
-        replacements.add(new TeleportReplacement("Xeric's Lookout", config.replacementLookout()));
-        replacements.add(new TeleportReplacement("Xeric's Glade", config.replacementGlade()));
-        replacements.add(new TeleportReplacement("Xeric's Inferno", config.replacementInferno()));
-        replacements.add(new TeleportReplacement("Xeric's Heart", config.replacementHeart()));
-        replacements.add(new TeleportReplacement("Xeric's Honour", config.replacementHonour()));
-    }
+		replacements.clear();
+		replacements.add(new TeleportReplacement("Xeric's Lookout", config.replacementLookout()));
+		replacements.add(new TeleportReplacement("Xeric's Glade", config.replacementGlade()));
+		replacements.add(new TeleportReplacement("Xeric's Inferno", config.replacementInferno()));
+		replacements.add(new TeleportReplacement("Xeric's Heart", config.replacementHeart()));
+		replacements.add(new TeleportReplacement("Xeric's Honour", config.replacementHonour()));
+	}
 
-    @Override
-    public List<TeleportReplacement> getReplacements() {
-        return ImmutableList.copyOf(replacements);
-    }
+	@Override
+	public List<TeleportReplacement> getReplacements()
+	{
+		return ImmutableList.copyOf(replacements);
+	}
 
-    @Override
-    public boolean isApplicableToAdventureLog(Widget root) {
-        return root != null &&
-                root.getText() != null &&
-                TALISMAN_ADVENTURE_LOG_HEADER_PREFIXES.stream()
-                        .anyMatch(s -> root.getText().startsWith(s));
-    }
+	@Override
+	public boolean isApplicableToAdventureLog(Widget root)
+	{
+		return root != null &&
+			root.getText() != null &&
+			TALISMAN_ADVENTURE_LOG_HEADER_PREFIXES.stream()
+				.anyMatch(s -> root.getText().startsWith(s));
+	}
 
-    @Override
-    public boolean isApplicableToInventory(int itemId) {
-        return itemId == ItemID.XERIC_TALISMAN;
-    }
+	@Override
+	public boolean isApplicableToInventory(int itemId)
+	{
+		return itemId == ItemID.XERIC_TALISMAN;
+	}
 
-    @Override
-    public EquipmentInventorySlot getEquipmentSlot() {
-        return EquipmentInventorySlot.AMULET;
-    }
+	@Override
+	public EquipmentInventorySlot getEquipmentSlot()
+	{
+		return EquipmentInventorySlot.AMULET;
+	}
 }
