@@ -2,7 +2,9 @@ package com.duckblade.osrs.easyteleports.replacers;
 
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
+
 import java.util.List;
+
 import net.runelite.api.EquipmentInventorySlot;
 import net.runelite.api.widgets.Widget;
 

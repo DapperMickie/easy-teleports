@@ -3,28 +3,25 @@ package com.duckblade.osrs.easyteleports.replacers;
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
 import com.google.common.collect.ImmutableList;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.runelite.api.EquipmentInventorySlot;
 import net.runelite.api.gameval.ItemID;
 import net.runelite.api.widgets.Widget;
-import net.runelite.client.game.ItemMapping;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class PharaohSceptre implements Replacer
+public class EnchantedLyre implements Replacer
 {
 
-	private static final String SCEPTRE_DIALOG_HEADER = "Where would you like to teleport to?";
+	private static final String ENCHANTED_LYRE_DIALOGUE_HEADER = "Where would you like to teleport to?";
 
-	private final List<TeleportReplacement> replacements = new ArrayList<>(4);
+	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
 	@Getter(onMethod = @__(@Override))
 	private boolean enabled = false;
@@ -32,13 +29,13 @@ public class PharaohSceptre implements Replacer
 	@Override
 	public void onConfigChanged(EasyTeleportsConfig config)
 	{
-		this.enabled = config.enablePharaohSceptre();
+		this.enabled = config.enableEnchantedLyre();
 
 		replacements.clear();
-		replacements.add(new TeleportReplacement("Jalsavrah", config.replacementJalsavrah()));
-		replacements.add(new TeleportReplacement("Jaleustrophos", config.replacementJaleustrophos()));
-		replacements.add(new TeleportReplacement("Jaldraocht", config.replacementJaldraocht()));
-		replacements.add(new TeleportReplacement("Jaltevas", config.replacementJaltevas()));
+		replacements.add(new TeleportReplacement("Rellekka", config.replacementLyreRellekka()));
+		replacements.add(new TeleportReplacement("Waterbirth Island", config.replacementLyreWaterbirthIsland()));
+		replacements.add(new TeleportReplacement("Neitiznot", config.replacementLyreNeitiznot()));
+		replacements.add(new TeleportReplacement("Jatizso", config.replacementLyreJatizso()));
 	}
 
 	@Override
@@ -53,7 +50,7 @@ public class PharaohSceptre implements Replacer
 		Widget[] children = root.getChildren();
 		return children != null &&
 			children.length >= 5 &&
-			SCEPTRE_DIALOG_HEADER.equals(children[0].getText());
+			ENCHANTED_LYRE_DIALOGUE_HEADER.equals(children[0].getText());
 	}
 
 	@Override
@@ -65,11 +62,11 @@ public class PharaohSceptre implements Replacer
 	@Override
 	public boolean isApplicableToInventory(int itemId)
 	{
-		if (itemId == ItemID.PHARAOHS_SCEPTRE)
-		{
-			return false;
-		}
-		Collection<ItemMapping> itemMappings = ItemMapping.map(itemId);
-		return itemMappings != null && itemMappings.contains(ItemMapping.ITEM_PHARAOHS_SCEPTRE);
+		return itemId == ItemID.MAGIC_STRUNG_LYRE ||
+			itemId == ItemID.MAGIC_STRUNG_LYRE_2 ||
+			itemId == ItemID.MAGIC_STRUNG_LYRE_3 ||
+			itemId == ItemID.MAGIC_STRUNG_LYRE_4 ||
+			itemId == ItemID.MAGIC_STRUNG_LYRE_5 ||
+			itemId == ItemID.MAGIC_STRUNG_LYRE_INFINITE;
 	}
 }

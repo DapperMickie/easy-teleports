@@ -3,8 +3,10 @@ package com.duckblade.osrs.easyteleports.replacers;
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
 import com.google.common.collect.ImmutableList;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import lombok.Getter;
 import net.runelite.api.gameval.ItemID;
 import net.runelite.api.widgets.Widget;
@@ -52,7 +54,7 @@ public class SlayerRing implements Replacer
 		return children != null &&
 			children.length >= 5 &&
 			(SLAYER_RING_DIALOG_HEADER.equals(children[0].getText())
-		|| ETERNAL_SLAYER_RING_DIALOG_HEADER.equals(children[0].getText()));
+				|| ETERNAL_SLAYER_RING_DIALOG_HEADER.equals(children[0].getText()));
 	}
 
 	@Override

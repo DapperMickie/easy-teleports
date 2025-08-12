@@ -3,20 +3,20 @@ package com.duckblade.osrs.easyteleports.replacers;
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
 import com.google.common.collect.ImmutableList;
-
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.runelite.api.EquipmentInventorySlot;
 import net.runelite.api.gameval.ItemID;
+import net.runelite.api.widgets.Widget;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class DrakansMedallion implements Replacer
+public class DesertAmulet implements Replacer
 {
 
 	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
@@ -27,12 +27,11 @@ public class DrakansMedallion implements Replacer
 	@Override
 	public void onConfigChanged(EasyTeleportsConfig config)
 	{
-		this.enabled = config.enableDrakans();
-		replacements.clear();
+		this.enabled = config.enableDesertAmulet();
 
-		replacements.add(new TeleportReplacement("Ver Sinhaza", config.replacementVerSinhaza()));
-		replacements.add(new TeleportReplacement("Darkmeyer", config.replacementDarkmeyer()));
-		replacements.add(new TeleportReplacement("Slepe", config.replacementSlepe()));
+		replacements.clear();
+		replacements.add(new TeleportReplacement("Nardah", config.replacementDesertNardah()));
+		replacements.add(new TeleportReplacement("Kalphite cave", config.replacementDesertKalphiteCave()));
 	}
 
 	@Override
@@ -42,14 +41,17 @@ public class DrakansMedallion implements Replacer
 	}
 
 	@Override
-	public boolean isApplicableToInventory(int itemId)
-	{
-		return itemId == ItemID.DRAKANS_MEDALLION;
-	}
-
-	@Override
 	public EquipmentInventorySlot getEquipmentSlot()
 	{
 		return EquipmentInventorySlot.AMULET;
+	}
+
+	@Override
+	public boolean isApplicableToInventory(int itemId)
+	{
+		return itemId == ItemID.DESERT_AMULET_EASY ||
+			itemId == ItemID.DESERT_AMULET_MEDIUM ||
+			itemId == ItemID.DESERT_AMULET_HARD ||
+			itemId == ItemID.DESERT_AMULET_ELITE;
 	}
 }

@@ -3,25 +3,25 @@ package com.duckblade.osrs.easyteleports.replacers;
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
 import com.google.common.collect.ImmutableList;
-
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.runelite.api.EquipmentInventorySlot;
 import net.runelite.api.gameval.ItemID;
 import net.runelite.api.widgets.Widget;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
+
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class NecklaceOfPassage implements Replacer
+public class BurningAmulet implements Replacer
 {
 
-	private final List<TeleportReplacement> replacements = new ArrayList<>(3);
-	private static final String NECKLACE_OF_PASSGE_DIALOG_HEADER = "Teleport to...";
+	private static final String BURNING_AMULET_DIALOGUE_HEADER = "Teleport to...";
+
+	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
 	@Getter(onMethod = @__(@Override))
 	private boolean enabled = false;
@@ -29,13 +29,12 @@ public class NecklaceOfPassage implements Replacer
 	@Override
 	public void onConfigChanged(EasyTeleportsConfig config)
 	{
-		this.enabled = config.enableNecklaceOfPassage();
+		this.enabled = config.enableBurningAmulet();
 
 		replacements.clear();
-		replacements.add(new TeleportReplacement("Wizards' Tower", config.replacementWizardsTower()));
-		replacements.add(new TeleportReplacement("The Outpost", config.replacementOutpost()));
-		replacements.add(new TeleportReplacement("Eagles' Eyrie", config.replacementEagleEyrie()));
-		replacements.add(new TeleportReplacement("Eagle's Eyrie", config.replacementEagleEyrie()));
+		replacements.add(new TeleportReplacement("Chaos Temple", config.replacementBurningChaosTemple()));
+		replacements.add(new TeleportReplacement("Bandit Camp", config.replacementBurningBanditCamp()));
+		replacements.add(new TeleportReplacement("Lava Maze", config.replacementBurningLavaMaze()));
 	}
 
 	@Override
@@ -49,8 +48,8 @@ public class NecklaceOfPassage implements Replacer
 	{
 		Widget[] children = root.getChildren();
 		return children != null &&
-			children.length >= 4 &&
-			NECKLACE_OF_PASSGE_DIALOG_HEADER.equals(children[0].getText());
+			children.length >= 5 &&
+			BURNING_AMULET_DIALOGUE_HEADER.equals(children[0].getText());
 	}
 
 	@Override
@@ -62,10 +61,10 @@ public class NecklaceOfPassage implements Replacer
 	@Override
 	public boolean isApplicableToInventory(int itemId)
 	{
-		return itemId == ItemID.NECKLACE_OF_PASSAGE_1
-			|| itemId == ItemID.NECKLACE_OF_PASSAGE_2
-			|| itemId == ItemID.NECKLACE_OF_PASSAGE_3
-			|| itemId == ItemID.NECKLACE_OF_PASSAGE_4
-			|| itemId == ItemID.NECKLACE_OF_PASSAGE_5;
+		return itemId == ItemID.BURNING_AMULET_5 ||
+			itemId == ItemID.BURNING_AMULET_4 ||
+			itemId == ItemID.BURNING_AMULET_3 ||
+			itemId == ItemID.BURNING_AMULET_2 ||
+			itemId == ItemID.BURNING_AMULET_1;
 	}
 }

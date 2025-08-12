@@ -1,14 +1,18 @@
 package com.duckblade.osrs.easyteleports.replacers;
 
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
+
 import static com.duckblade.osrs.easyteleports.EasyTeleportsPlugin.PENDANT_OF_ATES_MAIN_TELEPORT_SCRIPT_ID;
 import static com.duckblade.osrs.easyteleports.EasyTeleportsPlugin.PENDANT_OF_ATES_TEXT_TELEPORT_SCRIPT_ID;
+
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
 import com.google.common.collect.ImmutableList;
+
 import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.List;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.runelite.api.EquipmentInventorySlot;
@@ -76,7 +80,8 @@ public class PendantOfAtes implements Replacer
 	}
 
 	@Override
-	public boolean isApplicableToScriptId(int scriptId) {
+	public boolean isApplicableToScriptId(int scriptId)
+	{
 		return scriptId == PENDANT_OF_ATES_MAIN_TELEPORT_SCRIPT_ID || scriptId == PENDANT_OF_ATES_TEXT_TELEPORT_SCRIPT_ID;
 	}
 

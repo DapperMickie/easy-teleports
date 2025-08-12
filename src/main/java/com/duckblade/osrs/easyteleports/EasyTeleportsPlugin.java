@@ -1,22 +1,12 @@
 package com.duckblade.osrs.easyteleports;
 
-import com.duckblade.osrs.easyteleports.replacers.DiaryCape;
-import com.duckblade.osrs.easyteleports.replacers.DigsitePendant;
-import com.duckblade.osrs.easyteleports.replacers.DrakansMedallion;
-import com.duckblade.osrs.easyteleports.replacers.KharedstMemoirs;
-import com.duckblade.osrs.easyteleports.replacers.NecklaceOfPassage;
-import com.duckblade.osrs.easyteleports.replacers.PendantOfAtes;
-import com.duckblade.osrs.easyteleports.replacers.PharaohSceptre;
-import com.duckblade.osrs.easyteleports.replacers.Replacer;
-import com.duckblade.osrs.easyteleports.replacers.RingOfDueling;
-import com.duckblade.osrs.easyteleports.replacers.RingOfShadows;
-import com.duckblade.osrs.easyteleports.replacers.SlayerRing;
-import com.duckblade.osrs.easyteleports.replacers.XericsTalisman;
+import com.duckblade.osrs.easyteleports.replacers.*;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Binder;
 import com.google.inject.Provides;
 import com.google.inject.multibindings.Multibinder;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,6 +17,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.EquipmentInventorySlot;
@@ -43,12 +34,11 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.api.widgets.JavaScriptCallback;
 
 @Slf4j
 @PluginDescriptor(
 	name = "Easy Teleports",
-	tags = {"Pharaoh's", "Sceptre", "xeric's", "talisman", "kharedst's", "memoirs"}
+	tags = {"Pharaoh's", "sceptre", "Xeric's", "talisman", "Kharedst's", "memoirs", "dueling", "achievement", "diary", "cape", "slayer", "ring", "Drakan's", "medallion", "shadows", "necklace", "passage", "pendant", "ates", "digsite", "max", "giantsoul", "elements", "teleport"}
 )
 @Singleton
 public class EasyTeleportsPlugin extends Plugin
@@ -100,6 +90,19 @@ public class EasyTeleportsPlugin extends Plugin
 		replacers.addBinding().to(NecklaceOfPassage.class);
 		replacers.addBinding().to(PendantOfAtes.class);
 		replacers.addBinding().to(DigsitePendant.class);
+		replacers.addBinding().to(BurningAmulet.class);
+		replacers.addBinding().to(EnchantedLyre.class);
+		replacers.addBinding().to(GhommalsHilt.class);
+		replacers.addBinding().to(Camulet.class);
+		replacers.addBinding().to(EternalTeleportCrystal.class);
+		replacers.addBinding().to(GrandSeedPod.class);
+		replacers.addBinding().to(RadasBlessing.class);
+		replacers.addBinding().to(KaramjaGloves.class);
+		replacers.addBinding().to(MorytaniaLegs.class);
+		replacers.addBinding().to(DesertAmulet.class);
+		replacers.addBinding().to(RingOfTheElements.class);
+		replacers.addBinding().to(GiantsoulAmulet.class);
+		replacers.addBinding().to(MaxCape.class);
 	}
 
 	@Override
@@ -133,7 +136,8 @@ public class EasyTeleportsPlugin extends Plugin
 			clientThread.invokeLater(() -> replaceWidgetChildren(chatbox, Replacer::isApplicableToDialog, config.enableShadowedText()));
 		}
 
-		if (e.getGroupId() == InterfaceID.PENDANT_OF_ATES) {
+		if (e.getGroupId() == InterfaceID.PENDANT_OF_ATES)
+		{
 			Widget pendant = client.getWidget(InterfaceID.PendantOfAtes.TELEPORT_LAYER);
 			clientThread.invokeLater(() -> replacePendantWidgetChildren(pendant, Replacer::isApplicableToAdventureLog, false));
 		}
@@ -184,11 +188,14 @@ public class EasyTeleportsPlugin extends Plugin
 		{
 			final Object[] stringStack = client.getObjectStack();
 			final int stringStackSize = client.getObjectStackSize();
-			if (stringStackSize == 1) {
+			if (stringStackSize == 1)
+			{
 				final String textToReplace = stringStack[0].toString();
 
-				for (TeleportReplacement replacement : getApplicableReplacements(r -> r.isApplicableToScriptId(scriptPreFired.getScriptId()))) {
-					if (textToReplace.contains(replacement.getOriginal())) {
+				for (TeleportReplacement replacement : getApplicableReplacements(r -> r.isApplicableToScriptId(scriptPreFired.getScriptId())))
+				{
+					if (textToReplace.contains(replacement.getOriginal()))
+					{
 						final String newText = textToReplace.replace(replacement.getOriginal(), replacement.getReplacement());
 						stringStack[0] = newText;
 					}
@@ -222,7 +229,8 @@ public class EasyTeleportsPlugin extends Plugin
 	{
 		Widget[] children = root.getStaticChildren();
 
-		if (children == null) {
+		if (children == null)
+		{
 			return;
 		}
 
@@ -231,20 +239,24 @@ public class EasyTeleportsPlugin extends Plugin
 		{
 			applyReplacement(applicableReplacements, child, Widget::getName, Widget::setName, shadowedText);
 			Widget[] actualChildren = child.getChildren();
-			if (actualChildren == null) {
+			if (actualChildren == null)
+			{
 				return;
 			}
 
-			for (Widget actualChild : actualChildren) {
+			for (Widget actualChild : actualChildren)
+			{
 				applyReplacement(applicableReplacements, actualChild, Widget::getName, Widget::setName, shadowedText);
 				applyReplacement(applicableReplacements, actualChild, Widget::getText, Widget::setText, shadowedText);
 
 				Widget[] actualActualChildren = actualChild.getChildren();
-				if (actualActualChildren == null) {
+				if (actualActualChildren == null)
+				{
 					continue;
 				}
 
-				for (Widget actualActualChild : actualActualChildren) {
+				for (Widget actualActualChild : actualActualChildren)
+				{
 					applyReplacement(applicableReplacements, actualActualChild, Widget::getName, Widget::setName, shadowedText);
 					applyReplacement(applicableReplacements, actualActualChild, Widget::getText, Widget::setText, shadowedText);
 				}
@@ -265,7 +277,8 @@ public class EasyTeleportsPlugin extends Plugin
 			children = root.getStaticChildren();
 		}
 
-		if (children == null) {
+		if (children == null)
+		{
 			return;
 		}
 
@@ -362,7 +375,6 @@ public class EasyTeleportsPlugin extends Plugin
 			log.error("Failed to replace option [{}] on entry [{}]", entryText, entry.toString());
 		}
 	}
-
 
 
 }
