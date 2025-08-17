@@ -35,7 +35,7 @@ public class EnchantedLyre implements Replacer
 		replacements.add(new TeleportReplacement("Rellekka", config.replacementLyreRellekka()));
 		replacements.add(new TeleportReplacement("Waterbirth Island", config.replacementLyreWaterbirthIsland()));
 		replacements.add(new TeleportReplacement("Neitiznot", config.replacementLyreNeitiznot()));
-		replacements.add(new TeleportReplacement("Jatizso", config.replacementLyreJatizso()));
+		replacements.add(new TeleportReplacement("Jatiszo", config.replacementLyreJatiszo()));
 	}
 
 	@Override
