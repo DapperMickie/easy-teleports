@@ -15,6 +15,7 @@ public class MaxCape implements Replacer
 {
 
 	private static final String ADVENTURE_LOG_HEADER = "Select a destination";
+	private static final String ADVENTURE_LOG_HEADER_POH = "House portal teleports";
 
 	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
@@ -35,6 +36,7 @@ public class MaxCape implements Replacer
 		replacements.add(new TeleportReplacement("Feldip Hills", config.replacementMaxCapeFeldipHills()));
 		replacements.add(new TeleportReplacement("Carnivorous chinchompas", config.replacementMaxCapeFeldipHills()));
 		replacements.add(new TeleportReplacement("Black chinchompas", config.replacementMaxCapeBlackChincompas()));
+		replacements.add(new TeleportReplacement("Black Chinchompas", config.replacementMaxCapeBlackChincompas()));
 		replacements.add(new TeleportReplacement("Hunter Guild", config.replacementMaxCapeHunterGuild()));
 		replacements.add(new TeleportReplacement("Home", config.replacementMaxCapeHome()));
 		replacements.add(new TeleportReplacement("Rimmington", config.replacementMaxCapeRimmington()));
@@ -59,7 +61,7 @@ public class MaxCape implements Replacer
 	{
 		return root != null &&
 			root.getText() != null &&
-			ADVENTURE_LOG_HEADER.equals(root.getText());
+				(ADVENTURE_LOG_HEADER.equals(root.getText()) || ADVENTURE_LOG_HEADER_POH.equals(root.getText()));
 	}
 
 	@Override
