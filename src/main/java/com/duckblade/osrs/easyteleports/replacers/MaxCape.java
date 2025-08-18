@@ -33,6 +33,7 @@ public class MaxCape implements Replacer
 		replacements.add(new TeleportReplacement("Farming Guild", config.replacementMaxCapeFarmingGuild()));
 		replacements.add(new TeleportReplacement("Otto's Grotto", config.replacementMaxCapeOttosGrotto()));
 		replacements.add(new TeleportReplacement("Feldip Hills", config.replacementMaxCapeFeldipHills()));
+		replacements.add(new TeleportReplacement("Carnivorous chinchompas", config.replacementMaxCapeFeldipHills()));
 		replacements.add(new TeleportReplacement("Black chinchompas", config.replacementMaxCapeBlackChincompas()));
 		replacements.add(new TeleportReplacement("Hunter Guild", config.replacementMaxCapeHunterGuild()));
 		replacements.add(new TeleportReplacement("Home", config.replacementMaxCapeHome()));
