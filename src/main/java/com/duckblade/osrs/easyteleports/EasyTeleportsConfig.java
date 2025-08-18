@@ -51,7 +51,7 @@ public interface EasyTeleportsConfig extends Config
 		section = SECTION_DISPLAY_OPTIONS,
 		keyName = "enableShadowedText",
 		name = "Text shadow",
-		description = "Render a shadow under re-colored text to make them more readable. This only applies to the chatbox dialog menu, not right click sub-menus.",
+		description = "Render a shadow under re-colored text to make them more readable.<br>This only applies to the chatbox dialog menu, not right click sub-menus.",
 		position = POSITION_DISPLAY_OPTIONS + 1
 	)
 	default boolean enableShadowedText()
