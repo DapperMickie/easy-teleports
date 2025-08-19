@@ -3,6 +3,7 @@ package com.duckblade.osrs.easyteleports.replacers;
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import lombok.Getter;
 import net.runelite.api.EquipmentInventorySlot;
 import net.runelite.api.gameval.ItemID;
@@ -10,12 +11,15 @@ import net.runelite.api.widgets.Widget;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class MaxCape implements Replacer
 {
 
-	private static final String ADVENTURE_LOG_HEADER = "Select a destination";
-	private static final String ADVENTURE_LOG_HEADER_POH = "House portal teleports";
+	private static final Set<String> ADVENTURE_LOG_HEADER = ImmutableSet.of(
+			"Select a destination",
+			"House portal teleports"
+	);
 
 	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
@@ -33,10 +37,12 @@ public class MaxCape implements Replacer
 		replacements.add(new TeleportReplacement("Crafting Guild", config.replacementMaxCapeCraftingGuild()));
 		replacements.add(new TeleportReplacement("Farming Guild", config.replacementMaxCapeFarmingGuild()));
 		replacements.add(new TeleportReplacement("Otto's Grotto", config.replacementMaxCapeOttosGrotto()));
+		replacements.add(new TeleportReplacement("Carnivorous chinchompas (Feldip Hills)", config.replacementMaxCapeFeldipHills()));
 		replacements.add(new TeleportReplacement("Feldip Hills", config.replacementMaxCapeFeldipHills()));
 		replacements.add(new TeleportReplacement("Carnivorous chinchompas", config.replacementMaxCapeFeldipHills()));
-		replacements.add(new TeleportReplacement("Black chinchompas", config.replacementMaxCapeBlackChincompas()));
+		replacements.add(new TeleportReplacement("Black Chinchompas (Wilderness)", config.replacementMaxCapeBlackChincompas()));
 		replacements.add(new TeleportReplacement("Black Chinchompas", config.replacementMaxCapeBlackChincompas()));
+		replacements.add(new TeleportReplacement("Black chinchompas", config.replacementMaxCapeBlackChincompas()));
 		replacements.add(new TeleportReplacement("Hunter Guild", config.replacementMaxCapeHunterGuild()));
 		replacements.add(new TeleportReplacement("Home", config.replacementMaxCapeHome()));
 		replacements.add(new TeleportReplacement("Rimmington", config.replacementMaxCapeRimmington()));
@@ -61,7 +67,8 @@ public class MaxCape implements Replacer
 	{
 		return root != null &&
 			root.getText() != null &&
-				(ADVENTURE_LOG_HEADER.equals(root.getText()) || ADVENTURE_LOG_HEADER_POH.equals(root.getText()));
+				ADVENTURE_LOG_HEADER.stream()
+						.anyMatch(s -> root.getText().startsWith(s));
 	}
 
 	@Override
