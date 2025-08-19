@@ -358,10 +358,13 @@ public class EasyTeleportsPlugin extends Plugin
 			final java.util.function.Function<String, String> norm = s -> {
 				if (s == null) return "";
 				String stripped = net.runelite.client.util.Text.removeTags(s);
-				return stripped.replace("\u00A0", " ").trim().toLowerCase(java.util.Locale.ROOT);
+				return stripped.replace('\u00A0', ' ').trim().toLowerCase(java.util.Locale.ROOT);
 			};
-
 			final String normalizedEntry = norm.apply(entryText);
+
+			final boolean isWidget = entry instanceof Widget;
+
+			final String sep = "[\\s\\-–—:|/()\\[\\],·]+";
 
 			for (TeleportReplacement replacement : replacements)
 			{
@@ -373,17 +376,47 @@ public class EasyTeleportsPlugin extends Plugin
 					continue;
 				}
 
-				if (normalizedEntry.equals(norm.apply(original))) // only replace when the entire field equals the intended original (exact match)
+				final String normalizedOriginal = norm.apply(original);
+
+				boolean matched = false;
+				boolean useWholeLineReplace = false;
+
+				if (normalizedEntry.equals(normalizedOriginal))
 				{
-					if (shadowedText && entry instanceof Widget
-							&& (mapped.contains("<col=") || mapped.contains("</col>")))
+					matched = true;
+					useWholeLineReplace = true;
+				}
+				else if (isWidget)
+				{
+					// "Xeric's Glade" in "1 - Xeric's Glade", "Xeric's Glade:" etc.
+					String tokenRegex = "(^|" + sep + ")"
+							+ java.util.regex.Pattern.quote(normalizedOriginal)
+							+ "($|" + sep + ")";
+					if (normalizedEntry.matches(".*" + tokenRegex + ".*"))
+					{
+						matched = true;
+						useWholeLineReplace = false;
+					}
+				}
+
+				if (matched)
+				{
+					if (shadowedText && isWidget && (mapped.contains("<col=") || mapped.contains("</col>")))
 					{
 						Widget wEntry = (Widget) entry;
 						wEntry.setTextShadowed(true);
 						wEntry.revalidate();
 					}
 
-					setter.accept(entry, mapped);
+					if (useWholeLineReplace)
+					{
+						setter.accept(entry, mapped);
+					}
+					else
+					{
+						String newText = entryText.replace(original, mapped);
+						setter.accept(entry, newText);
+					}
 					break;
 				}
 			}
