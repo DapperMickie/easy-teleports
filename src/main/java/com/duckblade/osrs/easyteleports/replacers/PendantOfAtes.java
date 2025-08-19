@@ -37,18 +37,11 @@ public class PendantOfAtes implements Replacer
 		this.enabled = config.enablePendantOfAtes();
 		replacements.clear();
 
-		replacements.add(new TeleportReplacement("1: Darkfrost", "1: " + config.replacementDarkfrost()));
-		replacements.add(new TeleportReplacement("<col=ffffff>1: Darkfrost</col>", "1: " + config.replacementDarkfrost()));
 		replacements.add(new TeleportReplacement("Darkfrost", config.replacementDarkfrost()));
-		replacements.add(new TeleportReplacement("2: Twilight Temple", "2: " + config.replacementTwilightTemple()));
 		replacements.add(new TeleportReplacement("Twilight Temple", config.replacementTwilightTemple()));
-		replacements.add(new TeleportReplacement("3: Ralos' Rise", "3: " + config.replacementRalosRise()));
 		replacements.add(new TeleportReplacement("Ralos' Rise", config.replacementRalosRise()));
-		replacements.add(new TeleportReplacement("4: North Aldarin", "4: " + config.replacementNorthAldarin()));
 		replacements.add(new TeleportReplacement("North Aldarin", config.replacementNorthAldarin()));
-		replacements.add(new TeleportReplacement("5: Kastori", "5: " + config.replacementKastori()));
 		replacements.add(new TeleportReplacement("Kastori", config.replacementKastori()));
-		replacements.add(new TeleportReplacement("6: Nemus Retreat", "6: " + config.replacementNemusRetreat()));
 		replacements.add(new TeleportReplacement("Nemus Retreat", config.replacementNemusRetreat()));
 	}
 

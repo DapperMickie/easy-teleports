@@ -191,12 +191,18 @@ public class EasyTeleportsPlugin extends Plugin
 			if (stringStackSize == 1)
 			{
 				final String textToReplace = stringStack[0].toString();
-
 				for (TeleportReplacement replacement : getApplicableReplacements(r -> r.isApplicableToScriptId(scriptPreFired.getScriptId())))
 				{
-					if (textToReplace.contains(replacement.getOriginal()))
+					final String original = replacement.getOriginal();
+					final String mapped = replacement.getReplacement();
+					if (original == null || mapped == null)
 					{
-						final String newText = textToReplace.replace(replacement.getOriginal(), replacement.getReplacement());
+						continue;
+					}
+
+					if (textToReplace.contains(original) && !textToReplace.contains(mapped))
+					{
+						final String newText = textToReplace.replace(original, mapped);
 						stringStack[0] = newText;
 					}
 				}
@@ -228,16 +234,23 @@ public class EasyTeleportsPlugin extends Plugin
 	private void replacePendantWidgetChildren(Widget root, BiPredicate<Replacer, Widget> filterSelector, boolean shadowedText)
 	{
 		Widget[] children = root.getStaticChildren();
-
 		if (children == null)
 		{
 			return;
 		}
 
 		List<TeleportReplacement> applicableReplacements = getApplicableReplacements(r -> filterSelector.test(r, root));
+
 		for (Widget child : children)
 		{
-			applyReplacement(applicableReplacements, child, Widget::getName, Widget::setName, shadowedText);
+			applyReplacement(
+					filterPendantAlreadyMapped(applicableReplacements, child.getName()),
+					child,
+					Widget::getName,
+					Widget::setName,
+					shadowedText
+			);
+
 			Widget[] actualChildren = child.getChildren();
 			if (actualChildren == null)
 			{
@@ -246,8 +259,20 @@ public class EasyTeleportsPlugin extends Plugin
 
 			for (Widget actualChild : actualChildren)
 			{
-				applyReplacement(applicableReplacements, actualChild, Widget::getName, Widget::setName, shadowedText);
-				applyReplacement(applicableReplacements, actualChild, Widget::getText, Widget::setText, shadowedText);
+				applyReplacement(
+						filterPendantAlreadyMapped(applicableReplacements, actualChild.getName()),
+						actualChild,
+						Widget::getName,
+						Widget::setName,
+						shadowedText
+				);
+				applyReplacement(
+						filterPendantAlreadyMapped(applicableReplacements, actualChild.getText()),
+						actualChild,
+						Widget::getText,
+						Widget::setText,
+						shadowedText
+				);
 
 				Widget[] actualActualChildren = actualChild.getChildren();
 				if (actualActualChildren == null)
@@ -257,11 +282,40 @@ public class EasyTeleportsPlugin extends Plugin
 
 				for (Widget actualActualChild : actualActualChildren)
 				{
-					applyReplacement(applicableReplacements, actualActualChild, Widget::getName, Widget::setName, shadowedText);
-					applyReplacement(applicableReplacements, actualActualChild, Widget::getText, Widget::setText, shadowedText);
+					applyReplacement(
+							filterPendantAlreadyMapped(applicableReplacements, actualActualChild.getName()),
+							actualActualChild,
+							Widget::getName,
+							Widget::setName,
+							shadowedText
+					);
+					applyReplacement(
+							filterPendantAlreadyMapped(applicableReplacements, actualActualChild.getText()),
+							actualActualChild,
+							Widget::getText,
+							Widget::setText,
+							shadowedText
+					);
 				}
 			}
 		}
+	}
+
+	private static List<TeleportReplacement> filterPendantAlreadyMapped(
+			List<TeleportReplacement> replacements, String currentValue
+	)
+	{
+		if (currentValue == null || currentValue.isEmpty())
+		{
+			return replacements;
+		}
+
+		return replacements.stream()
+				.filter(r -> {
+					final String mapped = r.getReplacement();
+					return mapped == null || !currentValue.contains(mapped);
+				})
+				.collect(java.util.stream.Collectors.toList());
 	}
 
 	private void replaceWidgetChildren(Widget root, BiPredicate<Replacer, Widget> filterSelector)
@@ -428,7 +482,6 @@ public class EasyTeleportsPlugin extends Plugin
 				}
 				else if (isWidget)
 				{
-					// "Xeric's Glade" in "1 - Xeric's Glade", "Xeric's Glade:" etc.
 					String tokenRegex = "(^|" + sep + ")"
 							+ java.util.regex.Pattern.quote(normalizedOriginal)
 							+ "($|" + sep + ")";
