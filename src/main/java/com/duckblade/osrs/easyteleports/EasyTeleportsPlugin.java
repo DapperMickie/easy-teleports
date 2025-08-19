@@ -34,6 +34,7 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.util.Text;
 
 @Slf4j
 @PluginDescriptor(
@@ -195,7 +196,7 @@ public class EasyTeleportsPlugin extends Plugin
 				{
 					final String original = replacement.getOriginal();
 					final String mapped = replacement.getReplacement();
-					if (original == null || mapped == null)
+					if (Strings.isNullOrEmpty(original) || isBlankReplacement(mapped))
 					{
 						continue;
 					}
@@ -407,6 +408,7 @@ public class EasyTeleportsPlugin extends Plugin
 			.filter(Replacer::isEnabled)
 			.filter(filter)
 			.flatMap(r -> r.getReplacements().stream())
+			.filter(tr -> !isBlankReplacement(tr.getReplacement()))
 			.collect(Collectors.toList());
 	}
 
@@ -465,7 +467,7 @@ public class EasyTeleportsPlugin extends Plugin
 				final String original = replacement.getOriginal();
 				final String mapped   = replacement.getReplacement();
 
-				if (Strings.isNullOrEmpty(original) || mapped == null)
+				if (Strings.isNullOrEmpty(original) || isBlankReplacement(mapped))
 				{
 					continue;
 				}
@@ -520,5 +522,16 @@ public class EasyTeleportsPlugin extends Plugin
 		}
 	}
 
+
+	private static boolean isBlankReplacement(String s)
+	{
+		if (s == null)
+		{
+			return true;
+		}
+			String stripped = Text.removeTags(s);
+			String normalized = stripped.replace("\u00A0", " ").trim();
+			return normalized.isEmpty();
+		}
 
 }

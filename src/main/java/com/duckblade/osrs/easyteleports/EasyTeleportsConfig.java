@@ -1652,7 +1652,7 @@ public interface EasyTeleportsConfig extends Config
 
 	@ConfigItem(
 		keyName = "replacementMaxCapeWarriorsGuild",
-		name = "Warrior's Guild name",
+		name = "Warrior's Guild",
 		description = "Replace Warrior's Guild teleport location.",
 		section = SECTION_MAX_CAPE,
 		position = POSITION_MAX_CAPE + 1
