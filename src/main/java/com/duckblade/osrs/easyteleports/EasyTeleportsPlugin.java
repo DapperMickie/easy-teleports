@@ -294,17 +294,57 @@ public class EasyTeleportsPlugin extends Plugin
 	{
 		if (e.getActionParam1() == ACTION_PARAM_1_INVENTORY)
 		{
-			List<TeleportReplacement> applicableReplacements = getApplicableReplacements(r -> r.isApplicableToInventory(e.getMenuEntry().getItemId()));
-			clientThread.invokeLater(() -> applyReplacement(applicableReplacements, e.getMenuEntry(), MenuEntry::getOption, MenuEntry::setOption));
+			List<TeleportReplacement> applicableReplacements =
+					getApplicableReplacements(r -> r.isApplicableToInventory(e.getMenuEntry().getItemId()));
+
+			applyReplacement(applicableReplacements,
+					e.getMenuEntry(),
+					MenuEntry::getOption,
+					MenuEntry::setOption,
+					/* shadowedText = */ false);
 			return;
 		}
 
 		EquipmentInventorySlot equipmentSlot = ACTION_PARAM_1_TO_EQUIPMENT_SLOT.get(e.getActionParam1());
 		if (equipmentSlot != null)
 		{
-			List<TeleportReplacement> applicableReplacements = getApplicableReplacements(r -> r.getEquipmentSlot() == equipmentSlot);
-			applyReplacement(applicableReplacements, e.getMenuEntry(), MenuEntry::getOption, MenuEntry::setOption);
+			List<TeleportReplacement> applicableReplacements =
+					getApplicableReplacements(r -> r.getEquipmentSlot() == equipmentSlot);
+
+			applyReplacement(applicableReplacements,
+					e.getMenuEntry(),
+					MenuEntry::getOption,
+					MenuEntry::setOption,
+					/* shadowedText = */ false);
 		}
+	}
+
+	@Subscribe
+	public void onPostMenuSort(net.runelite.api.events.PostMenuSort e)
+	{
+		MenuEntry[] entries = client.getMenuEntries();
+		for (MenuEntry me : entries)
+		{
+			if (me == null) continue;
+
+			if (me.getParam1() == ACTION_PARAM_1_INVENTORY)
+			{
+				List<TeleportReplacement> reps =
+						getApplicableReplacements(r -> r.isApplicableToInventory(me.getItemId()));
+				applyReplacement(reps, me, MenuEntry::getOption, MenuEntry::setOption, false);
+				continue;
+			}
+
+			EquipmentInventorySlot slot = ACTION_PARAM_1_TO_EQUIPMENT_SLOT.get(me.getParam1());
+			if (slot != null)
+			{
+				List<TeleportReplacement> reps =
+						getApplicableReplacements(r -> r.getEquipmentSlot() == slot);
+				applyReplacement(reps, me, MenuEntry::getOption, MenuEntry::setOption, false);
+			}
+		}
+
+		client.setMenuEntries(entries);
 	}
 
 	private List<TeleportReplacement> getApplicableReplacements(Predicate<Replacer> filter)
