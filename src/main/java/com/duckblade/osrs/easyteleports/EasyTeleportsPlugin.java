@@ -355,24 +355,42 @@ public class EasyTeleportsPlugin extends Plugin
 				return;
 			}
 
+			final java.util.function.Function<String, String> norm = s -> {
+				if (s == null) return "";
+				String stripped = net.runelite.client.util.Text.removeTags(s);
+				return stripped.replace("\u00A0", " ").trim().toLowerCase(java.util.Locale.ROOT);
+			};
+
+			final String normalizedEntry = norm.apply(entryText);
+
 			for (TeleportReplacement replacement : replacements)
 			{
-				if (entryText.contains(replacement.getOriginal()))
+				final String original = replacement.getOriginal();
+				final String mapped   = replacement.getReplacement();
+
+				if (Strings.isNullOrEmpty(original) || mapped == null)
 				{
-					if ((replacement.getReplacement().contains("</col>") || replacement.getReplacement().contains("<col=")) && shadowedText && entry instanceof Widget)
+					continue;
+				}
+
+				if (normalizedEntry.equals(norm.apply(original))) // only replace when the entire field equals the intended original (exact match)
+				{
+					if (shadowedText && entry instanceof Widget
+							&& (mapped.contains("<col=") || mapped.contains("</col>")))
 					{
-						Widget wEntry = ((Widget) entry);
+						Widget wEntry = (Widget) entry;
 						wEntry.setTextShadowed(true);
 						wEntry.revalidate();
 					}
-					String newText = entryText.replace(replacement.getOriginal(), replacement.getReplacement());
-					setter.accept(entry, newText);
+
+					setter.accept(entry, mapped);
+					break;
 				}
 			}
 		}
 		catch (Exception e)
 		{
-			log.error("Failed to replace option [{}] on entry [{}]", entryText, entry.toString());
+			log.error("Failed to replace option [{}] on entry [{}]", entryText, String.valueOf(entry), e);
 		}
 	}
 
