@@ -351,7 +351,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementCastleWars()
 	{
-		return "Castle Wars";
+		return "";
 	}
 
 	@ConfigItem(
@@ -363,7 +363,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementFeroxEnclave()
 	{
-		return "Ferox Enclave";
+		return "";
 	}
 
 	@ConfigItem(
@@ -375,7 +375,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementFortisColosseum()
 	{
-		return "Fortis Colosseum";
+		return "";
 	}
 
 	// Achievement diary cape
@@ -840,7 +840,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementWizardsTower()
 	{
-		return "Wizard's Tower";
+		return "";
 	}
 
 	@ConfigItem(
@@ -990,7 +990,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementDigsite()
 	{
-		return "Digsite";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1002,7 +1002,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementFossilIsland()
 	{
-		return "Fossil Island";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1014,7 +1014,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementLithkren()
 	{
-		return "Lithkren";
+		return "";
 	}
 
 	// Burning amulet
@@ -1104,7 +1104,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementLyreRellekka()
 	{
-		return "Rellekka";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1116,7 +1116,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementLyreWaterbirthIsland()
 	{
-		return "Waterbirth Island";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1128,7 +1128,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementLyreNeitiznot()
 	{
-		return "Neitiznot";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1140,7 +1140,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementLyreJatizso()
 	{
-		return "Jatizso";
+		return "";
 	}
 
 	// Ghommal's hilt
@@ -1488,7 +1488,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementDesertNardah()
 	{
-		return "Nardah";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1500,7 +1500,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementDesertKalphiteCave()
 	{
-		return "Kalphite Cave";
+		return "";
 	}
 
 	// Ring of the elements
@@ -1659,7 +1659,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementMaxCapeWarriorsGuild()
 	{
-		return "Warrior's Guild";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1671,7 +1671,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementMaxCapeFishingGuild()
 	{
-		return "Fishing Guild";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1695,7 +1695,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementMaxCapeFarmingGuild()
 	{
-		return "Farming Guild";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1743,7 +1743,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementMaxCapeHunterGuild()
 	{
-		return "Hunter Guild";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1767,7 +1767,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementMaxCapeRimmington()
 	{
-		return "Rimmington";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1779,7 +1779,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementMaxCapeTaverley()
 	{
-		return "Taverley";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1791,7 +1791,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementMaxCapePollnivneach()
 	{
-		return "Pollnivneach";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1803,7 +1803,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementMaxCapeHosidius()
 	{
-		return "Hosidius";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1815,7 +1815,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementMaxCapeAldarin()
 	{
-		return "Aldarin";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1827,7 +1827,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementMaxCapeRellekka()
 	{
-		return "Rellekka";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1839,7 +1839,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementMaxCapeBrimhaven()
 	{
-		return "Brimhaven";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1851,7 +1851,7 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementMaxCapeYanille()
 	{
-		return "Yanille";
+		return "";
 	}
 
 	@ConfigItem(
@@ -1863,6 +1863,6 @@ public interface EasyTeleportsConfig extends Config
 	)
 	default String replacementMaxCapePrifddinas()
 	{
-		return "Prifddinas";
+		return "";
 	}
 }
