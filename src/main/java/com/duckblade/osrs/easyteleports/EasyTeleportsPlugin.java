@@ -103,6 +103,7 @@ public class EasyTeleportsPlugin extends Plugin
 		replacers.addBinding().to(KaramjaGloves.class);
 		replacers.addBinding().to(MorytaniaLegs.class);
 		replacers.addBinding().to(DesertAmulet.class);
+		replacers.addBinding().to(ArdougneCloak.class);
 		replacers.addBinding().to(DiaryCape.class);
 		replacers.addBinding().to(KharedstMemoirs.class);
 		replacers.addBinding().to(DrakansMedallion.class);
