@@ -33,8 +33,8 @@ public class CombatBracelet implements Replacer
 		this.enabled = config.enableCombatBracelet();
 
 		replacements.clear();
-		replacements.add(new TeleportReplacement("Warrior's Guild", config.replacementCombatWarriorsGuild()));
-		replacements.add(new TeleportReplacement("Champion's Guild", config.replacementCombatChampionsGuild()));
+		replacements.add(new TeleportReplacement("Warriors' Guild", config.replacementCombatWarriorsGuild()));
+		replacements.add(new TeleportReplacement("Champions' Guild", config.replacementCombatChampionsGuild()));
 		replacements.add(new TeleportReplacement("Monastery", config.replacementCombatMonastery()));
 		replacements.add(new TeleportReplacement("Ranging Guild", config.replacementCombatRangingGuild()));
 	}

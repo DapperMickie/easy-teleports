@@ -73,6 +73,8 @@ public class SkillsNecklace implements Replacer
 	public boolean isApplicableToInventory(int itemId)
 	{
 		Collection<ItemMapping> itemMappings = ItemMapping.map(itemId);
-		return itemId == ItemID.JEWL_NECKLACE_OF_SKILLS_6 || (itemMappings != null && itemMappings.contains(ItemMapping.ITEM_SKILLS_NECKLACE));
+		return itemId == ItemID.JEWL_NECKLACE_OF_SKILLS_4
+				|| itemId == ItemID.JEWL_NECKLACE_OF_SKILLS_6
+				|| (itemMappings != null && itemMappings.contains(ItemMapping.ITEM_SKILLS_NECKLACE));
 	}
 }

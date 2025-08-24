@@ -51,9 +51,8 @@ public class ConstructionCape implements Replacer
 	public boolean isApplicableToAdventureLog(Widget root)
 	{
 		return root != null &&
-			root.getText() != null &&
-				ADVENTURE_LOG_HEADER.stream()
-						.anyMatch(s -> root.getText().startsWith(s));
+				root.getText() != null &&
+				ADVENTURE_LOG_HEADER.equals(root.getText());
 	}
 
 	@Override
