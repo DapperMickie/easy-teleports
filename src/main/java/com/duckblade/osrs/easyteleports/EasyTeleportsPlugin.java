@@ -93,6 +93,7 @@ public class EasyTeleportsPlugin extends Plugin
 		replacers.addBinding().to(BurningAmulet.class);
 		replacers.addBinding().to(SkillsNecklace.class);
 		replacers.addBinding().to(CombatBracelet.class);
+		replacers.addBinding().to(RingOfWealth.class);
 		replacers.addBinding().to(FishingCape.class);
 		replacers.addBinding().to(MaxCape.class);
 		replacers.addBinding().to(RadasBlessing.class);
