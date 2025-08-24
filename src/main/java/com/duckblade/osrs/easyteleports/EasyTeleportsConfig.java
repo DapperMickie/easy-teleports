@@ -467,8 +467,8 @@ public interface EasyTeleportsConfig extends Config {
     // Skills necklace
     @ConfigItem(
             keyName = "enableSkillsNecklace",
-            name = "Skills Necklace",
-            description = "Replace teleport entries on the Skills Necklace with new names.",
+            name = "Skills necklace",
+            description = "Replace teleport entries on the Skills necklace with new names.",
             section = SECTION_ENABLE_FLAGS,
             position = POSITION_FLAGS + (POSITION_SKILLS_NECKLACE / 100)
     )
@@ -477,8 +477,8 @@ public interface EasyTeleportsConfig extends Config {
     }
 
     @ConfigSection(
-            name = "Skills Necklace",
-            description = "Replacement text for Skills Necklace teleport locations.",
+            name = "Skills necklace",
+            description = "Replacement text for Skills necklace teleport locations.",
             position = POSITION_SKILLS_NECKLACE,
             closedByDefault = true
     )
