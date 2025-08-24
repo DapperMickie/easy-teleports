@@ -35,10 +35,14 @@ public class RingOfDueling implements Replacer
 		this.enabled = config.enableRingOfDueling();
 
 		replacements.clear();
+		// chat dialog
+		replacements.add(new TeleportReplacement("Emir's Arena.", config.replacementEmirsArena()));
+		replacements.add(new TeleportReplacement("Castle Wars Arena.", config.replacementCastleWars()));
+		replacements.add(new TeleportReplacement("Ferox Enclave.", config.replacementFeroxEnclave()));
+		replacements.add(new TeleportReplacement("Fortis Colosseum.", config.replacementFortisColosseum()));
+		// sub menus
 		replacements.add(new TeleportReplacement("Emir's Arena", config.replacementEmirsArena()));
-		//replacements.add(new TeleportReplacement("Al Kharid PvP Arena", config.replacementEmirsArena())); // This is not used anymore?
 		replacements.add(new TeleportReplacement("Castle Wars", config.replacementCastleWars()));
-		replacements.add(new TeleportReplacement("Castle Wars Arena", config.replacementCastleWars()));
 		replacements.add(new TeleportReplacement("Ferox Enclave", config.replacementFeroxEnclave()));
 		replacements.add(new TeleportReplacement("Fortis Colosseum", config.replacementFortisColosseum()));
 	}

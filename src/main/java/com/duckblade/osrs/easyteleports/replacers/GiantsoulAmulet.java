@@ -32,6 +32,12 @@ public class GiantsoulAmulet implements Replacer
 		this.enabled = config.enableGiantsoulAmulet();
 
 		replacements.clear();
+		// chat dialog
+		replacements.add(new TeleportReplacement("Bryophyta's lair", config.replacementBryophyta()));
+		replacements.add(new TeleportReplacement("Obor's lair", config.replacementObor()));
+		replacements.add(new TeleportReplacement("Branda and Eldric's lair", config.replacementBrandaAndEldric()));
+
+		// sub menus
 		replacements.add(new TeleportReplacement("Bryophyta", config.replacementBryophyta()));
 		replacements.add(new TeleportReplacement("Obor", config.replacementObor()));
 		replacements.add(new TeleportReplacement("Branda and Eldric", config.replacementBrandaAndEldric()));

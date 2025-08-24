@@ -32,8 +32,15 @@ public class Camulet implements Replacer
 		this.enabled = config.enableCamulet();
 
 		replacements.clear();
+		// chat dialog
+		replacements.add(new TeleportReplacement("Enakhra's Temple.", config.replacementCamuletEnakhrasTemple()));
+		replacements.add(new TeleportReplacement("Enakhra's Temple Entrance.", config.replacementCamuletEnakhrasTempleEntrance()));
+		// inventory
 		replacements.add(new TeleportReplacement("Enakhra's Temple", config.replacementCamuletEnakhrasTemple()));
 		replacements.add(new TeleportReplacement("Enakhra's Temple Entrance", config.replacementCamuletEnakhrasTempleEntrance()));
+		// equipped
+		replacements.add(new TeleportReplacement("Temple", config.replacementCamuletEnakhrasTemple()));
+		replacements.add(new TeleportReplacement("Surface", config.replacementCamuletEnakhrasTempleEntrance()));
 	}
 
 	@Override

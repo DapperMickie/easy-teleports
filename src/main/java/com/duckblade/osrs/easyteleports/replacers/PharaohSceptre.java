@@ -35,10 +35,16 @@ public class PharaohSceptre implements Replacer
 		this.enabled = config.enablePharaohSceptre();
 
 		replacements.clear();
+		// sub menus
 		replacements.add(new TeleportReplacement("Jalsavrah", config.replacementJalsavrah()));
 		replacements.add(new TeleportReplacement("Jaleustrophos", config.replacementJaleustrophos()));
 		replacements.add(new TeleportReplacement("Jaldraocht", config.replacementJaldraocht()));
 		replacements.add(new TeleportReplacement("Jaltevas", config.replacementJaltevas()));
+		// chat dialog
+		replacements.add(new TeleportReplacement("Jalsavrah.", config.replacementJalsavrah()));
+		replacements.add(new TeleportReplacement("Jaleustrophos.", config.replacementJaleustrophos()));
+		replacements.add(new TeleportReplacement("Jaldraocht.", config.replacementJaldraocht()));
+		replacements.add(new TeleportReplacement("Jaltevas.", config.replacementJaltevas()));
 	}
 
 	@Override
