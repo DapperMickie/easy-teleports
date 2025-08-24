@@ -32,7 +32,7 @@ public class SkillsNecklace implements Replacer
 	@Override
 	public void onConfigChanged(EasyTeleportsConfig config)
 	{
-		this.enabled = config.enableGamesNecklace();
+		this.enabled = config.enableSkillsNecklace();
 
 		replacements.clear();
 		replacements.add(new TeleportReplacement("Fishing Guild", config.replacementSkillsFishingGuild()));
