@@ -12,19 +12,9 @@ Leaving a configuration field empty will revert to displaying the original menu 
 
 ### Example
 
-![img.png](img/README_config.png)
-
 ![README_BOTD.png](img/README_BOTD.png)
 
-### Known Issues
-
-#### Menu entry swapper doesn't work for custom menu names anymore!
-
-There is currently no API to customize the (text of the) actions for Menu Entry Swapper/Runelite created menu entries.
-
-As a workaround, you can use the plugin [Custom Menu Swaps](https://runelite.net/plugin-hub/show/hotkeyable-menu-swaps) to enable custom swaps with custom menu names:
-
-![README_CMS.png](img/README_CMS.png)
+![img.png](img/README_config.png)
 
 ### Supported Items
 
