@@ -2400,7 +2400,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_ANCIENT_SHARD + 1
     )
     default String replacementAncientShardDemonsRun() {
-        return "";
+        return "NE - Lesser demons";
     }
 
     @ConfigItem(
@@ -2411,7 +2411,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_ANCIENT_SHARD + 2
     )
     default String replacementAncientShardDragonsDen() {
-        return "";
+        return "NW - Brutal blue dragons";
     }
 
     @ConfigItem(
@@ -2422,7 +2422,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_ANCIENT_SHARD + 3
     )
     default String replacementAncientShardReekingCove() {
-        return "";
+        return "SW - Deviant spectres";
     }
 
     @ConfigItem(
@@ -2433,7 +2433,7 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_ANCIENT_SHARD + 4
     )
     default String replacementAncientShardTheShallows() {
-        return "";
+        return "SE - King sand crabs";
     }
 
     // Disk of returning
