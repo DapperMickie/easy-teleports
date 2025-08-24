@@ -16,6 +16,14 @@ Leaving a configuration field empty will revert to displaying the original menu 
 
 ![img.png](img/README_config.png)
 
+### Menu Entry Swapper
+
+#### Menu entry swapper doesn't work for custom menu names anymore!
+
+If you notice that some of your teleport replacements or re-colors are no longer working with MES, you can use the plugin [Custom Menu Swaps](https://runelite.net/plugin-hub/show/hotkeyable-menu-swaps) to re-enable swaps with custom menu names, example:
+
+![README_CMS.png](img/README_CMS.png)
+
 ### Supported Items
 
 #### Enchanted jewellery
