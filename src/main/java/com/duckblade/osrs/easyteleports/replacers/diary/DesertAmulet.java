@@ -1,7 +1,8 @@
-package com.duckblade.osrs.easyteleports.replacers;
+package com.duckblade.osrs.easyteleports.replacers.diary;
 
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
+import com.duckblade.osrs.easyteleports.replacers.Replacer;
 import com.google.common.collect.ImmutableList;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class KaramjaGloves implements Replacer
+public class DesertAmulet implements Replacer
 {
 
 	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
@@ -26,11 +27,11 @@ public class KaramjaGloves implements Replacer
 	@Override
 	public void onConfigChanged(EasyTeleportsConfig config)
 	{
-		this.enabled = config.enableKaramjaGloves();
-		replacements.clear();
+		this.enabled = config.enableDesertAmulet();
 
-		replacements.add(new TeleportReplacement("Gem Mine", config.replacementKaramjaGemMine()));
-		replacements.add(new TeleportReplacement("Slayer Master", config.replacementKaramjaSlayerMaster()));
+		replacements.clear();
+		replacements.add(new TeleportReplacement("Nardah", config.replacementDesertNardah()));
+		replacements.add(new TeleportReplacement("Kalphite cave", config.replacementDesertKalphiteCave()));
 	}
 
 	@Override
@@ -40,17 +41,17 @@ public class KaramjaGloves implements Replacer
 	}
 
 	@Override
-	public boolean isApplicableToInventory(int itemId)
+	public EquipmentInventorySlot getEquipmentSlot()
 	{
-		return itemId == ItemID.ATJUN_GLOVES_EASY ||
-			itemId == ItemID.ATJUN_GLOVES_MED ||
-			itemId == ItemID.ATJUN_GLOVES_HARD ||
-			itemId == ItemID.ATJUN_GLOVES_ELITE;
+		return EquipmentInventorySlot.AMULET;
 	}
 
 	@Override
-	public EquipmentInventorySlot getEquipmentSlot()
+	public boolean isApplicableToInventory(int itemId)
 	{
-		return EquipmentInventorySlot.GLOVES;
+		return itemId == ItemID.DESERT_AMULET_EASY ||
+			itemId == ItemID.DESERT_AMULET_MEDIUM ||
+			itemId == ItemID.DESERT_AMULET_HARD ||
+			itemId == ItemID.DESERT_AMULET_ELITE;
 	}
 }

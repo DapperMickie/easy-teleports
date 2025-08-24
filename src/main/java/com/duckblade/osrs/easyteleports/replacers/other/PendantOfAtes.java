@@ -1,4 +1,4 @@
-package com.duckblade.osrs.easyteleports.replacers;
+package com.duckblade.osrs.easyteleports.replacers.other;
 
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 
@@ -6,6 +6,7 @@ import static com.duckblade.osrs.easyteleports.EasyTeleportsPlugin.PENDANT_OF_AT
 import static com.duckblade.osrs.easyteleports.EasyTeleportsPlugin.PENDANT_OF_ATES_TEXT_TELEPORT_SCRIPT_ID;
 
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
+import com.duckblade.osrs.easyteleports.replacers.Replacer;
 import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;

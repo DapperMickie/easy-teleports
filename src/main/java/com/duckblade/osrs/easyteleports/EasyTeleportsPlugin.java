@@ -1,6 +1,11 @@
 package com.duckblade.osrs.easyteleports;
 
 import com.duckblade.osrs.easyteleports.replacers.*;
+import com.duckblade.osrs.easyteleports.replacers.diary.*;
+import com.duckblade.osrs.easyteleports.replacers.jewellery.*;
+import com.duckblade.osrs.easyteleports.replacers.other.*;
+import com.duckblade.osrs.easyteleports.replacers.quest.*;
+import com.duckblade.osrs.easyteleports.replacers.skillcapes.MaxCape;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Binder;
