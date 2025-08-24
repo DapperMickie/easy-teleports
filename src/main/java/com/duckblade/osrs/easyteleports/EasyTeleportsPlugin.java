@@ -118,6 +118,7 @@ public class EasyTeleportsPlugin extends Plugin
 		replacers.addBinding().to(GrandSeedPod.class);
 		replacers.addBinding().to(RingOfTheElements.class);
 		replacers.addBinding().to(GiantsoulAmulet.class);
+		replacers.addBinding().to(DiskOfReturning.class);
 	}
 
 	@Override
