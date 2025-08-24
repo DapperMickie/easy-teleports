@@ -5,7 +5,7 @@ import com.duckblade.osrs.easyteleports.replacers.diary.*;
 import com.duckblade.osrs.easyteleports.replacers.jewellery.*;
 import com.duckblade.osrs.easyteleports.replacers.other.*;
 import com.duckblade.osrs.easyteleports.replacers.quest.*;
-import com.duckblade.osrs.easyteleports.replacers.skillcapes.MaxCape;
+import com.duckblade.osrs.easyteleports.replacers.skillcapes.*;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Binder;
@@ -85,30 +85,31 @@ public class EasyTeleportsPlugin extends Plugin
 	public void configure(Binder binder)
 	{
 		Multibinder<Replacer> replacers = Multibinder.newSetBinder(binder, Replacer.class);
-		replacers.addBinding().to(DiaryCape.class);
-		replacers.addBinding().to(DrakansMedallion.class);
-		replacers.addBinding().to(KharedstMemoirs.class);
-		replacers.addBinding().to(PharaohSceptre.class);
 		replacers.addBinding().to(RingOfDueling.class);
-		replacers.addBinding().to(RingOfShadows.class);
 		replacers.addBinding().to(SlayerRing.class);
-		replacers.addBinding().to(XericsTalisman.class);
 		replacers.addBinding().to(NecklaceOfPassage.class);
-		replacers.addBinding().to(PendantOfAtes.class);
 		replacers.addBinding().to(DigsitePendant.class);
 		replacers.addBinding().to(BurningAmulet.class);
-		replacers.addBinding().to(EnchantedLyre.class);
-		replacers.addBinding().to(GhommalsHilt.class);
-		replacers.addBinding().to(Camulet.class);
-		replacers.addBinding().to(EternalTeleportCrystal.class);
-		replacers.addBinding().to(GrandSeedPod.class);
+		replacers.addBinding().to(FishingCape.class);
+		replacers.addBinding().to(MaxCape.class);
 		replacers.addBinding().to(RadasBlessing.class);
 		replacers.addBinding().to(KaramjaGloves.class);
 		replacers.addBinding().to(MorytaniaLegs.class);
 		replacers.addBinding().to(DesertAmulet.class);
+		replacers.addBinding().to(DiaryCape.class);
+		replacers.addBinding().to(KharedstMemoirs.class);
+		replacers.addBinding().to(DrakansMedallion.class);
+		replacers.addBinding().to(RingOfShadows.class);
+		replacers.addBinding().to(EnchantedLyre.class);
+		replacers.addBinding().to(Camulet.class);
+		replacers.addBinding().to(EternalTeleportCrystal.class);
+		replacers.addBinding().to(PharaohSceptre.class);
+		replacers.addBinding().to(XericsTalisman.class);
+		replacers.addBinding().to(PendantOfAtes.class);
+		replacers.addBinding().to(GhommalsHilt.class);
+		replacers.addBinding().to(GrandSeedPod.class);
 		replacers.addBinding().to(RingOfTheElements.class);
 		replacers.addBinding().to(GiantsoulAmulet.class);
-		replacers.addBinding().to(MaxCape.class);
 	}
 
 	@Override
