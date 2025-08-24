@@ -89,6 +89,7 @@ public class EasyTeleportsPlugin extends Plugin
 		replacers.addBinding().to(SlayerRing.class);
 		replacers.addBinding().to(NecklaceOfPassage.class);
 		replacers.addBinding().to(DigsitePendant.class);
+		replacers.addBinding().to(GamesNecklace.class);
 		replacers.addBinding().to(BurningAmulet.class);
 		replacers.addBinding().to(FishingCape.class);
 		replacers.addBinding().to(MaxCape.class);
