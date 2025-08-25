@@ -95,10 +95,7 @@ public class EasyTeleportsPlugin extends Plugin
 		replacers.addBinding().to(CombatBracelet.class);
 		replacers.addBinding().to(RingOfWealth.class);
 		replacers.addBinding().to(AmuletOfGlory.class);
-		replacers.addBinding().to(ConstructionCape.class);
-		replacers.addBinding().to(FishingCape.class);
-		replacers.addBinding().to(HunterCape.class);
-		replacers.addBinding().to(MaxCape.class);
+		replacers.addBinding().to(SkillCapes.class);
 		replacers.addBinding().to(RadasBlessing.class);
 		replacers.addBinding().to(KaramjaGloves.class);
 		replacers.addBinding().to(MorytaniaLegs.class);

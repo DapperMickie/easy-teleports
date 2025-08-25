@@ -14,13 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class MaxCape implements Replacer
+public class SkillCapes implements Replacer
 {
 
 	private static final Set<String> ADVENTURE_LOG_HEADER = ImmutableSet.of(
 			"Select a destination",
 			"House portal teleports"
 	);
+
+	private static final String HUNTER_CAPE_DIALOGUE_HEADER = "Which hunting location would you like to teleport to?";
 
 	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
@@ -42,9 +44,11 @@ public class MaxCape implements Replacer
 		replacements.add(new TeleportReplacement("Feldip Hills", config.replacementMaxCapeFeldipHills()));
 		replacements.add(new TeleportReplacement("Carnivorous chinchompas", config.replacementMaxCapeFeldipHills()));
 		replacements.add(new TeleportReplacement("Black Chinchompas (Wilderness)", config.replacementMaxCapeBlackChinchompas()));
+		replacements.add(new TeleportReplacement("Black chinchompas (Wilderness)", config.replacementMaxCapeBlackChinchompas()));
 		replacements.add(new TeleportReplacement("Black Chinchompas", config.replacementMaxCapeBlackChinchompas()));
 		replacements.add(new TeleportReplacement("Black chinchompas", config.replacementMaxCapeBlackChinchompas()));
 		replacements.add(new TeleportReplacement("Hunter Guild", config.replacementMaxCapeHunterGuild()));
+		replacements.add(new TeleportReplacement("Tele to POH", config.replacementMaxCapeHome()));
 		replacements.add(new TeleportReplacement("Home", config.replacementMaxCapeHome()));
 		replacements.add(new TeleportReplacement("Rimmington", config.replacementMaxCapeRimmington()));
 		replacements.add(new TeleportReplacement("Taverley", config.replacementMaxCapeTaverley()));
@@ -73,6 +77,15 @@ public class MaxCape implements Replacer
 	}
 
 	@Override
+	public boolean isApplicableToDialog(Widget root)
+	{
+		Widget[] children = root.getChildren();
+		return children != null &&
+				children.length >= 5 &&
+				HUNTER_CAPE_DIALOGUE_HEADER.equals(children[0].getText());
+	}
+
+	@Override
 	public EquipmentInventorySlot getEquipmentSlot()
 	{
 		return EquipmentInventorySlot.CAPE;
@@ -81,6 +94,14 @@ public class MaxCape implements Replacer
 	@Override
 	public boolean isApplicableToInventory(int itemId)
 	{
-		return itemId == ItemID.SKILLCAPE_MAX;
+		return itemId == ItemID.SKILLCAPE_MAX ||
+				itemId == ItemID.SKILLCAPE_CONSTRUCTION ||
+				itemId == ItemID.SKILLCAPE_CONSTRUCTION_TRIMMED ||
+				itemId == ItemID.SKILLCAPE_FARMING ||
+				itemId == ItemID.SKILLCAPE_FARMING_TRIMMED ||
+				itemId == ItemID.SKILLCAPE_FISHING ||
+				itemId == ItemID.SKILLCAPE_FISHING_TRIMMED ||
+				itemId == ItemID.SKILLCAPE_HUNTING ||
+				itemId == ItemID.SKILLCAPE_HUNTING_TRIMMED;
 	}
 }
