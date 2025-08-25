@@ -1,7 +1,8 @@
-package com.duckblade.osrs.easyteleports.replacers;
+package com.duckblade.osrs.easyteleports.replacers.other;
 
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
+import com.duckblade.osrs.easyteleports.replacers.Replacer;
 import com.google.common.collect.ImmutableList;
 
 import javax.inject.Inject;

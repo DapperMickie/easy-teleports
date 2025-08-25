@@ -1,13 +1,15 @@
-package com.duckblade.osrs.easyteleports.replacers;
+package com.duckblade.osrs.easyteleports.replacers.jewellery;
 
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
+import com.duckblade.osrs.easyteleports.replacers.Replacer;
 import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
+import net.runelite.api.EquipmentInventorySlot;
 import net.runelite.api.gameval.ItemID;
 import net.runelite.api.widgets.Widget;
 
@@ -55,6 +57,12 @@ public class SlayerRing implements Replacer
 			children.length >= 5 &&
 			(SLAYER_RING_DIALOG_HEADER.equals(children[0].getText())
 				|| ETERNAL_SLAYER_RING_DIALOG_HEADER.equals(children[0].getText()));
+	}
+
+	@Override
+	public EquipmentInventorySlot getEquipmentSlot()
+	{
+		return EquipmentInventorySlot.RING;
 	}
 
 	@Override

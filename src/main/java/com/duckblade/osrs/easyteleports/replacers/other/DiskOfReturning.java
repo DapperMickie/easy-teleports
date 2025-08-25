@@ -1,7 +1,8 @@
-package com.duckblade.osrs.easyteleports.replacers;
+package com.duckblade.osrs.easyteleports.replacers.other;
 
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
+import com.duckblade.osrs.easyteleports.replacers.Replacer;
 import com.google.common.collect.ImmutableList;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class EternalTeleportCrystal implements Replacer
+public class DiskOfReturning implements Replacer
 {
 
 	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
@@ -25,11 +26,11 @@ public class EternalTeleportCrystal implements Replacer
 	@Override
 	public void onConfigChanged(EasyTeleportsConfig config)
 	{
-		this.enabled = config.enableEternalTeleportCrystal();
+		this.enabled = config.enableDiskOfReturning();
 		replacements.clear();
 
-		replacements.add(new TeleportReplacement("Prifddinas", config.replacementEternalPrifddinas()));
-		replacements.add(new TeleportReplacement("Lletya", config.replacementEternalLletya()));
+		replacements.add(new TeleportReplacement("Activate", config.replacementDiskOfReturningActivate()));
+		replacements.add(new TeleportReplacement("Blackout", config.replacementDiskOfReturningBlackout()));
 	}
 
 	@Override
@@ -41,6 +42,6 @@ public class EternalTeleportCrystal implements Replacer
 	@Override
 	public boolean isApplicableToInventory(int itemId)
 	{
-		return itemId == ItemID.PRIF_TELEPORT_CRYSTAL;
+		return itemId == ItemID.DISCOFRETURNING;
 	}
 }

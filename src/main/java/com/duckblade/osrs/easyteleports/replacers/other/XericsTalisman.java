@@ -1,7 +1,8 @@
-package com.duckblade.osrs.easyteleports.replacers;
+package com.duckblade.osrs.easyteleports.replacers.other;
 
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
+import com.duckblade.osrs.easyteleports.replacers.Replacer;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
@@ -19,13 +20,13 @@ import net.runelite.api.widgets.Widget;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class DigsitePendant implements Replacer
+public class XericsTalisman implements Replacer
 {
 
-	private static final Set<String> DIGSITE_PENDANT_ADVENTURE_LOG_HEADER_PREFIXES = ImmutableSet.of(
-		"Digsite Pendant teleport",
-		"Where would you like to teleport to?",
-		"Digsite Pendant left click"
+	private static final Set<String> TALISMAN_ADVENTURE_LOG_HEADER_PREFIXES = ImmutableSet.of(
+		"The talisman has",
+		"Xeric's Talisman teleports",
+		"Xeric's Talisman left click"
 	);
 
 	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
@@ -36,12 +37,14 @@ public class DigsitePendant implements Replacer
 	@Override
 	public void onConfigChanged(EasyTeleportsConfig config)
 	{
-		this.enabled = config.enableDigsitePendant();
+		this.enabled = config.enableXericsTalisman();
 
 		replacements.clear();
-		replacements.add(new TeleportReplacement("Digsite", config.replacementDigsite()));
-		replacements.add(new TeleportReplacement("Fossil Island", config.replacementFossilIsland()));
-		replacements.add(new TeleportReplacement("Lithkren", config.replacementLithkren()));
+		replacements.add(new TeleportReplacement("Xeric's Lookout", config.replacementLookout()));
+		replacements.add(new TeleportReplacement("Xeric's Glade", config.replacementGlade()));
+		replacements.add(new TeleportReplacement("Xeric's Inferno", config.replacementInferno()));
+		replacements.add(new TeleportReplacement("Xeric's Heart", config.replacementHeart()));
+		replacements.add(new TeleportReplacement("Xeric's Honour", config.replacementHonour()));
 	}
 
 	@Override
@@ -55,28 +58,14 @@ public class DigsitePendant implements Replacer
 	{
 		return root != null &&
 			root.getText() != null &&
-			DIGSITE_PENDANT_ADVENTURE_LOG_HEADER_PREFIXES.stream()
+			TALISMAN_ADVENTURE_LOG_HEADER_PREFIXES.stream()
 				.anyMatch(s -> root.getText().startsWith(s));
-	}
-
-	@Override
-	public boolean isApplicableToDialog(Widget root)
-	{
-		Widget[] children = root.getChildren();
-		return children != null &&
-			children.length >= 5 &&
-			DIGSITE_PENDANT_ADVENTURE_LOG_HEADER_PREFIXES.stream()
-				.anyMatch(s -> children[0].getText().startsWith(s));
 	}
 
 	@Override
 	public boolean isApplicableToInventory(int itemId)
 	{
-		return itemId == ItemID.NECKLACE_OF_DIGSITE_1 ||
-			itemId == ItemID.NECKLACE_OF_DIGSITE_2 ||
-			itemId == ItemID.NECKLACE_OF_DIGSITE_3 ||
-			itemId == ItemID.NECKLACE_OF_DIGSITE_4 ||
-			itemId == ItemID.NECKLACE_OF_DIGSITE_5;
+		return itemId == ItemID.XERIC_TALISMAN;
 	}
 
 	@Override

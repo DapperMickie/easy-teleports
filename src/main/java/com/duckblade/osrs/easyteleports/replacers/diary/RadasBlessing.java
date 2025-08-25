@@ -1,7 +1,8 @@
-package com.duckblade.osrs.easyteleports.replacers;
+package com.duckblade.osrs.easyteleports.replacers.diary;
 
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
+import com.duckblade.osrs.easyteleports.replacers.Replacer;
 import com.google.common.collect.ImmutableList;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class DesertAmulet implements Replacer
+public class RadasBlessing implements Replacer
 {
 
 	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
@@ -26,11 +27,11 @@ public class DesertAmulet implements Replacer
 	@Override
 	public void onConfigChanged(EasyTeleportsConfig config)
 	{
-		this.enabled = config.enableDesertAmulet();
-
+		this.enabled = config.enableRadasBlessing();
 		replacements.clear();
-		replacements.add(new TeleportReplacement("Nardah", config.replacementDesertNardah()));
-		replacements.add(new TeleportReplacement("Kalphite cave", config.replacementDesertKalphiteCave()));
+
+		replacements.add(new TeleportReplacement("Kourend Woodland", config.replacementRadasKourendWoodland()));
+		replacements.add(new TeleportReplacement("Mount Karuulm", config.replacementRadasMountKaruulm()));
 	}
 
 	@Override
@@ -40,17 +41,17 @@ public class DesertAmulet implements Replacer
 	}
 
 	@Override
-	public EquipmentInventorySlot getEquipmentSlot()
+	public boolean isApplicableToInventory(int itemId)
 	{
-		return EquipmentInventorySlot.AMULET;
+		return itemId == ItemID.ZEAH_BLESSING_EASY ||
+			itemId == ItemID.ZEAH_BLESSING_MEDIUM ||
+			itemId == ItemID.ZEAH_BLESSING_HARD ||
+			itemId == ItemID.ZEAH_BLESSING_ELITE;
 	}
 
 	@Override
-	public boolean isApplicableToInventory(int itemId)
+	public EquipmentInventorySlot getEquipmentSlot()
 	{
-		return itemId == ItemID.DESERT_AMULET_EASY ||
-			itemId == ItemID.DESERT_AMULET_MEDIUM ||
-			itemId == ItemID.DESERT_AMULET_HARD ||
-			itemId == ItemID.DESERT_AMULET_ELITE;
+		return EquipmentInventorySlot.AMMO;
 	}
 }
