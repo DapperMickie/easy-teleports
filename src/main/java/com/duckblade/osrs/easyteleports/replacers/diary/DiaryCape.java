@@ -28,6 +28,9 @@ public class DiaryCape implements Replacer
 	{
 		this.enabled = config.enableDiaryCape();
 
+		// More specific/longer replacements should be placed higher; you can run into sub-string replacement issues if
+		// one replacement contains the same string as another, for example:
+		// "Ardougne: Two-pints" and "Ardougne"
 		replacements.clear();
 		// adventure log (scroll interface)
 		replacements.add(new TeleportReplacement("Ardougne: Two-pints", config.replacementArdougne()));

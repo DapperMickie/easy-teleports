@@ -28,8 +28,8 @@ public class MorytaniaLegs implements Replacer
 	public void onConfigChanged(EasyTeleportsConfig config)
 	{
 		this.enabled = config.enableMorytaniaLegs();
-		replacements.clear();
 
+		replacements.clear();
 		replacements.add(new TeleportReplacement("Ectofuntus Pit", config.replacementMorytaniaEctofuntus()));
 		replacements.add(new TeleportReplacement("Ecto Teleport", config.replacementMorytaniaEctofuntus()));
 		replacements.add(new TeleportReplacement("Burgh de Rott", config.replacementMorytaniaBurgh()));

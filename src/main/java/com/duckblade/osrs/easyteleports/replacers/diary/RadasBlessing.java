@@ -28,8 +28,8 @@ public class RadasBlessing implements Replacer
 	public void onConfigChanged(EasyTeleportsConfig config)
 	{
 		this.enabled = config.enableRadasBlessing();
-		replacements.clear();
 
+		replacements.clear();
 		replacements.add(new TeleportReplacement("Kourend Woodland", config.replacementRadasKourendWoodland()));
 		replacements.add(new TeleportReplacement("Mount Karuulm", config.replacementRadasMountKaruulm()));
 	}

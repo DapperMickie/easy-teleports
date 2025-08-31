@@ -34,6 +34,9 @@ public class SkillCapes implements Replacer
 	{
 		this.enabled = config.enableMaxCape();
 
+		// More specific/longer replacements should be placed higher; you can run into sub-string replacement issues if
+		// one replacement contains the same string as another, for example:
+		// "Carnivorous chinchompas (Feldip Hills)" and "Feldip Hills"
 		replacements.clear();
 		replacements.add(new TeleportReplacement("Warrior's Guild", config.replacementMaxCapeWarriorsGuild()));
 		replacements.add(new TeleportReplacement("Fishing Guild", config.replacementMaxCapeFishingGuild()));

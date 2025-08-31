@@ -30,6 +30,9 @@ public class KaramjaGloves implements Replacer
 		this.enabled = config.enableKaramjaGloves();
 		replacements.clear();
 
+		// More specific/longer replacements should be placed higher; you can run into sub-string replacement issues if
+		// one replacement contains the same string as another, for example:
+		// "Carnivorous chinchompas (Feldip Hills)" and "Feldip Hills"
 		replacements.add(new TeleportReplacement("Gem Mine", config.replacementKaramjaGemMine()));
 		replacements.add(new TeleportReplacement("Slayer Master", config.replacementKaramjaSlayerMaster()));
 	}

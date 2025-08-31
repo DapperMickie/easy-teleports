@@ -29,6 +29,9 @@ public class SlayerRing implements Replacer
 	{
 		this.enabled = config.enableSlayerRing();
 
+		// More specific/longer replacements should be placed higher; you can run into sub-string replacement issues if
+		// one replacement contains the same string as another, for example:
+		// "Teleport to the Stronghold Slayer Cave" and "Stronghold"
 		replacements.clear();
 		replacements.add(new TeleportReplacement("Teleport to the Stronghold Slayer Cave", config.replacementSlayerStronghold()));
 		replacements.add(new TeleportReplacement("Stronghold", config.replacementSlayerStronghold()));

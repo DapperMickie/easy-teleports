@@ -34,6 +34,9 @@ public class RingOfWealth implements Replacer
 	{
 		this.enabled = config.enableRingOfWealth();
 
+		// More specific/longer replacements should be placed higher; you can run into sub-string replacement issues if
+		// one replacement contains the same string as another, for example:
+		// "Falador Park" and "Falador"
 		replacements.clear();
 		replacements.add(new TeleportReplacement("Miscellania", config.replacementWealthMiscellania()));
 		replacements.add(new TeleportReplacement("Grand Exchange", config.replacementWealthGrandExchange()));

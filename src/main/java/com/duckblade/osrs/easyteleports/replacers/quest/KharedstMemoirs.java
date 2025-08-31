@@ -32,8 +32,11 @@ public class KharedstMemoirs implements Replacer
 	public void onConfigChanged(EasyTeleportsConfig config)
 	{
 		this.enabled = config.enableKharedstsMemoirs();
-		replacements.clear();
 
+		// More specific/longer replacements should be placed higher; you can run into sub-string replacement issues if
+		// one replacement contains the same string as another, for example:
+		// "Lunch by the Lancalliums" and "'Lunch by the Lancalliums' - Hosidius"
+		replacements.clear();
 		// equipped
 		replacements.add(new TeleportReplacement("Lunch by the Lancalliums", config.replacementLancalliums()));
 		replacements.add(new TeleportReplacement("The Fisher's Flute", config.replacementFishers()));
