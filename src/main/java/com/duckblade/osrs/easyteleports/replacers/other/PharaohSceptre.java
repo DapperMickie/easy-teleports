@@ -1,7 +1,8 @@
-package com.duckblade.osrs.easyteleports.replacers;
+package com.duckblade.osrs.easyteleports.replacers.other;
 
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
+import com.duckblade.osrs.easyteleports.replacers.Replacer;
 import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;
@@ -35,10 +36,16 @@ public class PharaohSceptre implements Replacer
 		this.enabled = config.enablePharaohSceptre();
 
 		replacements.clear();
+		// sub menus
 		replacements.add(new TeleportReplacement("Jalsavrah", config.replacementJalsavrah()));
 		replacements.add(new TeleportReplacement("Jaleustrophos", config.replacementJaleustrophos()));
 		replacements.add(new TeleportReplacement("Jaldraocht", config.replacementJaldraocht()));
 		replacements.add(new TeleportReplacement("Jaltevas", config.replacementJaltevas()));
+		// chat dialog
+		replacements.add(new TeleportReplacement("Jalsavrah.", config.replacementJalsavrah()));
+		replacements.add(new TeleportReplacement("Jaleustrophos.", config.replacementJaleustrophos()));
+		replacements.add(new TeleportReplacement("Jaldraocht.", config.replacementJaldraocht()));
+		replacements.add(new TeleportReplacement("Jaltevas.", config.replacementJaltevas()));
 	}
 
 	@Override

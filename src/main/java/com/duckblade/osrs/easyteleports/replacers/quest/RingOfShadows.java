@@ -1,10 +1,10 @@
-package com.duckblade.osrs.easyteleports.replacers;
+package com.duckblade.osrs.easyteleports.replacers.quest;
 
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
+import com.duckblade.osrs.easyteleports.replacers.Replacer;
 import com.google.common.collect.ImmutableList;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -32,11 +32,10 @@ public class RingOfShadows implements Replacer
 	public void onConfigChanged(EasyTeleportsConfig config)
 	{
 		this.enabled = config.enableRingOfShadows();
-		replacements.clear();
 
-		new Color(168, 161, 42);
-		replacements.add(new TeleportReplacement("Ancient Vault", config.replacementAncientVault())); // equipped
+		replacements.clear();
 		replacements.add(new TeleportReplacement("The Ancient Vault", config.replacementAncientVault())); // dialogue
+		replacements.add(new TeleportReplacement("Ancient Vault", config.replacementAncientVault())); // equipped
 		replacements.add(new TeleportReplacement("Ghorrock Dungeon", config.replacementGhorrockDungeon()));
 		replacements.add(new TeleportReplacement("The Scar", config.replacementScar()));
 		replacements.add(new TeleportReplacement("Lassar Undercity", config.replacementLassarUndercity()));

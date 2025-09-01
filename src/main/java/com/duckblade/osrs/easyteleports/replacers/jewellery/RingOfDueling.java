@@ -1,7 +1,8 @@
-package com.duckblade.osrs.easyteleports.replacers;
+package com.duckblade.osrs.easyteleports.replacers.jewellery;
 
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
+import com.duckblade.osrs.easyteleports.replacers.Replacer;
 import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;
@@ -35,10 +36,14 @@ public class RingOfDueling implements Replacer
 		this.enabled = config.enableRingOfDueling();
 
 		replacements.clear();
+		// chat dialog
+		replacements.add(new TeleportReplacement("Emir's Arena.", config.replacementEmirsArena()));
+		replacements.add(new TeleportReplacement("Castle Wars Arena.", config.replacementCastleWars()));
+		replacements.add(new TeleportReplacement("Ferox Enclave.", config.replacementFeroxEnclave()));
+		replacements.add(new TeleportReplacement("Fortis Colosseum.", config.replacementFortisColosseum()));
+		// sub menus
 		replacements.add(new TeleportReplacement("Emir's Arena", config.replacementEmirsArena()));
-		//replacements.add(new TeleportReplacement("Al Kharid PvP Arena", config.replacementEmirsArena())); // This is not used anymore?
 		replacements.add(new TeleportReplacement("Castle Wars", config.replacementCastleWars()));
-		replacements.add(new TeleportReplacement("Castle Wars Arena", config.replacementCastleWars()));
 		replacements.add(new TeleportReplacement("Ferox Enclave", config.replacementFeroxEnclave()));
 		replacements.add(new TeleportReplacement("Fortis Colosseum", config.replacementFortisColosseum()));
 	}

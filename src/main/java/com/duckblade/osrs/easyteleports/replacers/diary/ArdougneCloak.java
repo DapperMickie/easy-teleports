@@ -1,7 +1,8 @@
-package com.duckblade.osrs.easyteleports.replacers;
+package com.duckblade.osrs.easyteleports.replacers.diary;
 
 import com.duckblade.osrs.easyteleports.EasyTeleportsConfig;
 import com.duckblade.osrs.easyteleports.TeleportReplacement;
+import com.duckblade.osrs.easyteleports.replacers.Replacer;
 import com.google.common.collect.ImmutableList;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class DesertAmulet implements Replacer
+public class ArdougneCloak implements Replacer
 {
 
 	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
@@ -26,11 +27,13 @@ public class DesertAmulet implements Replacer
 	@Override
 	public void onConfigChanged(EasyTeleportsConfig config)
 	{
-		this.enabled = config.enableDesertAmulet();
+		this.enabled = config.enableArdougneCloak();
 
 		replacements.clear();
-		replacements.add(new TeleportReplacement("Nardah", config.replacementDesertNardah()));
-		replacements.add(new TeleportReplacement("Kalphite cave", config.replacementDesertKalphiteCave()));
+		replacements.add(new TeleportReplacement("Kandarin Monastery", config.replacementArdougneCloakKandarinMonastery()));
+		replacements.add(new TeleportReplacement("Monastery Teleport", config.replacementArdougneCloakKandarinMonastery()));
+		replacements.add(new TeleportReplacement("Ardougne Farm", config.replacementArdougneCloakArdougneFarm()));
+		replacements.add(new TeleportReplacement("Farm Teleport", config.replacementArdougneCloakArdougneFarm()));
 	}
 
 	@Override
@@ -42,15 +45,15 @@ public class DesertAmulet implements Replacer
 	@Override
 	public EquipmentInventorySlot getEquipmentSlot()
 	{
-		return EquipmentInventorySlot.AMULET;
+		return EquipmentInventorySlot.CAPE;
 	}
 
 	@Override
 	public boolean isApplicableToInventory(int itemId)
 	{
-		return itemId == ItemID.DESERT_AMULET_EASY ||
-			itemId == ItemID.DESERT_AMULET_MEDIUM ||
-			itemId == ItemID.DESERT_AMULET_HARD ||
-			itemId == ItemID.DESERT_AMULET_ELITE;
+		return itemId == ItemID.ARDY_CAPE_EASY ||
+			itemId == ItemID.ARDY_CAPE_MEDIUM ||
+			itemId == ItemID.ARDY_CAPE_HARD ||
+			itemId == ItemID.ARDY_CAPE_ELITE;
 	}
 }
