@@ -50,8 +50,6 @@ If you notice that some of your teleport replacements or re-colors are no longer
 #### Skill capes
 ![](https://static.runelite.net/cache/item/icon/9790.png) Construction cape
 
-![](https://static.runelite.net/cache/item/icon/9811.png) Farming cape
-
 ![](https://static.runelite.net/cache/item/icon/9799.png) Fishing cape
 
 ![](https://static.runelite.net/cache/item/icon/9949.png) Hunter cape
