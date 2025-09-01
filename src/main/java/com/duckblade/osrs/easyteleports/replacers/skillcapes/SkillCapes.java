@@ -75,7 +75,7 @@ public class SkillCapes implements Replacer
 	{
 		return root != null &&
 			root.getText() != null &&
-						.anyMatch(s -> root.getText().equals(s));
+				ADVENTURE_LOG_HEADER.stream().anyMatch(s -> root.getText().equals(s));
 	}
 
 	@Override
