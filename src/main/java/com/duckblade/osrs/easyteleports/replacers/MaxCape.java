@@ -67,8 +67,7 @@ public class MaxCape implements Replacer
 	{
 		return root != null &&
 			root.getText() != null &&
-				ADVENTURE_LOG_HEADER.stream()
-						.anyMatch(s -> root.getText().startsWith(s));
+						.anyMatch(s -> root.getText().equals(s));
 	}
 
 	@Override
