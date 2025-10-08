@@ -35,8 +35,8 @@ public class RingOfShadows implements Replacer
 		replacements.clear();
 
 		new Color(168, 161, 42);
-		replacements.add(new TeleportReplacement("Ancient Vault", config.replacementAncientVault())); // equipped
 		replacements.add(new TeleportReplacement("The Ancient Vault", config.replacementAncientVault())); // dialogue
+		replacements.add(new TeleportReplacement("Ancient Vault", config.replacementAncientVault())); // equipped
 		replacements.add(new TeleportReplacement("Ghorrock Dungeon", config.replacementGhorrockDungeon()));
 		replacements.add(new TeleportReplacement("The Scar", config.replacementScar()));
 		replacements.add(new TeleportReplacement("Lassar Undercity", config.replacementLassarUndercity()));

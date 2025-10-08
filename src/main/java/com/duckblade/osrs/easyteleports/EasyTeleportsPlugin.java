@@ -34,6 +34,7 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.util.Text;
 
 @Slf4j
 @PluginDescriptor(
@@ -191,12 +192,18 @@ public class EasyTeleportsPlugin extends Plugin
 			if (stringStackSize == 1)
 			{
 				final String textToReplace = stringStack[0].toString();
-
 				for (TeleportReplacement replacement : getApplicableReplacements(r -> r.isApplicableToScriptId(scriptPreFired.getScriptId())))
 				{
-					if (textToReplace.contains(replacement.getOriginal()))
+					final String original = replacement.getOriginal();
+					final String mapped = replacement.getReplacement();
+					if (Strings.isNullOrEmpty(original) || isBlankReplacement(mapped))
 					{
-						final String newText = textToReplace.replace(replacement.getOriginal(), replacement.getReplacement());
+						continue;
+					}
+
+					if (textToReplace.contains(original) && !textToReplace.contains(mapped))
+					{
+						final String newText = textToReplace.replace(original, mapped);
 						stringStack[0] = newText;
 					}
 				}
@@ -228,16 +235,23 @@ public class EasyTeleportsPlugin extends Plugin
 	private void replacePendantWidgetChildren(Widget root, BiPredicate<Replacer, Widget> filterSelector, boolean shadowedText)
 	{
 		Widget[] children = root.getStaticChildren();
-
 		if (children == null)
 		{
 			return;
 		}
 
 		List<TeleportReplacement> applicableReplacements = getApplicableReplacements(r -> filterSelector.test(r, root));
+
 		for (Widget child : children)
 		{
-			applyReplacement(applicableReplacements, child, Widget::getName, Widget::setName, shadowedText);
+			applyReplacement(
+					filterPendantAlreadyMapped(applicableReplacements, child.getName()),
+					child,
+					Widget::getName,
+					Widget::setName,
+					shadowedText
+			);
+
 			Widget[] actualChildren = child.getChildren();
 			if (actualChildren == null)
 			{
@@ -246,8 +260,20 @@ public class EasyTeleportsPlugin extends Plugin
 
 			for (Widget actualChild : actualChildren)
 			{
-				applyReplacement(applicableReplacements, actualChild, Widget::getName, Widget::setName, shadowedText);
-				applyReplacement(applicableReplacements, actualChild, Widget::getText, Widget::setText, shadowedText);
+				applyReplacement(
+						filterPendantAlreadyMapped(applicableReplacements, actualChild.getName()),
+						actualChild,
+						Widget::getName,
+						Widget::setName,
+						shadowedText
+				);
+				applyReplacement(
+						filterPendantAlreadyMapped(applicableReplacements, actualChild.getText()),
+						actualChild,
+						Widget::getText,
+						Widget::setText,
+						shadowedText
+				);
 
 				Widget[] actualActualChildren = actualChild.getChildren();
 				if (actualActualChildren == null)
@@ -257,11 +283,40 @@ public class EasyTeleportsPlugin extends Plugin
 
 				for (Widget actualActualChild : actualActualChildren)
 				{
-					applyReplacement(applicableReplacements, actualActualChild, Widget::getName, Widget::setName, shadowedText);
-					applyReplacement(applicableReplacements, actualActualChild, Widget::getText, Widget::setText, shadowedText);
+					applyReplacement(
+							filterPendantAlreadyMapped(applicableReplacements, actualActualChild.getName()),
+							actualActualChild,
+							Widget::getName,
+							Widget::setName,
+							shadowedText
+					);
+					applyReplacement(
+							filterPendantAlreadyMapped(applicableReplacements, actualActualChild.getText()),
+							actualActualChild,
+							Widget::getText,
+							Widget::setText,
+							shadowedText
+					);
 				}
 			}
 		}
+	}
+
+	private static List<TeleportReplacement> filterPendantAlreadyMapped(
+			List<TeleportReplacement> replacements, String currentValue
+	)
+	{
+		if (currentValue == null || currentValue.isEmpty())
+		{
+			return replacements;
+		}
+
+		return replacements.stream()
+				.filter(r -> {
+					final String mapped = r.getReplacement();
+					return mapped == null || !currentValue.contains(mapped);
+				})
+				.collect(java.util.stream.Collectors.toList());
 	}
 
 	private void replaceWidgetChildren(Widget root, BiPredicate<Replacer, Widget> filterSelector)
@@ -294,17 +349,57 @@ public class EasyTeleportsPlugin extends Plugin
 	{
 		if (e.getActionParam1() == ACTION_PARAM_1_INVENTORY)
 		{
-			List<TeleportReplacement> applicableReplacements = getApplicableReplacements(r -> r.isApplicableToInventory(e.getMenuEntry().getItemId()));
-			clientThread.invokeLater(() -> applyReplacement(applicableReplacements, e.getMenuEntry(), MenuEntry::getOption, MenuEntry::setOption));
+			List<TeleportReplacement> applicableReplacements =
+					getApplicableReplacements(r -> r.isApplicableToInventory(e.getMenuEntry().getItemId()));
+
+			applyReplacement(applicableReplacements,
+					e.getMenuEntry(),
+					MenuEntry::getOption,
+					MenuEntry::setOption,
+					/* shadowedText = */ false);
 			return;
 		}
 
 		EquipmentInventorySlot equipmentSlot = ACTION_PARAM_1_TO_EQUIPMENT_SLOT.get(e.getActionParam1());
 		if (equipmentSlot != null)
 		{
-			List<TeleportReplacement> applicableReplacements = getApplicableReplacements(r -> r.getEquipmentSlot() == equipmentSlot);
-			applyReplacement(applicableReplacements, e.getMenuEntry(), MenuEntry::getOption, MenuEntry::setOption);
+			List<TeleportReplacement> applicableReplacements =
+					getApplicableReplacements(r -> r.getEquipmentSlot() == equipmentSlot);
+
+			applyReplacement(applicableReplacements,
+					e.getMenuEntry(),
+					MenuEntry::getOption,
+					MenuEntry::setOption,
+					/* shadowedText = */ false);
 		}
+	}
+
+	@Subscribe
+	public void onPostMenuSort(net.runelite.api.events.PostMenuSort e)
+	{
+		MenuEntry[] entries = client.getMenuEntries();
+		for (MenuEntry me : entries)
+		{
+			if (me == null) continue;
+
+			if (me.getParam1() == ACTION_PARAM_1_INVENTORY)
+			{
+				List<TeleportReplacement> reps =
+						getApplicableReplacements(r -> r.isApplicableToInventory(me.getItemId()));
+				applyReplacement(reps, me, MenuEntry::getOption, MenuEntry::setOption, false);
+				continue;
+			}
+
+			EquipmentInventorySlot slot = ACTION_PARAM_1_TO_EQUIPMENT_SLOT.get(me.getParam1());
+			if (slot != null)
+			{
+				List<TeleportReplacement> reps =
+						getApplicableReplacements(r -> r.getEquipmentSlot() == slot);
+				applyReplacement(reps, me, MenuEntry::getOption, MenuEntry::setOption, false);
+			}
+		}
+
+		client.setMenuEntries(entries);
 	}
 
 	private List<TeleportReplacement> getApplicableReplacements(Predicate<Replacer> filter)
@@ -313,6 +408,7 @@ public class EasyTeleportsPlugin extends Plugin
 			.filter(Replacer::isEnabled)
 			.filter(filter)
 			.flatMap(r -> r.getReplacements().stream())
+			.filter(tr -> !isBlankReplacement(tr.getReplacement()))
 			.collect(Collectors.toList());
 	}
 
@@ -355,26 +451,87 @@ public class EasyTeleportsPlugin extends Plugin
 				return;
 			}
 
+			final java.util.function.Function<String, String> norm = s -> {
+				if (s == null) return "";
+				String stripped = net.runelite.client.util.Text.removeTags(s);
+				return stripped.replace('\u00A0', ' ').trim().toLowerCase(java.util.Locale.ROOT);
+			};
+			final String normalizedEntry = norm.apply(entryText);
+
+			final boolean isWidget = entry instanceof Widget;
+
+			final String sep = "[\\s\\-–—:|/()\\[\\],·]+";
+
 			for (TeleportReplacement replacement : replacements)
 			{
-				if (entryText.contains(replacement.getOriginal()))
+				final String original = replacement.getOriginal();
+				final String mapped   = replacement.getReplacement();
+
+				if (Strings.isNullOrEmpty(original) || isBlankReplacement(mapped))
 				{
-					if ((replacement.getReplacement().contains("</col>") || replacement.getReplacement().contains("<col=")) && shadowedText && entry instanceof Widget)
+					continue;
+				}
+
+				final String normalizedOriginal = norm.apply(original);
+
+				boolean matched = false;
+				boolean useWholeLineReplace = false;
+
+				if (normalizedEntry.equals(normalizedOriginal))
+				{
+					matched = true;
+					useWholeLineReplace = true;
+				}
+				else if (isWidget)
+				{
+					String tokenRegex = "(^|" + sep + ")"
+							+ java.util.regex.Pattern.quote(normalizedOriginal)
+							+ "($|" + sep + ")";
+					if (normalizedEntry.matches(".*" + tokenRegex + ".*"))
 					{
-						Widget wEntry = ((Widget) entry);
+						matched = true;
+						useWholeLineReplace = false;
+					}
+				}
+
+				if (matched)
+				{
+					if (shadowedText && isWidget && (mapped.contains("<col=") || mapped.contains("</col>")))
+					{
+						Widget wEntry = (Widget) entry;
 						wEntry.setTextShadowed(true);
 						wEntry.revalidate();
 					}
-					String newText = entryText.replace(replacement.getOriginal(), replacement.getReplacement());
-					setter.accept(entry, newText);
+
+					if (useWholeLineReplace)
+					{
+						setter.accept(entry, mapped);
+					}
+					else
+					{
+						String newText = entryText.replace(original, mapped);
+						setter.accept(entry, newText);
+					}
+					break;
 				}
 			}
 		}
 		catch (Exception e)
 		{
-			log.error("Failed to replace option [{}] on entry [{}]", entryText, entry.toString());
+			log.error("Failed to replace option [{}] on entry [{}]", entryText, String.valueOf(entry), e);
 		}
 	}
 
+
+	private static boolean isBlankReplacement(String s)
+	{
+		if (s == null)
+		{
+			return true;
+		}
+			String stripped = Text.removeTags(s);
+			String normalized = stripped.replace("\u00A0", " ").trim();
+			return normalized.isEmpty();
+		}
 
 }

@@ -41,6 +41,7 @@ public class DigsitePendant implements Replacer
 		replacements.clear();
 		replacements.add(new TeleportReplacement("Digsite", config.replacementDigsite()));
 		replacements.add(new TeleportReplacement("Fossil Island", config.replacementFossilIsland()));
+		replacements.add(new TeleportReplacement("Lithkren Dungeon", config.replacementLithkren()));
 		replacements.add(new TeleportReplacement("Lithkren", config.replacementLithkren()));
 	}
 
