@@ -1132,15 +1132,12 @@ public interface EasyTeleportsConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "replacementLyreJatizso",
-		name = "Jatizso",
-		description = "Replace Jatizso teleport location.",
 		section = SECTION_ENCHANTED_LYRE,
 		position = POSITION_ENCHANTED_LYRE + 4
 	)
-	default String replacementLyreJatizso()
 	{
 		return "";
+		return "Jatiszo";
 	}
 
 	// Ghommal's hilt
