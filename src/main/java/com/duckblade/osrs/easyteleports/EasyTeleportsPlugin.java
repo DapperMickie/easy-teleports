@@ -8,9 +8,8 @@ import com.duckblade.osrs.easyteleports.replacers.quest.*;
 import com.duckblade.osrs.easyteleports.replacers.skillcapes.*;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
-import com.google.inject.Binder;
+import com.google.common.collect.ImmutableSet;
 import com.google.inject.Provides;
-import com.google.inject.multibindings.Multibinder;
 
 import java.util.List;
 import java.util.Map;
@@ -81,42 +80,76 @@ public class EasyTeleportsPlugin extends Plugin
 	@Inject
 	private Set<Replacer> replacers;
 
-	@Override
-	public void configure(Binder binder)
-	{
-		Multibinder<Replacer> replacers = Multibinder.newSetBinder(binder, Replacer.class);
-		replacers.addBinding().to(RingOfDueling.class);
-		replacers.addBinding().to(SlayerRing.class);
-		replacers.addBinding().to(NecklaceOfPassage.class);
-		replacers.addBinding().to(DigsitePendant.class);
-		replacers.addBinding().to(GamesNecklace.class);
-		replacers.addBinding().to(BurningAmulet.class);
-		replacers.addBinding().to(SkillsNecklace.class);
-		replacers.addBinding().to(CombatBracelet.class);
-		replacers.addBinding().to(RingOfWealth.class);
-		replacers.addBinding().to(AmuletOfGlory.class);
-		replacers.addBinding().to(SkillCapes.class);
-		replacers.addBinding().to(RadasBlessing.class);
-		replacers.addBinding().to(KaramjaGloves.class);
-		replacers.addBinding().to(MorytaniaLegs.class);
-		replacers.addBinding().to(DesertAmulet.class);
-		replacers.addBinding().to(ArdougneCloak.class);
-		replacers.addBinding().to(DiaryCape.class);
-		replacers.addBinding().to(KharedstMemoirs.class);
-		replacers.addBinding().to(DrakansMedallion.class);
-		replacers.addBinding().to(RingOfShadows.class);
-		replacers.addBinding().to(EnchantedLyre.class);
-		replacers.addBinding().to(Camulet.class);
-		replacers.addBinding().to(EternalTeleportCrystal.class);
-		replacers.addBinding().to(PharaohSceptre.class);
-		replacers.addBinding().to(XericsTalisman.class);
-		replacers.addBinding().to(PendantOfAtes.class);
-		replacers.addBinding().to(GhommalsHilt.class);
-		replacers.addBinding().to(GrandSeedPod.class);
-		replacers.addBinding().to(RingOfTheElements.class);
-		replacers.addBinding().to(GiantsoulAmulet.class);
-		replacers.addBinding().to(AncientShard.class);
-		replacers.addBinding().to(DiskOfReturning.class);
+    @Provides
+    public Set<Replacer> provideReplacers(
+            RingOfDueling ringOfDueling,
+            SlayerRing slayerRing,
+            NecklaceOfPassage necklaceOfPassage,
+            DigsitePendant digsitePendant,
+            GamesNecklace gamesNecklace,
+            BurningAmulet burningAmulet,
+            SkillsNecklace skillsNecklace,
+            CombatBracelet combatBracelet,
+            RingOfWealth ringOfWealth,
+            AmuletOfGlory amuletOfGlory,
+            SkillCapes skillCapes,
+            RadasBlessing radasBlessing,
+            KaramjaGloves karamjaGloves,
+            MorytaniaLegs morytaniaLegs,
+            DesertAmulet desertAmulet,
+            ArdougneCloak ardougneCloak,
+            DiaryCape diaryCape,
+            KharedstMemoirs kharedstMemoirs,
+            DrakansMedallion drakansMedallion,
+            RingOfShadows ringOfShadows,
+            EnchantedLyre enchantedLyre,
+            Camulet camulet,
+            EternalTeleportCrystal eternalTeleportCrystal,
+            PharaohSceptre pharaohSceptre,
+            XericsTalisman xericsTalisman,
+            PendantOfAtes pendantOfAtes,
+            GhommalsHilt ghommalsHilt,
+            GrandSeedPod grandSeedPod,
+            RingOfTheElements ringOfTheElements,
+            GiantsoulAmulet giantsoulAmulet,
+            AncientShard ancientShard,
+            DiskOfReturning diskOfReturning
+    )
+    {
+        return ImmutableSet.of(
+                ringOfDueling,
+                slayerRing,
+                necklaceOfPassage,
+                digsitePendant,
+                gamesNecklace,
+                burningAmulet,
+                skillsNecklace,
+                combatBracelet,
+                ringOfWealth,
+                amuletOfGlory,
+                skillCapes,
+                radasBlessing,
+                karamjaGloves,
+                morytaniaLegs,
+                desertAmulet,
+                ardougneCloak,
+                diaryCape,
+                kharedstMemoirs,
+                drakansMedallion,
+                ringOfShadows,
+                enchantedLyre,
+                camulet,
+                eternalTeleportCrystal,
+                pharaohSceptre,
+                xericsTalisman,
+                pendantOfAtes,
+                ghommalsHilt,
+                grandSeedPod,
+                ringOfTheElements,
+                giantsoulAmulet,
+                ancientShard,
+                diskOfReturning
+        );
 	}
 
 	@Override
