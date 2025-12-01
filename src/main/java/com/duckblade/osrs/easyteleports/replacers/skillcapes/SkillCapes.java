@@ -22,8 +22,6 @@ public class SkillCapes implements Replacer
 			"House portal teleports"
 	);
 
-	private static final String HUNTER_CAPE_DIALOGUE_HEADER = "Which hunting location would you like to teleport to?";
-
 	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
 
 	@Getter(onMethod = @__(@Override))
@@ -76,15 +74,6 @@ public class SkillCapes implements Replacer
 		return root != null &&
 			root.getText() != null &&
 				ADVENTURE_LOG_HEADER.stream().anyMatch(s -> root.getText().equals(s));
-	}
-
-	@Override
-	public boolean isApplicableToDialog(Widget root)
-	{
-		Widget[] children = root.getChildren();
-		return children != null &&
-				children.length >= 5 &&
-				HUNTER_CAPE_DIALOGUE_HEADER.equals(children[0].getText());
 	}
 
 	@Override
