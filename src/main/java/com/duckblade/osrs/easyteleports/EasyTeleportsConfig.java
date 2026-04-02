@@ -6,7 +6,6 @@ import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.ConfigSection;
 
 import java.awt.Color;
-
 @ConfigGroup(EasyTeleportsConfig.CONFIG_GROUP)
 public interface EasyTeleportsConfig extends Config {
 
@@ -51,7 +50,8 @@ public interface EasyTeleportsConfig extends Config {
     public static final int POSITION_RING_OF_THE_ELEMENTS = BASE + 34 * STEP;
     public static final int POSITION_GIANTSOUL_AMULET = BASE + 35 * STEP;
     public static final int POSITION_ANCIENT_SHARD = BASE + 36 * STEP;
-    public static final int POSITION_DISK_OF_RETURNING = BASE + 37 * STEP;
+	public static final int POSITION_DISK_OF_RETURNING = BASE + 37 * STEP;
+	public static final int POSITION_FAIRY_RING = BASE + 39 * STEP;
 
     // General plugin options
     @ConfigSection(
@@ -2252,5 +2252,631 @@ public interface EasyTeleportsConfig extends Config {
     )
     default String replacementDiskOfReturningBlackout() {
         return "";
+    }
+
+
+    // Fairy Ring
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableFairyRings",
+            name = "Fairy rings",
+            description = "Replace fairy ring menu entries with new names.",
+            position = POSITION_FLAGS + (POSITION_FAIRY_RING / 100)
+    )
+    default boolean enableFairyRings() {
+        return false;
+    }
+
+    @ConfigSection(
+            name = "Fairy rings",
+            description = "Replacement text for fairy ring location names.",
+            position = POSITION_FAIRY_RING,
+            closedByDefault = true
+    )
+    String SECTION_FAIRY_RING = "sectionFairyRing";
+
+    @ConfigItem(
+            keyName = "replacementFairyRingAIQ",
+            name = "AIQ",
+            description = "Replace AIQ location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 1
+    )
+    default String replacementFairyRingAIQ() {
+        return "<col=05fcfb>Mudskipper Point</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingAIR",
+            name = "AIR",
+            description = "Replace AIR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 2
+    )
+    default String replacementFairyRingAIR() {
+        return "<col=05fcfb>(Island) South-east of Ardougne</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingAIS",
+            name = "AIS",
+            description = "Replace AIS location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 3
+    )
+    default String replacementFairyRingAIS() {
+        return "<col=05fcfb>Auburn Valley</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingAJP",
+            name = "AJP",
+            description = "Replace AJP location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 4
+    )
+    default String replacementFairyRingAJP() {
+        return "<col=05fcfb>Avium Savannah</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingAJQ",
+            name = "AJQ",
+            description = "Replace AJQ location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 5
+    )
+    default String replacementFairyRingAJQ() {
+        return "<col=05fcfb>Cave south of Dorgesh-Kaan</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingAJR",
+            name = "AJR",
+            description = "Replace AJR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 6
+    )
+    default String replacementFairyRingAJR() {
+        return "<col=05fcfb>Slayer cave</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingAJS",
+            name = "AJS",
+            description = "Replace AJS location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 7
+    )
+    default String replacementFairyRingAJS() {
+        return "<col=05fcfb>Penguins near Miscellania</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingAKP",
+            name = "AKP",
+            description = "Replace AKP location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 8
+    )
+    default String replacementFairyRingAKP() {
+        return "<col=05fcfb>Necropolis</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingAKQ",
+            name = "AKQ",
+            description = "Replace AKQ location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 9
+    )
+    default String replacementFairyRingAKQ() {
+        return "<col=05fcfb>Piscatoris Hunter area</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingAKR",
+            name = "AKR",
+            description = "Replace AKR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 10
+    )
+    default String replacementFairyRingAKR() {
+        return "<col=05fcfb>Hosidius Vinery</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingAKS",
+            name = "AKS",
+            description = "Replace AKS location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 11
+    )
+    default String replacementFairyRingAKS() {
+        return "<col=05fcfb>Feldip Hunter area</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingALP",
+            name = "ALP",
+            description = "Replace ALP location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 12
+    )
+    default String replacementFairyRingALP() {
+        return "<col=05fcfb>(Island) Lighthouse</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingALQ",
+            name = "ALQ",
+            description = "Replace ALQ location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 13
+    )
+    default String replacementFairyRingALQ() {
+        return "<col=05fcfb>Haunted Woods east of Canifis</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingALR",
+            name = "ALR",
+            description = "Replace ALR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 14
+    )
+    default String replacementFairyRingALR() {
+        return "<col=05fcfb>Abyssal Area</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingALS",
+            name = "ALS",
+            description = "Replace ALS location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 15
+    )
+    default String replacementFairyRingALS() {
+        return "<col=05fcfb>McGrubor's Wood</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingBIP",
+            name = "BIP",
+            description = "Replace BIP location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 16
+    )
+    default String replacementFairyRingBIP() {
+        return "<col=05fcfb>(Island) South-west of Mort Myre</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingBIQ",
+            name = "BIQ",
+            description = "Replace BIQ location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 17
+    )
+    default String replacementFairyRingBIQ() {
+        return "<col=05fcfb>Kalphite Hive</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingBIS",
+            name = "BIS",
+            description = "Replace BIS location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 18
+    )
+    default String replacementFairyRingBIS() {
+        return "<col=05fcfb>Ardougne Zoo - Unicorns</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingBJP",
+            name = "BJP",
+            description = "Replace BJP location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 19
+    )
+    default String replacementFairyRingBJP() {
+        return "<col=05fcfb>(Island) Isle of Souls</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingBJR",
+            name = "BJR",
+            description = "Replace BJR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 20
+    )
+    default String replacementFairyRingBJR() {
+        return "<col=05fcfb>Realm of the Fisher King</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingBJS",
+            name = "BJS",
+            description = "Replace BJS location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 21
+    )
+    default String replacementFairyRingBJS() {
+        return "<col=05fcfb>(Island) Near Zul-Andra</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingBKP",
+            name = "BKP",
+            description = "Replace BKP location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 22
+    )
+    default String replacementFairyRingBKP() {
+        return "<col=05fcfb>South of Castle Wars</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingBKQ",
+            name = "BKQ",
+            description = "Replace BKQ location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 23
+    )
+    default String replacementFairyRingBKQ() {
+        return "<col=05fcfb>Enchanted Valley</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingBKR",
+            name = "BKR",
+            description = "Replace BKR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 24
+    )
+    default String replacementFairyRingBKR() {
+        return "<col=05fcfb>Mort Myre Swamp, south of Canifis</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingBKS",
+            name = "BKS",
+            description = "Replace BKS location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 25
+    )
+    default String replacementFairyRingBKS() {
+        return "<col=05fcfb>Zanaris</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingBLP",
+            name = "BLP",
+            description = "Replace BLP location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 26
+    )
+    default String replacementFairyRingBLP() {
+        return "<col=05fcfb>TzHaar area</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingBLQ",
+            name = "BLQ",
+            description = "Replace BLQ location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 27
+    )
+    default String replacementFairyRingBLQ() {
+        return "<col=05fcfb>Yu'biusk</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingBLR",
+            name = "BLR",
+            description = "Replace BLR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 28
+    )
+    default String replacementFairyRingBLR() {
+        return "<col=05fcfb>Legends' Guild</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingBLS",
+            name = "BLS",
+            description = "Replace BLS location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 29
+    )
+    default String replacementFairyRingBLS() {
+        return "<col=05fcfb>South of Mount Quidamortem</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingCIP",
+            name = "CIP",
+            description = "Replace CIP location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 30
+    )
+    default String replacementFairyRingCIP() {
+        return "<col=05fcfb>(Island) Miscellania</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingCIQ",
+            name = "CIQ",
+            description = "Replace CIQ location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 31
+    )
+    default String replacementFairyRingCIQ() {
+        return "<col=05fcfb>North-west of Yanille</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingCIR",
+            name = "CIR",
+            description = "Replace CIR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 32
+    )
+    default String replacementFairyRingCIR() {
+        return "<col=05fcfb>North-east of the Farming Guild</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingCIS",
+            name = "CIS",
+            description = "Replace CIS location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 33
+    )
+    default String replacementFairyRingCIS() {
+        return "<col=05fcfb>North of the Arceuus Library</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingCJQ",
+            name = "CJQ",
+            description = "Replace CJQ location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 34
+    )
+    default String replacementFairyRingCJQ() {
+        return "<col=05fcfb>The Great Conch</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingCJR",
+            name = "CJR",
+            description = "Replace CJR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 35
+    )
+    default String replacementFairyRingCJR() {
+        return "<col=05fcfb>Sinclair Mansion</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingCKP",
+            name = "CKP",
+            description = "Replace CKP location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 36
+    )
+    default String replacementFairyRingCKP() {
+        return "<col=05fcfb>Cosmic entity's plane</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingCKQ",
+            name = "CKQ",
+            description = "Replace CKQ location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 37
+    )
+    default String replacementFairyRingCKQ() {
+        return "<col=05fcfb>Aldarin</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingCKR",
+            name = "CKR",
+            description = "Replace CKR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 38
+    )
+    default String replacementFairyRingCKR() {
+        return "<col=05fcfb>South of Tai Bwo Wannai Village</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingCKS",
+            name = "CKS",
+            description = "Replace CKS location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 39
+    )
+    default String replacementFairyRingCKS() {
+        return "<col=05fcfb>Canifis</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingCLP",
+            name = "CLP",
+            description = "Replace CLP location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 40
+    )
+    default String replacementFairyRingCLP() {
+        return "<col=05fcfb>(Island) South of Draynor Village</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingCLR",
+            name = "CLR",
+            description = "Replace CLR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 41
+    )
+    default String replacementFairyRingCLR() {
+        return "<col=05fcfb>(Island) Ape Atoll</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingCLS",
+            name = "CLS",
+            description = "Replace CLS location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 42
+    )
+    default String replacementFairyRingCLS() {
+        return "<col=05fcfb>(Island) Hazelmere's home</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingDIP",
+            name = "DIP",
+            description = "Replace DIP location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 43
+    )
+    default String replacementFairyRingDIP() {
+        return "<col=05fcfb>(Sire Boss) Abyssal Nexus</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingDIQ",
+            name = "DIQ",
+            description = "Replace DIQ location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 44
+    )
+    default String replacementFairyRingDIQ() {
+        return "<col=05fcfb>Player-owned house</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingDIR",
+            name = "DIR",
+            description = "Replace DIR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 45
+    )
+    default String replacementFairyRingDIR() {
+        return "<col=05fcfb>Gorak's Plane</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingDIS",
+            name = "DIS",
+            description = "Replace DIS location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 46
+    )
+    default String replacementFairyRingDIS() {
+        return "<col=05fcfb>Wizards' Tower</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingDJP",
+            name = "DJP",
+            description = "Replace DJP location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 47
+    )
+    default String replacementFairyRingDJP() {
+        return "<col=05fcfb>Tower of Life</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingDJR",
+            name = "DJR",
+            description = "Replace DJR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 48
+    )
+    default String replacementFairyRingDJR() {
+        return "<col=05fcfb>Chasm of Fire</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingDKP",
+            name = "DKP",
+            description = "Replace DKP location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 49
+    )
+    default String replacementFairyRingDKP() {
+        return "<col=05fcfb>South of Musa Point</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingDKR",
+            name = "DKR",
+            description = "Replace DKR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 50
+    )
+    default String replacementFairyRingDKR() {
+        return "<col=05fcfb>Edgeville, Grand Exchange</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingDKS",
+            name = "DKS",
+            description = "Replace DKS location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 51
+    )
+    default String replacementFairyRingDKS() {
+        return "<col=05fcfb>Polar Hunter area</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingDLP",
+            name = "DLP",
+            description = "Replace DLP location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 52
+    )
+    default String replacementFairyRingDLP() {
+        return "<col=05fcfb>Grimstone Dungeon</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingDLQ",
+            name = "DLQ",
+            description = "Replace DLQ location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 53
+    )
+    default String replacementFairyRingDLQ() {
+        return "<col=05fcfb>North of Nardah</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingDLR",
+            name = "DLR",
+            description = "Replace DLR location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 54
+    )
+    default String replacementFairyRingDLR() {
+        return "<col=05fcfb>(Island) Poison Waste south of Isafdar</col>";
+    }
+
+    @ConfigItem(
+            keyName = "replacementFairyRingDLS",
+            name = "DLS",
+            description = "Replace DLS location name.",
+            section = SECTION_FAIRY_RING,
+            position = POSITION_FAIRY_RING + 55
+    )
+    default String replacementFairyRingDLS() {
+        return "<col=05fcfb>Myreque hideout under The Hollows</col>";
     }
 }

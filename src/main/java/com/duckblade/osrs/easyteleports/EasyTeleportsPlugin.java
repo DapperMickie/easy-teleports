@@ -43,7 +43,7 @@ import net.runelite.client.util.Text;
 @Slf4j
 @PluginDescriptor(
 	name = "Easy Teleports",
-	tags = {"Pharaoh's", "sceptre", "Xeric's", "talisman", "Kharedst's", "memoirs", "dueling", "achievement", "diary", "cape", "slayer", "ring", "Drakan's", "medallion", "shadows", "necklace", "passage", "pendant", "ates", "digsite", "max", "giantsoul", "elements", "teleport"}
+	tags = {"Pharaoh's", "sceptre", "Xeric's", "talisman", "Kharedst's", "memoirs", "dueling", "achievement", "diary", "cape", "slayer", "ring", "Drakan's", "medallion", "shadows", "necklace", "passage", "pendant", "ates", "digsite", "max", "giantsoul", "elements", "teleport", "fairy"}
 )
 @Singleton
 public class EasyTeleportsPlugin extends Plugin
@@ -65,6 +65,9 @@ public class EasyTeleportsPlugin extends Plugin
 			.build();
 
 	private static final int ACTION_PARAM_1_INVENTORY = 9764864;
+
+	private static final int ACTION_PARAM_0_FAIRYRING = 50;
+	private static final int ACTION_PARAM_1_FAIRYRING = 55;
 
 	private static final int GROUP_ID_JEWELLERY_BOX = 590;
 
@@ -113,7 +116,8 @@ public class EasyTeleportsPlugin extends Plugin
             RingOfTheElements ringOfTheElements,
             GiantsoulAmulet giantsoulAmulet,
             AncientShard ancientShard,
-            DiskOfReturning diskOfReturning
+			DiskOfReturning diskOfReturning,
+            FairyRing fairyRing
     )
     {
         return ImmutableSet.of(
@@ -148,7 +152,8 @@ public class EasyTeleportsPlugin extends Plugin
                 ringOfTheElements,
                 giantsoulAmulet,
                 ancientShard,
-                diskOfReturning
+                diskOfReturning,
+				fairyRing
         );
 	}
 
@@ -402,6 +407,19 @@ public class EasyTeleportsPlugin extends Plugin
 					e.getMenuEntry(),
 					MenuEntry::getOption,
 					MenuEntry::setOption,
+					/* shadowedText = */ false);
+			return;
+		}
+
+		if (e.getActionParam0() == ACTION_PARAM_0_FAIRYRING && e.getActionParam1() == ACTION_PARAM_1_FAIRYRING)
+		{
+			List<TeleportReplacement> applicableReplacements =
+					getApplicableReplacements(r -> r.isApplicableToFairyRing(e.getMenuEntry().getOption()));
+
+			applyReplacement(applicableReplacements,
+					e.getMenuEntry(),
+					MenuEntry::getOption,
+					MenuEntry::setTarget,
 					/* shadowedText = */ false);
 			return;
 		}

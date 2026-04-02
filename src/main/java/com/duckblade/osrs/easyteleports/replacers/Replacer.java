@@ -42,6 +42,11 @@ public interface Replacer
 		return false;
 	}
 
+	default boolean isApplicableToFairyRing(String code)
+	{
+		return false;
+	}
+
 	default EquipmentInventorySlot getEquipmentSlot()
 	{
 		return null;
