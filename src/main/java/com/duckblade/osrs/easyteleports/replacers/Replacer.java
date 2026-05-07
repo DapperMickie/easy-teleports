@@ -47,6 +47,11 @@ public interface Replacer
 		return false;
 	}
 
+	default boolean isApplicableToPortalNexus()
+	{
+		return false;
+	}
+
 	default EquipmentInventorySlot getEquipmentSlot()
 	{
 		return null;

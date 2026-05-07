@@ -117,7 +117,8 @@ public class EasyTeleportsPlugin extends Plugin
             GiantsoulAmulet giantsoulAmulet,
             AncientShard ancientShard,
 			DiskOfReturning diskOfReturning,
-            FairyRing fairyRing
+            FairyRing fairyRing,
+            PortalNexus portalNexus
     )
     {
         return ImmutableSet.of(
@@ -153,7 +154,8 @@ public class EasyTeleportsPlugin extends Plugin
                 giantsoulAmulet,
                 ancientShard,
                 diskOfReturning,
-				fairyRing
+				fairyRing,
+                portalNexus
         );
 	}
 
@@ -192,6 +194,28 @@ public class EasyTeleportsPlugin extends Plugin
 		{
 			Widget pendant = client.getWidget(InterfaceID.PendantOfAtes.TELEPORT_LAYER);
 			clientThread.invokeLater(() -> replacePendantWidgetChildren(pendant, Replacer::isApplicableToAdventureLog, false));
+		}
+
+		// portal nexus teleport interface
+		if (e.getGroupId() == InterfaceID.TELENEXUS_TELEPORT)
+		{
+			clientThread.invokeLater(() ->
+			{
+				// ROWS1 = child 13, ROWS2 = child 17
+				replaceWidgetChildren(InterfaceID.TELENEXUS_TELEPORT, 13, (r, w) -> r.isApplicableToPortalNexus());
+				replaceWidgetChildren(InterfaceID.TELENEXUS_TELEPORT, 17, (r, w) -> r.isApplicableToPortalNexus());
+			});
+		}
+
+		// portal nexus configuration interface
+		if (e.getGroupId() == InterfaceID.TELENEXUS)
+		{
+			clientThread.invokeLater(() ->
+			{
+				// NON_SLOTTED_LIST = child 22, SLOTTED_LIST = child 39
+				replaceWidgetChildren(InterfaceID.TELENEXUS, 22, (r, w) -> r.isApplicableToPortalNexus());
+				replaceWidgetChildren(InterfaceID.TELENEXUS, 39, (r, w) -> r.isApplicableToPortalNexus());
+			});
 		}
 
 		// the scroll thing that xeric's talisman uses

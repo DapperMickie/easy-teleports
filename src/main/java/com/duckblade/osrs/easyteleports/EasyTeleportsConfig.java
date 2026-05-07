@@ -52,6 +52,7 @@ public interface EasyTeleportsConfig extends Config {
     public static final int POSITION_ANCIENT_SHARD = BASE + 36 * STEP;
 	public static final int POSITION_DISK_OF_RETURNING = BASE + 37 * STEP;
 	public static final int POSITION_FAIRY_RING = BASE + 39 * STEP;
+	public static final int POSITION_PORTAL_NEXUS = BASE + 40 * STEP;
 
     // General plugin options
     @ConfigSection(
@@ -2267,6 +2268,18 @@ public interface EasyTeleportsConfig extends Config {
         return false;
     }
 
+    // Portal Nexus
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enablePortalNexus",
+            name = "Portal nexus",
+            description = "Replace teleport entries on the Portal nexus with new names.",
+            position = POSITION_FLAGS + (POSITION_PORTAL_NEXUS / 100)
+    )
+    default boolean enablePortalNexus() {
+        return false;
+    }
+
     @ConfigSection(
             name = "Fairy rings",
             description = "Replacement text for fairy ring location names.",
@@ -2878,5 +2891,281 @@ public interface EasyTeleportsConfig extends Config {
     )
     default String replacementFairyRingDLS() {
         return "<col=05fcfb>Myreque hideout under The Hollows</col>";
+    }
+
+    @ConfigSection(
+            name = "Portal nexus",
+            description = "Replacement text for the Portal nexus teleport location names.",
+            position = POSITION_PORTAL_NEXUS,
+            closedByDefault = true
+    )
+    String SECTION_PORTAL_NEXUS = "sectionPortalNexus";
+
+    // Standard spellbook
+    @ConfigItem(
+            keyName = "replacementPortalNexusVarrock",
+            name = "Varrock",
+            description = "Replace Varrock teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 1
+    )
+    default String replacementPortalNexusVarrock() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusLumbridge",
+            name = "Lumbridge",
+            description = "Replace Lumbridge teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 2
+    )
+    default String replacementPortalNexusLumbridge() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusFalador",
+            name = "Falador",
+            description = "Replace Falador teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 3
+    )
+    default String replacementPortalNexusFalador() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusCamelot",
+            name = "Camelot",
+            description = "Replace Camelot teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 4
+    )
+    default String replacementPortalNexusCamelot() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusArdougne",
+            name = "Ardougne",
+            description = "Replace Ardougne teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 5
+    )
+    default String replacementPortalNexusArdougne() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusCivitasIllaFortis",
+            name = "Civitas illa Fortis",
+            description = "Replace Civitas illa Fortis teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 6
+    )
+    default String replacementPortalNexusCivitasIllaFortis() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusWatchtower",
+            name = "Watchtower/Yanille",
+            description = "Replace Watchtower/Yanille teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 7
+    )
+    default String replacementPortalNexusWatchtower() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusWestArdougne",
+            name = "West Ardougne",
+            description = "Replace West Ardougne teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 8
+    )
+    default String replacementPortalNexusWestArdougne() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusMarim",
+            name = "Marim (Ape Atoll)",
+            description = "Replace Marim (Ape Atoll) teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 9
+    )
+    default String replacementPortalNexusMarim() {
+        return "";
+    }
+
+    // Ancient Magicks
+    @ConfigItem(
+            keyName = "replacementPortalNexusSenntisten",
+            name = "Senntisten (Digsite)",
+            description = "Replace Senntisten (Digsite) teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 10
+    )
+    default String replacementPortalNexusSenntisten() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusKharyrll",
+            name = "Kharyrll (Canifis)",
+            description = "Replace Kharyrll (Canifis) teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 11
+    )
+    default String replacementPortalNexusKharyrll() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusCarrallanger",
+            name = "Carrallanger (Graveyard of Shadows)",
+            description = "Replace Carrallanger (Graveyard of Shadows) teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 12
+    )
+    default String replacementPortalNexusCarrallanger() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusAnnakarl",
+            name = "Annakarl (Demonic Ruins)",
+            description = "Replace Annakarl (Demonic Ruins) teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 13
+    )
+    default String replacementPortalNexusAnnakarl() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusGhorrock",
+            name = "Ghorrock (Frozen Waste Plateau)",
+            description = "Replace Ghorrock (Frozen Waste Plateau) teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 14
+    )
+    default String replacementPortalNexusGhorrock() {
+        return "";
+    }
+
+    // Lunar spellbook
+    @ConfigItem(
+            keyName = "replacementPortalNexusLunarIsle",
+            name = "Lunar Isle",
+            description = "Replace Lunar Isle teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 15
+    )
+    default String replacementPortalNexusLunarIsle() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusWaterbirth",
+            name = "Waterbirth Island",
+            description = "Replace Waterbirth Island teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 16
+    )
+    default String replacementPortalNexusWaterbirth() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusFishingGuild",
+            name = "Fishing Guild",
+            description = "Replace Fishing Guild teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 17
+    )
+    default String replacementPortalNexusFishingGuild() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusCatherby",
+            name = "Catherby",
+            description = "Replace Catherby teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 18
+    )
+    default String replacementPortalNexusCatherby() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusApeAtollDungeon",
+            name = "Ape Atoll Dungeon",
+            description = "Replace Ape Atoll Dungeon teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 19
+    )
+    default String replacementPortalNexusApeAtollDungeon() {
+        return "";
+    }
+
+    // Arceuus spellbook
+    @ConfigItem(
+            keyName = "replacementPortalNexusHarmonyIsland",
+            name = "Harmony Island",
+            description = "Replace Harmony Island teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 20
+    )
+    default String replacementPortalNexusHarmonyIsland() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusForgottenCemetery",
+            name = "The Forgotten Cemetery",
+            description = "Replace The Forgotten Cemetery teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 21
+    )
+    default String replacementPortalNexusForgottenCemetery() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusBarrows",
+            name = "Barrows",
+            description = "Replace Barrows teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 22
+    )
+    default String replacementPortalNexusBarrows() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusTrollStronghold",
+            name = "Troll Stronghold",
+            description = "Replace Troll Stronghold teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 23
+    )
+    default String replacementPortalNexusTrollStronghold() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementPortalNexusWeiss",
+            name = "Weiss",
+            description = "Replace Weiss teleport location name.",
+            section = SECTION_PORTAL_NEXUS,
+            position = POSITION_PORTAL_NEXUS + 24
+    )
+    default String replacementPortalNexusWeiss() {
+        return "";
     }
 }
