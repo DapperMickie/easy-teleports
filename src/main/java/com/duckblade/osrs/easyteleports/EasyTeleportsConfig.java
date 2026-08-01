@@ -1510,6 +1510,17 @@ public interface EasyTeleportsConfig extends Config {
         return "Nightmare";
     }
 
+    @ConfigItem(
+            keyName = "replacementCastleDrakan",
+            name = "Castle Drakan",
+            description = "Replace Castle Drakan teleport location name.",
+            section = SECTION_DRAKANS,
+            position = POSITION_DRAKANS + 4
+    )
+    default String replacementCastleDrakan() {
+        return "Castle Drakan";
+    }
+
     // Ring of shadows
     @ConfigItem(
             section = SECTION_ENABLE_FLAGS,
