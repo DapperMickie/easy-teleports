@@ -64,7 +64,7 @@ public class EasyTeleportsPlugin extends Plugin
 			.put(25362456, EquipmentInventorySlot.RING)
 			.build();
 
-	private static final int ACTION_PARAM_1_INVENTORY = 9764864;
+	private static final int ACTION_PARAM_1_INVENTORY = InterfaceID.Inventory.ITEMS;
 
 	private static final int ACTION_PARAM_0_FAIRYRING = 50;
 	private static final int ACTION_PARAM_1_FAIRYRING = 55;
@@ -400,13 +400,14 @@ public class EasyTeleportsPlugin extends Plugin
 	@Subscribe
 	public void onMenuEntryAdded(MenuEntryAdded e)
 	{
-		if (e.getActionParam1() == ACTION_PARAM_1_INVENTORY)
+		MenuEntry menuEntry = e.getMenuEntry();
+		if (isInventoryEntry(menuEntry))
 		{
 			List<TeleportReplacement> applicableReplacements =
-					getApplicableReplacements(r -> r.isApplicableToInventory(e.getMenuEntry().getItemId()));
+					getApplicableReplacements(r -> r.isApplicableToInventory(getItemId(menuEntry)));
 
 			applyReplacement(applicableReplacements,
-					e.getMenuEntry(),
+					menuEntry,
 					MenuEntry::getOption,
 					MenuEntry::setOption,
 					/* shadowedText = */ false);
@@ -448,10 +449,10 @@ public class EasyTeleportsPlugin extends Plugin
 		{
 			if (me == null) continue;
 
-			if (me.getParam1() == ACTION_PARAM_1_INVENTORY)
+			if (isInventoryEntry(me))
 			{
 				List<TeleportReplacement> reps =
-						getApplicableReplacements(r -> r.isApplicableToInventory(me.getItemId()));
+						getApplicableReplacements(r -> r.isApplicableToInventory(getItemId(me)));
 				applyReplacement(reps, me, MenuEntry::getOption, MenuEntry::setOption, false);
 				continue;
 			}
@@ -466,6 +467,25 @@ public class EasyTeleportsPlugin extends Plugin
 		}
 
 		client.setMenuEntries(entries);
+	}
+
+	private static boolean isInventoryEntry(MenuEntry entry)
+	{
+		Widget widget = entry.getWidget();
+		return entry.getParam1() == ACTION_PARAM_1_INVENTORY ||
+			widget != null && widget.getId() == InterfaceID.Inventory.ITEMS;
+	}
+
+	private static int getItemId(MenuEntry entry)
+	{
+		int itemId = entry.getItemId();
+		if (itemId >= 0)
+		{
+			return itemId;
+		}
+
+		Widget widget = entry.getWidget();
+		return widget == null ? itemId : widget.getItemId();
 	}
 
 	private List<TeleportReplacement> getApplicableReplacements(Predicate<Replacer> filter)
