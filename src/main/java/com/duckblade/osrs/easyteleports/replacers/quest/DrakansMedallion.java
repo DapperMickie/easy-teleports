@@ -20,7 +20,7 @@ import net.runelite.api.gameval.ItemID;
 public class DrakansMedallion implements Replacer
 {
 
-	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
+	private final List<TeleportReplacement> replacements = new ArrayList<>(4);
 
 	@Getter(onMethod = @__(@Override))
 	private boolean enabled = false;
@@ -34,6 +34,7 @@ public class DrakansMedallion implements Replacer
 		replacements.add(new TeleportReplacement("Ver Sinhaza", config.replacementVerSinhaza()));
 		replacements.add(new TeleportReplacement("Darkmeyer", config.replacementDarkmeyer()));
 		replacements.add(new TeleportReplacement("Slepe", config.replacementSlepe()));
+		replacements.add(new TeleportReplacement("Castle Drakan", config.replacementCastleDrakan()));
 	}
 
 	@Override
