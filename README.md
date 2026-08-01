@@ -54,6 +54,8 @@ If you notice that some of your teleport replacements or re-colors are no longer
 
 ![](https://static.runelite.net/cache/item/icon/9949.png) Hunter cape
 
+![](https://static.runelite.net/cache/item/icon/31290.png) Sailing cape
+
 ![](https://static.runelite.net/cache/item/icon/13280.png) Max cape
 
 #### Achievement diary items
@@ -100,3 +102,5 @@ If you notice that some of your teleport replacements or re-colors are no longer
 ![](https://static.runelite.net/cache/item/icon/19677.png) Ancient shard
 
 ![](https://static.runelite.net/cache/item/icon/981.png) Disk of returning
+
+![](https://static.runelite.net/cache/item/icon/32399.png) Sailors' amulet

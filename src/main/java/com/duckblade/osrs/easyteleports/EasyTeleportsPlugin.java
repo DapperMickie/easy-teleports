@@ -117,7 +117,8 @@ public class EasyTeleportsPlugin extends Plugin
             GiantsoulAmulet giantsoulAmulet,
             AncientShard ancientShard,
 			DiskOfReturning diskOfReturning,
-            FairyRing fairyRing
+			SailorsAmulet sailorsAmulet,
+			FairyRing fairyRing
     )
     {
         return ImmutableSet.of(
@@ -152,7 +153,8 @@ public class EasyTeleportsPlugin extends Plugin
                 ringOfTheElements,
                 giantsoulAmulet,
                 ancientShard,
-                diskOfReturning,
+				diskOfReturning,
+				sailorsAmulet,
 				fairyRing
         );
 	}

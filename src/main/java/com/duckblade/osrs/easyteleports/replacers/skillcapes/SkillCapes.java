@@ -60,6 +60,7 @@ public class SkillCapes implements Replacer
 		replacements.add(new TeleportReplacement("Brimhaven", config.replacementMaxCapeBrimhaven()));
 		replacements.add(new TeleportReplacement("Yanille", config.replacementMaxCapeYanille()));
 		replacements.add(new TeleportReplacement("Prifddinas", config.replacementMaxCapePrifddinas()));
+		replacements.add(new TeleportReplacement("The Pandemonium", config.replacementMaxCapePandemonium()));
 	}
 
 	@Override
@@ -93,6 +94,8 @@ public class SkillCapes implements Replacer
 				itemId == ItemID.SKILLCAPE_FISHING ||
 				itemId == ItemID.SKILLCAPE_FISHING_TRIMMED ||
 				itemId == ItemID.SKILLCAPE_HUNTING ||
-				itemId == ItemID.SKILLCAPE_HUNTING_TRIMMED;
+				itemId == ItemID.SKILLCAPE_HUNTING_TRIMMED ||
+				itemId == ItemID.SKILLCAPE_SAILING ||
+				itemId == ItemID.SKILLCAPE_SAILING_TRIMMED;
 	}
 }

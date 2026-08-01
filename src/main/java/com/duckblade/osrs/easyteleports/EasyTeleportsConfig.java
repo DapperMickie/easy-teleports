@@ -51,6 +51,7 @@ public interface EasyTeleportsConfig extends Config {
     public static final int POSITION_GIANTSOUL_AMULET = BASE + 35 * STEP;
     public static final int POSITION_ANCIENT_SHARD = BASE + 36 * STEP;
 	public static final int POSITION_DISK_OF_RETURNING = BASE + 37 * STEP;
+	public static final int POSITION_SAILORS_AMULET = BASE + 38 * STEP;
 	public static final int POSITION_FAIRY_RING = BASE + 39 * STEP;
 
     // General plugin options
@@ -959,6 +960,17 @@ public interface EasyTeleportsConfig extends Config {
             position = POSITION_MAX_CAPE + 18
     )
     default String replacementMaxCapePrifddinas() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementMaxCapePandemonium",
+            name = "The Pandemonium",
+            description = "Replace The Pandemonium teleport location name.",
+            section = SECTION_MAX_CAPE,
+            position = POSITION_MAX_CAPE + 19
+    )
+    default String replacementMaxCapePandemonium() {
         return "";
     }
 
@@ -2254,6 +2266,59 @@ public interface EasyTeleportsConfig extends Config {
         return "";
     }
 
+
+    // Sailors' amulet
+    @ConfigItem(
+            section = SECTION_ENABLE_FLAGS,
+            keyName = "enableSailorsAmulet",
+            name = "Sailors' amulet",
+            description = "Replace teleport entries on the Sailors' amulet with new names.",
+            position = POSITION_FLAGS + (POSITION_SAILORS_AMULET / 100)
+    )
+    default boolean enableSailorsAmulet() {
+        return false;
+    }
+
+    @ConfigSection(
+            name = "Sailors' amulet",
+            description = "Replacement text for the Sailors' amulet teleport location names.",
+            position = POSITION_SAILORS_AMULET,
+            closedByDefault = true
+    )
+    String SECTION_SAILORS_AMULET = "sectionSailorsAmulet";
+
+    @ConfigItem(
+            keyName = "replacementSailorsPandemonium",
+            name = "The Pandemonium",
+            description = "Replace The Pandemonium teleport location name.",
+            section = SECTION_SAILORS_AMULET,
+            position = POSITION_SAILORS_AMULET + 1
+    )
+    default String replacementSailorsPandemonium() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementSailorsPortRoberts",
+            name = "Port Roberts",
+            description = "Replace Port Roberts teleport location name.",
+            section = SECTION_SAILORS_AMULET,
+            position = POSITION_SAILORS_AMULET + 2
+    )
+    default String replacementSailorsPortRoberts() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "replacementSailorsDeepfinPoint",
+            name = "Deepfin Point",
+            description = "Replace Deepfin Point teleport location name.",
+            section = SECTION_SAILORS_AMULET,
+            position = POSITION_SAILORS_AMULET + 3
+    )
+    default String replacementSailorsDeepfinPoint() {
+        return "";
+    }
 
     // Fairy Ring
     @ConfigItem(
