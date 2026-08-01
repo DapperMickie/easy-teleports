@@ -19,7 +19,7 @@ public class SlayerRing implements Replacer
 	private static final String SLAYER_RING_DIALOG_HEADER = "Select an Option";
 	private static final String ETERNAL_SLAYER_RING_DIALOG_HEADER = "Select an option";
 
-	private final List<TeleportReplacement> replacements = new ArrayList<>(5);
+	private final List<TeleportReplacement> replacements = new ArrayList<>(14);
 
 	@Getter(onMethod = @__(@Override))
 	private boolean enabled = false;
@@ -34,11 +34,14 @@ public class SlayerRing implements Replacer
 		// "Teleport to the Stronghold Slayer Cave" and "Stronghold"
 		replacements.clear();
 		replacements.add(new TeleportReplacement("Teleport to the Stronghold Slayer Cave", config.replacementSlayerStronghold()));
+		replacements.add(new TeleportReplacement("Stronghold Slayer Cave", config.replacementSlayerStronghold()));
 		replacements.add(new TeleportReplacement("Stronghold", config.replacementSlayerStronghold()));
 		replacements.add(new TeleportReplacement("Teleport to the Morytania Slayer Tower", config.replacementSlayerTower()));
+		replacements.add(new TeleportReplacement("Morytania Slayer Tower", config.replacementSlayerTower()));
 		replacements.add(new TeleportReplacement("Teleport to the Rellekka Slayer Caves", config.replacementSlayerRellekka()));
 		replacements.add(new TeleportReplacement("Slayer Tower", config.replacementSlayerTower()));
 		replacements.add(new TeleportReplacement("Teleport to the Fremennik Slayer Dungeon", config.replacementSlayerRellekka()));
+		replacements.add(new TeleportReplacement("Fremennik Slayer Dungeon", config.replacementSlayerRellekka()));
 		replacements.add(new TeleportReplacement("Fremennik Dungeon", config.replacementSlayerRellekka()));
 		replacements.add(new TeleportReplacement("Teleport to Tarn's Lair", config.replacementTarns()));
 		replacements.add(new TeleportReplacement("Tarn's Lair", config.replacementTarns()));
