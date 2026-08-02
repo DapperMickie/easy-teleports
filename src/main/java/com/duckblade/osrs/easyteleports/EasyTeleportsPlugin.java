@@ -66,8 +66,8 @@ public class EasyTeleportsPlugin extends Plugin
 
 	private static final int ACTION_PARAM_1_INVENTORY = InterfaceID.Inventory.ITEMS;
 
-	private static final int ACTION_PARAM_0_FAIRYRING = 50;
-	private static final int ACTION_PARAM_1_FAIRYRING = 55;
+	private static final int ACTION_PARAM_0_FAIRYRING = 49;
+	private static final int ACTION_PARAM_1_FAIRYRING = 48;
 
 	private static final int GROUP_ID_JEWELLERY_BOX = 590;
 
@@ -400,6 +400,10 @@ public class EasyTeleportsPlugin extends Plugin
 	@Subscribe
 	public void onMenuEntryAdded(MenuEntryAdded e)
 	{
+		// Uncomment to figure out what the action params are for different menu entries
+		//log.debug("MenuEntryAdded: actionParam0={}, actionParam1={}, option={}, target={}",
+		//		e.getActionParam0(), e.getActionParam1(), e.getOption(), e.getTarget());
+
 		MenuEntry menuEntry = e.getMenuEntry();
 		if (e.getActionParam1() == ACTION_PARAM_1_INVENTORY)
 		{
@@ -419,11 +423,11 @@ public class EasyTeleportsPlugin extends Plugin
 			List<TeleportReplacement> applicableReplacements =
 					getApplicableReplacements(r -> r.isApplicableToFairyRing(e.getMenuEntry().getOption()));
 
-			clientThread.invokeLater(() -> applyReplacement(applicableReplacements,
+			applyReplacement(applicableReplacements,
 					e.getMenuEntry(),
 					MenuEntry::getOption,
 					MenuEntry::setTarget,
-					/* shadowedText = */ false));
+					/* shadowedText = */ false);
 			return;
 		}
 

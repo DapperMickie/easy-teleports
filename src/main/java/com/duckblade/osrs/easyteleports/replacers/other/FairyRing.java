@@ -170,7 +170,7 @@ public class FairyRing implements Replacer
 	{
 		for (String fairyRingCode : FAIRY_RING_CODES)
 		{
-			if (fairyRingCode.equals(code))
+			if (fairyRingCode.equals(code + " Fairy ring") || fairyRingCode.equals(code))
 			{
 				return true;
 			}
