@@ -401,16 +401,16 @@ public class EasyTeleportsPlugin extends Plugin
 	public void onMenuEntryAdded(MenuEntryAdded e)
 	{
 		MenuEntry menuEntry = e.getMenuEntry();
-		if (isInventoryEntry(menuEntry))
+		if (e.getActionParam1() == ACTION_PARAM_1_INVENTORY)
 		{
 			List<TeleportReplacement> applicableReplacements =
 					getApplicableReplacements(r -> r.isApplicableToInventory(getItemId(menuEntry)));
 
-			applyReplacement(applicableReplacements,
+			clientThread.invokeLater(() -> applyReplacement(applicableReplacements,
 					menuEntry,
 					MenuEntry::getOption,
 					MenuEntry::setOption,
-					/* shadowedText = */ false);
+					/* shadowedText = */ false));
 			return;
 		}
 
@@ -419,11 +419,11 @@ public class EasyTeleportsPlugin extends Plugin
 			List<TeleportReplacement> applicableReplacements =
 					getApplicableReplacements(r -> r.isApplicableToFairyRing(e.getMenuEntry().getOption()));
 
-			applyReplacement(applicableReplacements,
+			clientThread.invokeLater(() -> applyReplacement(applicableReplacements,
 					e.getMenuEntry(),
 					MenuEntry::getOption,
 					MenuEntry::setTarget,
-					/* shadowedText = */ false);
+					/* shadowedText = */ false));
 			return;
 		}
 
@@ -433,11 +433,11 @@ public class EasyTeleportsPlugin extends Plugin
 			List<TeleportReplacement> applicableReplacements =
 					getApplicableReplacements(r -> r.getEquipmentSlot() == equipmentSlot);
 
-			applyReplacement(applicableReplacements,
+			clientThread.invokeLater(() -> applyReplacement(applicableReplacements,
 					e.getMenuEntry(),
 					MenuEntry::getOption,
 					MenuEntry::setOption,
-					/* shadowedText = */ false);
+					/* shadowedText = */ false));
 		}
 	}
 
