@@ -2331,6 +2331,17 @@ public interface EasyTeleportsConfig extends Config {
         return "";
     }
 
+    @ConfigItem(
+            keyName = "replacementSailorsRedRock",
+            name = "Red Rock",
+            description = "Replace Red Rock teleport location name.",
+            section = SECTION_SAILORS_AMULET,
+            position = POSITION_SAILORS_AMULET + 4
+    )
+    default String replacementSailorsRedRock() {
+        return "";
+    }
+
     // Fairy Ring
     @ConfigItem(
             section = SECTION_ENABLE_FLAGS,

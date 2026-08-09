@@ -21,7 +21,7 @@ public class SailorsAmulet implements Replacer
 
 	private static final String SAILORS_AMULET_DIALOGUE_HEADER = "Where would you like to teleport to?";
 
-	private final List<TeleportReplacement> replacements = new ArrayList<>(6);
+	private final List<TeleportReplacement> replacements = new ArrayList<>(8);
 
 	@Getter(onMethod = @__(@Override))
 	private boolean enabled = false;
@@ -38,6 +38,8 @@ public class SailorsAmulet implements Replacer
 		replacements.add(new TeleportReplacement("Port Roberts.", config.replacementSailorsPortRoberts()));
 		replacements.add(new TeleportReplacement("Deepfin Point", config.replacementSailorsDeepfinPoint()));
 		replacements.add(new TeleportReplacement("Deepfin Point.", config.replacementSailorsDeepfinPoint()));
+		replacements.add(new TeleportReplacement("Red Rock", config.replacementSailorsRedRock()));
+		replacements.add(new TeleportReplacement("Red Rock.", config.replacementSailorsRedRock()));
 	}
 
 	@Override
