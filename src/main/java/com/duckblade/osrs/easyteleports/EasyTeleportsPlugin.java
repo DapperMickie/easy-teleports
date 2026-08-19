@@ -66,9 +66,6 @@ public class EasyTeleportsPlugin extends Plugin
 
 	private static final int ACTION_PARAM_1_INVENTORY = InterfaceID.Inventory.ITEMS;
 
-	private static final int ACTION_PARAM_0_FAIRYRING = 49;
-	private static final int ACTION_PARAM_1_FAIRYRING = 48;
-
 	private static final int GROUP_ID_JEWELLERY_BOX = 590;
 
 	@Inject
@@ -418,16 +415,16 @@ public class EasyTeleportsPlugin extends Plugin
 			return;
 		}
 
-		if (e.getActionParam0() == ACTION_PARAM_0_FAIRYRING && e.getActionParam1() == ACTION_PARAM_1_FAIRYRING)
+		if (isFairyRingEntry(menuEntry))
 		{
 			List<TeleportReplacement> applicableReplacements =
-					getApplicableReplacements(r -> r.isApplicableToFairyRing(e.getMenuEntry().getOption()));
+					getApplicableReplacements(r -> r.isApplicableToFairyRing(menuEntry.getOption()));
 
-			applyReplacement(applicableReplacements,
-					e.getMenuEntry(),
+			clientThread.invokeLater(() -> applyReplacement(applicableReplacements,
+					menuEntry,
 					MenuEntry::getOption,
-					MenuEntry::setTarget,
-					/* shadowedText = */ false);
+					MenuEntry::setOption,
+					/* shadowedText = */ false));
 			return;
 		}
 
@@ -461,6 +458,14 @@ public class EasyTeleportsPlugin extends Plugin
 				continue;
 			}
 
+			if (isFairyRingEntry(me))
+			{
+				List<TeleportReplacement> reps =
+						getApplicableReplacements(r -> r.isApplicableToFairyRing(me.getOption()));
+				applyReplacement(reps, me, MenuEntry::getOption, MenuEntry::setOption, false);
+				continue;
+			}
+
 			EquipmentInventorySlot slot = ACTION_PARAM_1_TO_EQUIPMENT_SLOT.get(me.getParam1());
 			if (slot != null)
 			{
@@ -471,6 +476,25 @@ public class EasyTeleportsPlugin extends Plugin
 		}
 
 		client.setMenuEntries(entries);
+	}
+
+	private static boolean isFairyRingEntry(MenuEntry entry)
+	{
+		if (entry == null)
+		{
+			return false;
+		}
+
+		String target = Text.removeTags(entry.getTarget());
+		if (target == null || target.isEmpty())
+		{
+			return false;
+		}
+
+		String targetLower = target.trim().toLowerCase(java.util.Locale.ROOT);
+		return targetLower.contains("fairy ring")
+			|| targetLower.contains("fairy tree")
+			|| targetLower.equals("tree & ring");
 	}
 
 	private static boolean isInventoryEntry(MenuEntry entry)
@@ -572,7 +596,7 @@ public class EasyTeleportsPlugin extends Plugin
 					matched = true;
 					useWholeLineReplace = true;
 				}
-				else if (isWidget)
+				else
 				{
 					String tokenRegex = "(^|" + sep + ")"
 							+ java.util.regex.Pattern.quote(normalizedOriginal)

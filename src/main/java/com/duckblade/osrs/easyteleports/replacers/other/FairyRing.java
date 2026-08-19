@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import net.runelite.client.util.Text;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
@@ -166,11 +167,17 @@ public class FairyRing implements Replacer
 	}
 
 	@Override
-	public boolean isApplicableToFairyRing(String code)
+	public boolean isApplicableToFairyRing(String option)
 	{
+		if (option == null)
+		{
+			return false;
+		}
+
+		String strippedOption = Text.removeTags(option).toUpperCase(java.util.Locale.ROOT);
 		for (String fairyRingCode : FAIRY_RING_CODES)
 		{
-			if (fairyRingCode.equals(code + " Fairy ring") || fairyRingCode.equals(code))
+			if (strippedOption.contains(fairyRingCode))
 			{
 				return true;
 			}
