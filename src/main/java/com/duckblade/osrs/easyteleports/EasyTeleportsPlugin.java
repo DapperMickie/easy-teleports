@@ -66,9 +66,6 @@ public class EasyTeleportsPlugin extends Plugin
 
 	private static final int ACTION_PARAM_1_INVENTORY = InterfaceID.Inventory.ITEMS;
 
-	private static final int ACTION_PARAM_0_FAIRYRING = 49;
-	private static final int ACTION_PARAM_1_FAIRYRING = 48;
-
 	private static final int GROUP_ID_JEWELLERY_BOX = 590;
 
 	@Inject
@@ -418,16 +415,9 @@ public class EasyTeleportsPlugin extends Plugin
 			return;
 		}
 
-		if (e.getActionParam0() == ACTION_PARAM_0_FAIRYRING && e.getActionParam1() == ACTION_PARAM_1_FAIRYRING)
+		if (isFairyRingEntry(menuEntry))
 		{
-			List<TeleportReplacement> applicableReplacements =
-					getApplicableReplacements(r -> r.isApplicableToFairyRing(e.getMenuEntry().getOption()));
-
-			applyReplacement(applicableReplacements,
-					e.getMenuEntry(),
-					MenuEntry::getOption,
-					MenuEntry::setTarget,
-					/* shadowedText = */ false);
+			clientThread.invokeLater(() -> applyFairyRingReplacement(menuEntry));
 			return;
 		}
 
@@ -461,6 +451,12 @@ public class EasyTeleportsPlugin extends Plugin
 				continue;
 			}
 
+			if (isFairyRingEntry(me))
+			{
+				applyFairyRingReplacement(me);
+				continue;
+			}
+
 			EquipmentInventorySlot slot = ACTION_PARAM_1_TO_EQUIPMENT_SLOT.get(me.getParam1());
 			if (slot != null)
 			{
@@ -471,6 +467,87 @@ public class EasyTeleportsPlugin extends Plugin
 		}
 
 		client.setMenuEntries(entries);
+	}
+
+	private void applyFairyRingReplacement(MenuEntry entry)
+	{
+		String option = entry.getOption();
+		if (Strings.isNullOrEmpty(option))
+		{
+			return;
+		}
+
+		List<TeleportReplacement> replacements = getApplicableReplacements(r -> r instanceof FairyRing);
+		String strippedOption = Text.removeTags(option).toUpperCase(java.util.Locale.ROOT);
+
+		for (TeleportReplacement replacement : replacements)
+		{
+			String code = replacement.getOriginal();
+			String mapped = replacement.getReplacement();
+			if (Strings.isNullOrEmpty(code) || isBlankReplacement(mapped))
+			{
+				continue;
+			}
+
+			String codeUpper = code.toUpperCase(java.util.Locale.ROOT);
+			String tokenRegex = "(^|[\\s\\-–—:|/()\\[\\],·]+)" + java.util.regex.Pattern.quote(codeUpper) + "($|[\\s\\-–—:|/()\\[\\],·]+)";
+			if (!strippedOption.matches(".*" + tokenRegex + ".*"))
+			{
+				continue;
+			}
+
+			String formattedReplacement = mapped;
+			if (!mapped.toUpperCase(java.util.Locale.ROOT).contains(codeUpper))
+			{
+				int lastClosingTag = mapped.lastIndexOf("</col>");
+				if (lastClosingTag >= 0)
+				{
+					formattedReplacement = mapped.substring(0, lastClosingTag) + " (" + code + ")" + mapped.substring(lastClosingTag);
+				}
+				else if (mapped.contains("<col="))
+				{
+					formattedReplacement = mapped + " (" + code + ")</col>";
+				}
+				else
+				{
+					formattedReplacement = mapped + " (" + code + ")";
+				}
+			}
+
+			String optTrimmed = Text.removeTags(option).trim();
+			if (optTrimmed.toLowerCase(java.util.Locale.ROOT).startsWith("last-destination"))
+			{
+				entry.setOption("Last-destination (" + formattedReplacement + ")");
+			}
+			else if (optTrimmed.toLowerCase(java.util.Locale.ROOT).startsWith("ring-"))
+			{
+				entry.setOption("Ring-" + formattedReplacement);
+			}
+			else
+			{
+				entry.setOption(formattedReplacement);
+			}
+			break;
+		}
+	}
+
+	private static boolean isFairyRingEntry(MenuEntry entry)
+	{
+		if (entry == null)
+		{
+			return false;
+		}
+
+		String target = Text.removeTags(entry.getTarget());
+		if (target == null || target.isEmpty())
+		{
+			return false;
+		}
+
+		String targetLower = target.trim().toLowerCase(java.util.Locale.ROOT);
+		return targetLower.contains("fairy ring")
+			|| targetLower.contains("fairy tree")
+			|| targetLower.equals("tree & ring");
 	}
 
 	private static boolean isInventoryEntry(MenuEntry entry)
@@ -572,7 +649,7 @@ public class EasyTeleportsPlugin extends Plugin
 					matched = true;
 					useWholeLineReplace = true;
 				}
-				else if (isWidget)
+				else
 				{
 					String tokenRegex = "(^|" + sep + ")"
 							+ java.util.regex.Pattern.quote(normalizedOriginal)
