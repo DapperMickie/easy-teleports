@@ -499,7 +499,19 @@ public class EasyTeleportsPlugin extends Plugin
 			String formattedReplacement = mapped;
 			if (!mapped.toUpperCase(java.util.Locale.ROOT).contains(codeUpper))
 			{
-				formattedReplacement = mapped + " (" + code + ")";
+				int lastClosingTag = mapped.lastIndexOf("</col>");
+				if (lastClosingTag >= 0)
+				{
+					formattedReplacement = mapped.substring(0, lastClosingTag) + " (" + code + ")" + mapped.substring(lastClosingTag);
+				}
+				else if (mapped.contains("<col="))
+				{
+					formattedReplacement = mapped + " (" + code + ")</col>";
+				}
+				else
+				{
+					formattedReplacement = mapped + " (" + code + ")";
+				}
 			}
 
 			String optTrimmed = Text.removeTags(option).trim();
