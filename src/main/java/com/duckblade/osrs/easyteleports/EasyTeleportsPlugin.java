@@ -417,14 +417,7 @@ public class EasyTeleportsPlugin extends Plugin
 
 		if (isFairyRingEntry(menuEntry))
 		{
-			List<TeleportReplacement> applicableReplacements =
-					getApplicableReplacements(r -> r.isApplicableToFairyRing(menuEntry.getOption()));
-
-			clientThread.invokeLater(() -> applyReplacement(applicableReplacements,
-					menuEntry,
-					MenuEntry::getOption,
-					MenuEntry::setOption,
-					/* shadowedText = */ false));
+			clientThread.invokeLater(() -> applyFairyRingReplacement(menuEntry));
 			return;
 		}
 
@@ -460,9 +453,7 @@ public class EasyTeleportsPlugin extends Plugin
 
 			if (isFairyRingEntry(me))
 			{
-				List<TeleportReplacement> reps =
-						getApplicableReplacements(r -> r.isApplicableToFairyRing(me.getOption()));
-				applyReplacement(reps, me, MenuEntry::getOption, MenuEntry::setOption, false);
+				applyFairyRingReplacement(me);
 				continue;
 			}
 
@@ -476,6 +467,56 @@ public class EasyTeleportsPlugin extends Plugin
 		}
 
 		client.setMenuEntries(entries);
+	}
+
+	private void applyFairyRingReplacement(MenuEntry entry)
+	{
+		String option = entry.getOption();
+		if (Strings.isNullOrEmpty(option))
+		{
+			return;
+		}
+
+		List<TeleportReplacement> replacements = getApplicableReplacements(r -> r instanceof FairyRing);
+		String strippedOption = Text.removeTags(option).toUpperCase(java.util.Locale.ROOT);
+
+		for (TeleportReplacement replacement : replacements)
+		{
+			String code = replacement.getOriginal();
+			String mapped = replacement.getReplacement();
+			if (Strings.isNullOrEmpty(code) || isBlankReplacement(mapped))
+			{
+				continue;
+			}
+
+			String codeUpper = code.toUpperCase(java.util.Locale.ROOT);
+			String tokenRegex = "(^|[\\s\\-–—:|/()\\[\\],·]+)" + java.util.regex.Pattern.quote(codeUpper) + "($|[\\s\\-–—:|/()\\[\\],·]+)";
+			if (!strippedOption.matches(".*" + tokenRegex + ".*"))
+			{
+				continue;
+			}
+
+			String formattedReplacement = mapped;
+			if (!mapped.toUpperCase(java.util.Locale.ROOT).contains(codeUpper))
+			{
+				formattedReplacement = mapped + " (" + code + ")";
+			}
+
+			String optTrimmed = Text.removeTags(option).trim();
+			if (optTrimmed.toLowerCase(java.util.Locale.ROOT).startsWith("last-destination"))
+			{
+				entry.setOption("Last-destination (" + formattedReplacement + ")");
+			}
+			else if (optTrimmed.toLowerCase(java.util.Locale.ROOT).startsWith("ring-"))
+			{
+				entry.setOption("Ring-" + formattedReplacement);
+			}
+			else
+			{
+				entry.setOption(formattedReplacement);
+			}
+			break;
+		}
 	}
 
 	private static boolean isFairyRingEntry(MenuEntry entry)
