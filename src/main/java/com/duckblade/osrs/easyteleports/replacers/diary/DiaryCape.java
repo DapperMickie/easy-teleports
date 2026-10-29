@@ -54,10 +54,10 @@ public class DiaryCape implements Replacer
 		replacements.add(new TeleportReplacement("Falador", config.replacementFalador()));
 		replacements.add(new TeleportReplacement("Fremennik", config.replacementFremennik()));
 		replacements.add(new TeleportReplacement("Kandarin", config.replacementKandarin()));
-		replacements.add(new TeleportReplacement("Karamja", config.replacementKaramjaJackie()));
 		replacements.add(new TeleportReplacement("Karamja (Shilo)", config.replacementKaramjaKaleb()));
 		replacements.add(new TeleportReplacement("Karamja (Jungle)", config.replacementKaramjaForester()));
 		replacements.add(new TeleportReplacement("Karamja (Mor Ul Rek)", config.replacementKaramjaTzhaar()));
+		replacements.add(new TeleportReplacement("Karamja", config.replacementKaramjaJackie()));
 		replacements.add(new TeleportReplacement("Kourend & Kebos", config.replacementKourend()));
 		replacements.add(new TeleportReplacement("Lumbridge & Draynor", config.replacementLumbridge()));
 		replacements.add(new TeleportReplacement("Morytania", config.replacementMorytania()));
